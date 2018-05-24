@@ -5,15 +5,7 @@ const { dbURI } = require('../config/environment');
 
 const Computer = require('../models/computer');
 const User = require('../models/user');
-
-
-const Case = require('../models/parts/case');
-const Cpu = require('../models/parts/Cpu');
-const Gpu = require('../models/parts/Gpu');
-const Mobo = require('../models/parts/Mobo');
-const Psu = require('../models/parts/psu');
-const Ram = require('../models/parts/ram');
-const Storage = require('../models/parts/storage');
+const Part = require('../models/part');
 
 
 mongoose.connect(dbURI, (err, db) => {
@@ -24,8 +16,8 @@ mongoose.connect(dbURI, (err, db) => {
   let seededGpus = [];
   let seededMobos = [];
   let seededPsus = [];
-  let seededRams = [];
-  let seededStorages = [];
+  let seededRam = [];
+  let seededStorage = [];
 
   User.create([
     {
@@ -47,14 +39,16 @@ mongoose.connect(dbURI, (err, db) => {
       console.log(`${users.length} users created`);
       seededUsers = users;
       // console.log('=====>',seededUsers[0]);
-      return Case.create([
+      return Part.create([
         {
+          partType: 'case',
           name: 'Fractal Design Node 304',
           image: 'https://www.scan.co.uk/images/products/super/2084488-l-a.jpg',
           size: 'Mini-ITX',
           addedBy: seededUsers[0]
         },
         {
+          partType: 'case',
           name: 'Corsair Obsidian 500D',
           image: 'https://www.overclockers.co.uk/media/image/thumbnail/CA23LCS_179016_800x800.jpg',
           size: 'ATX',
@@ -65,18 +59,20 @@ mongoose.connect(dbURI, (err, db) => {
     .then((chassis) => {
       console.log(`${chassis.length} cases created`);
       seededCases = chassis;
-      return Cpu.create([
+      return Part.create([
         {
+          partType: 'cpu',
           name: '6700k',
           image: 'http://www.kitguru.net/wp-content/uploads/2015/06/intel_core_pentium_devil_s_canyon_lga1150_haswell.jpg',
-          vendor: 'Intel',
+          cpuVendor: 'Intel',
           chipset: 'Z170',
           addedBy: seededUsers[0]
         },
         {
+          partType: 'cpu',
           name: '2700X',
           image: 'https://www.notebookcheck.net/fileadmin/_processed_/2/e/csm_AMD_Ryzen_7_2700X_09_6d4f9960ba.jpg',
-          vendor: 'AMD',
+          cpuVendor: 'AMD',
           chipset: 'AM4',
           addedBy: seededUsers[1]
         }
@@ -85,97 +81,111 @@ mongoose.connect(dbURI, (err, db) => {
     .then(cpus => {
       console.log(`${cpus.length} CPUs created`);
       seededCpus = cpus;
-      return Gpu.create(
+      return Part.create([
         {
+          partType: 'gpu',
           name: 'GTX 780',
           image: 'http://www.nvidia.co.uk/gtx-700-graphics-cards/static/img/gallery/780/gtx-780-10.jpg',
-          addedBy: seededUsers[0]
+          addedBy: seededUsers[0],
+          gpuVendor: 'Nvidia'
         },
         {
+          partType: 'gpu',
           name: 'RX Vega 64',
           image: 'https://www.overclockers.co.uk/media/image/AMD-Radeon-RX-Vega-Limited-Edition_3.png',
-          addedBy: seededUsers[1]
-        });
+          addedBy: seededUsers[1],
+          gpuVendor: 'AMD'
+        }]);
     })
     .then(gpus => {
       console.log(`${gpus.length} GPUs created`);
       seededGpus = gpus;
-      return Mobo.create(
+      return Part.create([
         {
+          partType: 'mobo',
           name: 'Maximus VIII Impact',
           image: 'https://images10.newegg.com/ProductImage/13-132-638-02.jpg',
           size: 'Mini-ITX',
-          vendor: 'Intel',
+          cpuVendor: 'Intel',
           chipset: 'Z170',
           addedBy: seededUsers[0]
         },
         {
+          partType: 'mobo',
           name: 'Crosshair VII',
-          image: 'https://www.asus.com/media/global/products/gURCpzWlZ6L8DGny/P_setting_000_1_90_end_500.png',
+          image: 'https://www.asu.com/media/global/products/gURCpzWlZ6L8DGny/P_setting_000_1_90_end_500.png',
           size: 'ATX',
-          vendor: 'AMD',
+          cpuVendor: 'AMD',
           chipset: 'AM4',
           addedBy: seededUsers[1]
-        });
+        }]);
     })
     .then(mobos => {
       console.log(`${mobos.length} motherboards created`);
       seededMobos = mobos;
-      return Psu.create(
+      return Part.create([
         {
+          partType: 'psu',
           name: 'EVGA 850W G2',
           image: 'https://images.evga.com/products/gallery/png/220-G2-0850-XR_LG_1.png',
-          size: 'ATX',
+          psuSize: 'ATX',
           power: 850,
           addedBy: seededUsers[0]
         },
         {
+          partType: 'psu',
           name: 'HX 1000i',
           image: 'https://images-na.ssl-images-amazon.com/images/I/51-7QtHptBL._SX355_.jpg',
-          size: 'ATX',
+          psuSize: 'ATX',
           power: 1000,
           addedBy: seededUsers[1]
-        });
+        }]);
     })
     .then(psus => {
       console.log(`${psus.length} power supplies created`);
       seededPsus = psus;
-      return Ram.create(
+      return Part.create([
         {
+          partType: 'ram',
           name: 'Trident Z 3200MHz',
           image: 'https://images-na.ssl-images-amazon.com/images/I/71vKio5VaYL._SL1500_.jpg',
-          type: 'DDR4',
-          capacity: 8
+          ramType: 'DDR4',
+          capacity: 8,
+          addedBy: seededUsers[0]
         },
         {
+          partType: 'ram',
           name: 'HyperX Fury',
           image: 'https://sep.yimg.com/ay/outletpc/hyperx-fury-16gb-2-x-8gb-ddr4-2133-ram-desktop-cl14-xmp-black-dimm-288-pin-hx421c14fb2k2-16-memory-kit-69.jpg',
-          type: 'DDR4',
-          capacity: 16
-        });
+          ramType: 'DDR4',
+          capacity: 16,
+          addedBy: seededUsers[1]
+        }]);
     })
-    .then(rams => {
-      console.log(`${rams.length} sets of RAM created`);
-      seededRams = rams;
-      return Storage.create(
+    .then(ram => {
+      console.log(`${ram.length} sets of RAM created`);
+      seededRam = ram;
+      return Part.create([
         {
+          partType: 'storage',
           name: '840 EVO',
           image: 'https://images-na.ssl-images-amazon.com/images/I/71y1FKz0I9L._SY355_.jpg',
           capacity: 500,
-          type: 'SSD'
+          storageType: 'SSD',
+          addedBy: seededUsers[0]
         },
         {
+          partType: 'storage',
           name: 'WD Black',
           image: 'https://images-eu.ssl-images-amazon.com/images/I/41wAdOm-YKL._SL500_AC_SS350_.jpg',
           capacity: 1000,
-          type: 'HDD'
-        }
-
-      );
+          storageType: 'HDD',
+          addedBy: seededUsers[1]
+        }]);
     })
-    .then(storages => {
-      console.log(`${storages.length} storage devices created`);
-      seededStorages = storages;
+    .then(storage => {
+      console.log(`${storage.length} storage devices created`);
+      seededStorage = storage;
       return Computer.create([
         {
           name: 'My First Computer',
@@ -187,8 +197,8 @@ mongoose.connect(dbURI, (err, db) => {
           gpu: seededGpus[0],
           mobo: seededMobos[0],
           psu: seededPsus[0],
-          ram: seededRams[0],
-          storage: seededStorages[0]
+          ram: seededRam[0],
+          storage: seededStorage[0]
         },
         {
           name: 'AMD FTW Build',
@@ -200,8 +210,8 @@ mongoose.connect(dbURI, (err, db) => {
           gpu: seededGpus[1],
           mobo: seededMobos[1],
           psu: seededPsus[1],
-          ram: seededRams[1],
-          storage: seededStorages[1]
+          ram: seededRam[1],
+          storage: seededStorage[1]
         }]);
     })
     .then(computers => console.log(`${computers.length} computers created!`))

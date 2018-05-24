@@ -31,37 +31,37 @@ const computerSchema = new mongoose.Schema({
     type: Number,
     min: 1, max: 5
   },
-  addedBy: {
+  createdBy: {
     type: mongoose.Schema.ObjectId,
     ref: 'User'
   },
   case: {
     type: mongoose.Schema.ObjectId,
-    ref: 'Case'
+    ref: 'Part'
   },
   cpu: {
     type: mongoose.Schema.ObjectId,
-    ref: 'CPU'
+    ref: 'Part'
   },
   gpu: {
     type: mongoose.Schema.ObjectId,
-    ref: 'GPU'
+    ref: 'Part'
   },
   mobo: {
     type: mongoose.Schema.ObjectId,
-    ref: 'Motherboard'
+    ref: 'Part'
   },
   psu: {
     type: mongoose.Schema.ObjectId,
-    ref: 'PSU'
+    ref: 'Part'
   },
   ram: {
     type: mongoose.Schema.ObjectId,
-    ref: 'RAM'
+    ref: 'Part'
   },
   storage: {
     type: mongoose.Schema.ObjectId,
-    ref: 'Storage'
+    ref: 'Part'
   },
   comments: [commentSchema]
 });

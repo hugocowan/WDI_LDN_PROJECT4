@@ -1,44 +1,43 @@
-const Ram = require('../../models/parts/ram');
+const Part = require('../models/part');
 
 function indexRoute (req, res, next) {
-  Ram
+  Part
     .find()
     .exec()
-    .then((rams) => res.json(rams))
+    .then((computers) => res.json(computers))
     .catch(next);
 }
 
 function showRoute (req, res, next) {
-  Ram
+  Part
     .findById(req.params.id)
-    .populate('comments.createdBy')
-    .then((rams) => res.json(rams))
+    .then((computer) => res.json(computer))
     .catch(next);
 }
 
 function createRoute (req, res, next) {
-  Ram
+  Part
     .create(req.body)
-    .then(rams => res.status(201).json(rams))
+    .then(computer => res.status(201).json(computer))
     .catch(next);
 }
 
 function updateRoute (req, res, next) {
-  Ram
+  Part
     .findById(req.params.id)
-    .then(rams => {
-      return Object.assign(rams, req.body);
+    .then(computer => {
+      return Object.assign(computer, req.body);
     })
-    .then(rams => rams.save())
-    .then(rams => res.json(rams))
+    .then(computer => computer.save())
+    .then(computer => res.json(computer))
     .catch(next);
 }
 
 function deleteRoute (req, res, next){
-  Ram
+  Part
     .findById(req.params.id)
-    .then(rams => {
-      return rams.remove();
+    .then(computer => {
+      return computer.remove();
     })
     .then(() => res.sendStatus(204))
     .catch(next);

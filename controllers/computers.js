@@ -3,6 +3,7 @@ const Computer = require('../models/computer');
 function indexRoute (req, res, next) {
   Computer
     .find()
+    .populate('case cpu gpu mobo psu ram storage comments')
     .exec()
     .then((computers) => res.json(computers))
     .catch(next);
@@ -11,7 +12,7 @@ function indexRoute (req, res, next) {
 function showRoute (req, res, next) {
   Computer
     .findById(req.params.id)
-    .populate('comments.createdBy')
+    .populate('case cpu gpu mobo psu ram storage')
     .then((computer) => res.json(computer))
     .catch(next);
 }
