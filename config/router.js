@@ -1,6 +1,7 @@
 const router = require('express').Router();
 const computers = require('../controllers/computers');
 const parts = require('../controllers/parts');
+const comments = require('../controllers/comments');
 const auth = require('../controllers/auth');
 const secureRoute = require('../lib/secureRoute');
 
@@ -15,6 +16,8 @@ router.route('/computers/:id')
 
 router.post('/computers/:id/comments', secureRoute, computers.commentCreate);
 router.delete('/computers/:id/comments/:commentId', secureRoute, computers.commentDelete);
+router.post('/parts/:id/comments', secureRoute, comments.createPartComment);
+router.delete('/parts/:id/comments/:commentId', secureRoute, comments.deletePartComment);
 
 router.route('/parts')
   .get(parts.index)

@@ -1,0 +1,15 @@
+.card-image{
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  height: 300px;
+}
+.price{
+  font-size: 40px;
+  margin: 5px 0;
+}
+
+.hero-image{
+  @extend .card-image;
+  height: 500px;
+}

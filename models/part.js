@@ -1,4 +1,28 @@
 const mongoose = require('mongoose');
+const Comment = require('./comment');
+// const moment = require('moment');
+//
+// const commentSchema = new mongoose.Schema({
+//   content: { type: String, required: true },
+//   rating: { type: Number, required: true, min: 1, max: 5 },
+//   createdBy: { type: mongoose.Schema.ObjectId, ref: 'User' }
+// }, {
+//   timestamps: true
+// });
+//
+// commentSchema.virtual('createdAtRelative')
+//   .get(function(){
+//     return moment(this.createdAt).fromNow();
+//   });
+//
+// commentSchema.set('toJSON', {
+//   virtuals: true,
+//   transform(doc, json){
+//     delete json.createdAt;
+//     delete json.updatedAt;
+//     return json;
+//   }
+// });
 
 const partSchema = new mongoose.Schema({
   partType: {
@@ -10,6 +34,10 @@ const partSchema = new mongoose.Schema({
   },
   name: { type: String, required: true },
   image: { type: String, required: true },
+  comments: [{
+    type: mongoose.Schema.ObjectId,
+    ref: 'Comment'
+  }],
   size: {
     type: String,
     enum: ['E-ATX', 'ATX', 'Micro-ATX', 'Mini-ITX'],
