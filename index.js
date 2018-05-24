@@ -1,6 +1,7 @@
 const express = require('express');
 const app = express();
 const bodyParser = require('body-parser');
+
 const { port, dbURI } = require('./config/environment');
 const router = require('./config/router');
 const errorHandler = require('./lib/errorHandler');
@@ -16,6 +17,6 @@ app.get('/*', (req, res) => res.sendFile(`${__dirname}/public/index.html`));
 
 app.use(errorHandler);
 
-app.listen(port, () => console.log(`Express running on port ${port}`));
+app.listen(port, () => console.log(`Express running on port ${port}.`));
 
 module.exports = app;
