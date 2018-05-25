@@ -11,8 +11,14 @@ function indexRoute (req, res, next) {
 function showRoute (req, res, next) {
   Part
     .findById(req.params.id)
-    .populate('comments.createdBy')
-    .then((part) => res.json(part))
+    .populate({
+      path: 'comments addedBy',
+      populate: { path: 'createdBy' }
+    })
+    .then((part) => {
+      // console.log('part in show route: ', part);
+      res.json(part);
+    })
     .catch(next);
 }
 
@@ -43,37 +49,6 @@ function deleteRoute (req, res, next){
     .then(() => res.sendStatus(204))
     .catch(next);
 }
-
-// function commentCreateRoute(req, res, next){
-//   req.body.createdBy = req.currentUser;
-//   Part
-//     .findById(req.params.id)
-//     .populate('comments.createdBy')
-//     .exec()
-//     .then(part => {
-//       part.comments.push(req.body);
-//       return part.save();
-//     })
-//     .then(part => res.json(part))
-//     .catch(next);
-// }
-// function commentDeleteRoute(req, res, next){
-//   Part
-//     .findById(req.params.id)
-//     .populate('comments.createdBy')
-//     .exec()
-//     .then(part => {
-//       const comment = part.comments.id(req.params.commentId);
-//       if(!comment.createdBy._id.equals(req.currentUser._id)){
-//         // return res.status(401).json({ message: 'Unauthorized' });
-//         throw new Error('Unauthorized');
-//       }
-//       comment.remove();
-//       return part.save();
-//     })
-//     .then(part => res.json(part))
-//     .catch(next);
-// }
 
 module.exports = {
   index: indexRoute,

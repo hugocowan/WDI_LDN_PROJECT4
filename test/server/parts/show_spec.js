@@ -3,14 +3,14 @@
 const Part = require('../../../models/part');
 
 // const caseData = {
-//   partType: 'case',
+//   type: 'case',
 //   name: 'Fractal Design Node 304',
 //   image: 'https://www.scan.co.uk/images/products/super/2084488-l-a.jpg',
 //   size: 'Mini-ITX'
 // };
 //
 // const cpuData = {
-//   partType: 'cpu',
+//   type: 'cpu',
 //   name: '6700k',
 //   image: 'http://www.kitguru.net/wp-content/uploads/2015/06/intel_core_pentium_devil_s_canyon_lga1150_haswell.jpg',
 //   cpuVendor: 'Intel',
@@ -18,14 +18,14 @@ const Part = require('../../../models/part');
 // };
 //
 // const gpuData = {
-//   partType: 'gpu',
+//   type: 'gpu',
 //   name: 'GTX 780',
 //   image: 'http://www.nvidia.co.uk/gtx-700-graphics-cards/static/img/gallery/780/gtx-780-10.jpg',
 //   gpuVendor: 'Nvidia'
 // };
 //
 // const moboData = {
-//   partType: 'mobo',
+//   type: 'mobo',
 //   name: 'Maximus VIII Impact',
 //   image: 'https://images10.newegg.com/ProductImage/13-132-638-02.jpg',
 //   size: 'Mini-ITX',
@@ -34,7 +34,7 @@ const Part = require('../../../models/part');
 // };
 //
 // const psuData = {
-//   partType: 'psu',
+//   type: 'psu',
 //   name: 'EVGA 850W G2',
 //   image: 'https://images.evga.com/products/gallery/png/220-G2-0850-XR_LG_1.png',
 //   psuSize: 'ATX',
@@ -42,7 +42,7 @@ const Part = require('../../../models/part');
 // };
 //
 // const storageData = {
-//   partType: 'storage',
+//   type: 'storage',
 //   name: '840 EVO',
 //   image: 'https://images-na.ssl-images-amazon.com/images/I/71y1FKz0I9L._SY355_.jpg',
 //   capacity: 500,
@@ -50,7 +50,7 @@ const Part = require('../../../models/part');
 // };
 
 const ramData =  {
-  partType: 'ram',
+  type: 'ram',
   name: 'Trident Z 3200MHz',
   image: 'https://images-na.ssl-images-amazon.com/images/I/71vKio5VaYL._SL1500_.jpg',
   ramType: 'DDR4',

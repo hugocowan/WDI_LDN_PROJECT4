@@ -18,7 +18,7 @@ class AuthLogin extends React.Component{
         Auth.setToken(res.data.token);
         Flash.setMessage('info', res.data.message);
       })
-      .then(() => this.props.history.push('/burgers'))
+      .then(() => this.props.history.push('/index'))
       .catch(() => {
         Flash.setMessage('danger', 'Invalid credentials');
         //forces a refresh so we see the error message:

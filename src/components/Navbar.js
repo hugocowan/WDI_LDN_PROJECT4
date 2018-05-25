@@ -25,7 +25,7 @@ class Navbar extends React.Component {
     return (
       <nav className="navbar" role="navigation" aria-label="main navigation">
         <div className="navbar-brand">
-          <Link className="navbar-item" to="/">
+          <Link className="navbar-item" to="/index">
             <img src="https://image.flaticon.com/icons/svg/34/34100.svg" width="112" />
           </Link>
           <a role="button" className={`navbar-burger ${this.state.navIsOpen? 'is-active' : ''}`} onClick={this.handleToggle}>

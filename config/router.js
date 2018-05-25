@@ -14,8 +14,8 @@ router.route('/computers/:id')
   .put(secureRoute, computers.update)
   .delete(secureRoute, computers.delete);
 
-router.post('/computers/:id/comments', secureRoute, computers.commentCreate);
-router.delete('/computers/:id/comments/:commentId', secureRoute, computers.commentDelete);
+router.post('/computers/:id/comments', secureRoute, comments.createComputerComment);
+router.delete('/computers/:id/comments/:commentId', secureRoute, comments.deleteComputerComment);
 router.post('/parts/:id/comments', secureRoute, comments.createPartComment);
 router.delete('/parts/:id/comments/:commentId', secureRoute, comments.deletePartComment);
 

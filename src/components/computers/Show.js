@@ -62,19 +62,19 @@ class ComputerShow extends React.Component {
       <div className="columns is-multiline">
         <div className="column is-6">
           <div className="hero-image" style={{ backgroundImage: `url(${computer.image})` }} />
-          <Link
+          {Auth.isCurrentUser(computer.createdBy) && <Link
             to={`/computers/${computer._id}/edit`}
             className="button"
           >
             Edit
-          </Link>
+          </Link>}
           {' '}
-          <button
+          {Auth.isCurrentUser(computer.createdBy) && <button
             className="button is-danger"
             onClick={this.handleDelete}
           >
               Delete
-          </button>
+          </button>}
 
           <hr />
 

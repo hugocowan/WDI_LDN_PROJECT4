@@ -1,34 +1,84 @@
-// const Comment = require('../models/comment');
+const Comment = require('../models/comment');
 const Part = require('../models/part');
-// const Computer = require('../models/computer');
+// const util = require('util');
+const Computer = require('../models/computer');
 
 
-function createPartComment(req, res, next){
+function createComputerComment(req, res, next){
+  // console.log('currentuser: ', req.currentUser);
   req.body.createdBy = req.currentUser;
-  Part
-    .findById(req.params.id)
-    .populate('comments.createdBy')
-    .exec()
-    .then(part => {
-      part.comments.push(req.body);
-      return part.save();
+  Comment
+    .create(req.body)
+    .then(comment => {
+      const newComment = comment;
+      Computer
+        .findById(req.params.id)
+        .populate({
+          path: 'comments addedBy',
+          populate: { path: 'createdBy' }
+        })
+        .exec()
+        .then(computer => {
+          computer.comments.push(newComment);
+          return computer.save();
+        })
+        .then(computer => {
+          res.json(computer);
+        });
     })
-    .then(part => res.json(part))
+    .catch(next);
+}
+
+function deleteComputerComment(req, res, next){
+  Computer
+    .findById(req.params.id)
+    .populate({
+      path: 'comments',
+      populate: { path: 'createdBy' }
+    })
+    .then(computer => {
+      // console.log(util.inspect(computer, { depth: null }));
+      computer.comments.remove(req.params.commentId);
+      return computer.save();
+    })
+    .then(computer => res.json(computer))
+    .catch(next);
+}
+function createPartComment(req, res, next){
+  // console.log('currentuser: ', req.currentUser);
+  req.body.createdBy = req.currentUser;
+  Comment
+    .create(req.body)
+    .then(comment => {
+      const newComment = comment;
+      Part
+        .findById(req.params.id)
+        .populate({
+          path: 'comments addedBy',
+          populate: { path: 'createdBy' }
+        })
+        .exec()
+        .then(part => {
+          part.comments.push(newComment);
+          return part.save();
+        })
+        .then(part => {
+          res.json(part);
+        });
+    })
     .catch(next);
 }
 
 function deletePartComment(req, res, next){
   Part
     .findById(req.params.id)
-    .populate('comments.createdBy')
-    .exec()
+    .populate({
+      path: 'comments',
+      populate: { path: 'createdBy' }
+    })
     .then(part => {
-      const comment = part.comments.id(req.params.commentId);
-      if(!comment.createdBy._id.equals(req.currentUser._id)){
-        // return res.status(401).json({ message: 'Unauthorized' });
-        throw new Error('Unauthorized');
-      }
-      comment.remove();
+      // console.log(util.inspect(part, { depth: null }));
+      part.comments.remove(req.params.commentId);
       return part.save();
     })
     .then(part => res.json(part))
@@ -36,5 +86,7 @@ function deletePartComment(req, res, next){
 }
 module.exports = {
   createPartComment,
-  deletePartComment
+  deletePartComment,
+  createComputerComment,
+  deleteComputerComment
 };

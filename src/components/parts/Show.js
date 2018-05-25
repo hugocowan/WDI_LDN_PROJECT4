@@ -62,19 +62,19 @@ class PartShow extends React.Component {
       <div className="columns is-multiline">
         <div className="column is-6">
           <div className="hero-image" style={{ backgroundImage: `url(${part.image})` }} />
-          <Link
+          {Auth.isCurrentUser(part.addedBy) && <Link
             to={`/parts/${part._id}/edit`}
             className="button"
           >
             Edit
-          </Link>
+          </Link>}
           {' '}
-          <button
+          {Auth.isCurrentUser(part.addedBy) && <button
             className="button is-danger"
             onClick={this.handleDelete}
           >
               Delete
-          </button>
+          </button>}
 
           <hr />
 
