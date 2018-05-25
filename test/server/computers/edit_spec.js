@@ -110,7 +110,7 @@ describe('PUT /computers/:id', () => {
         });
       })
       .then(computer => {
-        console.log('COMPUTER HERE:   ', computer);
+        // console.log('COMPUTER HERE:   ', computer);
         computerId = computer._id;
         computer.name = 'My Last Computer';
         computer.description = 'My very last computer!';

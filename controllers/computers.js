@@ -20,7 +20,7 @@ function showRoute (req, res, next) {
       populate: { path: 'createdBy' }
     })
     .then((computer) => {
-      console.log(computer);
+      // console.log(computer);
       res.json(computer);
     })
     .catch(next);

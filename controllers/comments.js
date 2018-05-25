@@ -23,7 +23,7 @@ function createComputerComment(req, res, next){
           return computer.save();
         })
         .then(computer => {
-          res.json(computer);
+          res.status(201).json(computer);
         });
     })
     .catch(next);
@@ -41,7 +41,7 @@ function deleteComputerComment(req, res, next){
       computer.comments.remove(req.params.commentId);
       return computer.save();
     })
-    .then(computer => res.json(computer))
+    .then(computer => res.status(204).json(computer))
     .catch(next);
 }
 function createPartComment(req, res, next){
@@ -63,7 +63,7 @@ function createPartComment(req, res, next){
           return part.save();
         })
         .then(part => {
-          res.json(part);
+          res.status(201).json(part);
         });
     })
     .catch(next);
@@ -81,7 +81,7 @@ function deletePartComment(req, res, next){
       part.comments.remove(req.params.commentId);
       return part.save();
     })
-    .then(part => res.json(part))
+    .then(part => res.status(204).json(part))
     .catch(next);
 }
 module.exports = {
