@@ -11,7 +11,11 @@ class ComputerEdit extends React.Component {
   componentDidMount(){
     axios
       .get(`/api/computers/${this.props.match.params.id}`)
-      .then(res => this.setState(res.data, () => console.log(this.state)));
+      .then(res => this.setState(res.data));
+
+    axios
+      .get('/api/parts')
+      .then(res => this.setState({ parts: res.data }, () => console.log(this.state.parts)));
   }
 
   handleChange = ({ target: { name, value } }) => {
@@ -37,6 +41,7 @@ class ComputerEdit extends React.Component {
         handleChange={this.handleChange}
         handleSubmit={this.handleSubmit}
         errors={this.state.errors}
+        parts={this.state.parts}
       />
     );
   }
