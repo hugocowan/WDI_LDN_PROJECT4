@@ -10,9 +10,15 @@ class ComputersNew extends React.Component{
     type: 'Computer'
   };
 
+  componentDidMount() {
+    axios
+      .get('/api/parts')
+      .then(res => this.setState({ parts: res.data }));
+  }
+
   handleChange = ({ target: { name, value } }) => {
     const errors = { ...this.state.errors, [name]: '' };
-    this.setState({ errors, [name]: value });
+    this.setState({ errors, [name]: value }, () => console.log(this.state));
   }
 
   handleSubmit = e => {
@@ -32,6 +38,7 @@ class ComputersNew extends React.Component{
         handleSubmit={this.handleSubmit}
         computer={this.state}
         errors={this.state.errors}
+        parts={this.state.parts}
       />
     );
   }

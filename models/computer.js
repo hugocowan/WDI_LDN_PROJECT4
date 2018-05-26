@@ -15,31 +15,38 @@ const computerSchema = new mongoose.Schema({
   },
   case: {
     type: mongoose.Schema.ObjectId,
-    ref: 'Part'
+    ref: 'Part',
+    required: true
   },
   cpu: {
     type: mongoose.Schema.ObjectId,
-    ref: 'Part'
+    ref: 'Part',
+    required: true
   },
   gpu: {
     type: mongoose.Schema.ObjectId,
-    ref: 'Part'
+    ref: 'Part',
+    required: true
   },
   motherboard: {
     type: mongoose.Schema.ObjectId,
-    ref: 'Part'
+    ref: 'Part',
+    required: true
   },
   psu: {
     type: mongoose.Schema.ObjectId,
-    ref: 'Part'
+    ref: 'Part',
+    required: true
   },
   ram: {
     type: mongoose.Schema.ObjectId,
-    ref: 'Part'
+    ref: 'Part',
+    required: true
   },
   storage: {
     type: mongoose.Schema.ObjectId,
-    ref: 'Part'
+    ref: 'Part',
+    required: true
   },
   comments: [{
     type: mongoose.Schema.ObjectId,
