@@ -16,13 +16,14 @@ const userData = {
 };
 
 const computerData = {
+  type: 'Computer',
   name: 'My First Computer',
   image: 'https://i.pinimg.com/736x/41/2d/11/412d11b67072b252c757d8d1d3598d15--desktop-computers-gaming.jpg',
   description: 'My very first computer!'
 };
 
 const partData =  {
-  type: 'ram',
+  type: 'RAM',
   name: 'Trident Z 3200MHz',
   image: 'https://images-na.ssl-images-amazon.com/images/I/71vKio5VaYL._SL1500_.jpg',
   ramType: 'DDR4',
@@ -48,7 +49,7 @@ describe('POST /computers/:id/comments', () => {
     ])
       .then(() => User.create(userData))
       .then(user => {
-        partData.addedBy = user._id;
+        partData.createdBy = user._id;
         computerData.createdBy = user._id;
         commentData.createdBy = user._id;
         token = jwt.sign({ sub: user._id }, secret, { expiresIn: '6h'});

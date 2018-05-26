@@ -18,7 +18,11 @@ import NotFound from './components/common/NotFound';
 import FlashMessages from './components/common/FlashMessages';
 import Index from './components/common/Index';
 import ComputerShow from './components/computers/Show';
+import ComputerEdit from './components/computers/Edit';
+import ComputersNew from './components/computers/New';
 import PartShow from './components/parts/Show';
+import PartsNew from './components/parts/New';
+import PartEdit from './components/parts/Edit';
 import Comments from './components/common/Comments';
 
 class App extends React.Component {
@@ -31,8 +35,10 @@ class App extends React.Component {
           <section className="section">
             <div className="container">
               <Switch>
-                {/* <SecureRoute path="/computers/new" component={ComputersNew} />
-                <SecureRoute path="/computers/:id/edit" component={ComputersEdit} /> */}
+                <SecureRoute path="/parts/new" component={PartsNew} />
+                <SecureRoute path="/computers/new" component={ComputersNew} />
+                <SecureRoute path="/parts/:id/edit" component={PartEdit} />
+                <SecureRoute path="/computers/:id/edit" component={ComputerEdit} />
                 <SecureRoute path="/computers/:id/comments" component={Comments} />
                 <SecureRoute path="/parts/:id/comments" component={Comments} />
                 <Route path="/parts/:id" component={PartShow} />

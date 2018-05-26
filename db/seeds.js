@@ -12,9 +12,9 @@ mongoose.connect(dbURI, (err, db) => {
   db.dropDatabase();
   let seededUsers = [];
   let seededCases = [];
-  let seededCpus = [];
-  let seededGpus = [];
-  let seededMobos = [];
+  let seededCPUs = [];
+  let seededGPUs = [];
+  let seededMotherboards = [];
   let seededPsus = [];
   let seededRam = [];
   let seededStorage = [];
@@ -41,104 +41,124 @@ mongoose.connect(dbURI, (err, db) => {
       // console.log('=====>',seededUsers[0]);
       return Part.create([
         {
-          type: 'case',
+          type: 'Case',
           name: 'Fractal Design Node 304',
           image: 'https://www.scan.co.uk/images/products/super/2084488-l-a.jpg',
           size: 'Mini-ITX',
-          addedBy: seededUsers[0]
+          createdBy: seededUsers[0],
+          description: 'A small form-factor case with deceptively large potential for accommodating high-end components.'
         },
         {
-          type: 'case',
+          type: 'Case',
           name: 'Corsair Obsidian 500D',
           image: 'https://www.overclockers.co.uk/media/image/thumbnail/CA23LCS_179016_800x800.jpg',
           size: 'ATX',
-          addedBy: seededUsers[1]
+          createdBy: seededUsers[1]
         }
       ]);
     })
     .then((chassis) => {
-      console.log(`${chassis.length} cases created`);
+      console.log(`${chassis.length} Cases created`);
       seededCases = chassis;
       return Part.create([
         {
-          type: 'cpu',
+          type: 'CPU',
           name: '6700k',
-          image: 'http://www.kitguru.net/wp-content/uploads/2015/06/intel_core_pentium_devil_s_canyon_lga1150_haswell.jpg',
-          cpuVendor: 'Intel',
+          image: 'https://ae01.alicdn.com/kf/HTB1V14NNXXXXXXkapXXq6xXFXXXB/Intel-core-Quad-core-I7-6700K-I7-6700K-I7-Processor-LGA-1151-4-40GHz-6M-Level.jpg_640x640.jpg',
+          vendorCPU: 'Intel',
           chipset: 'Z170',
-          addedBy: seededUsers[0]
+          createdBy: seededUsers[0]
         },
         {
-          type: 'cpu',
+          type: 'CPU',
           name: '2700X',
           image: 'https://www.notebookcheck.net/fileadmin/_processed_/2/e/csm_AMD_Ryzen_7_2700X_09_6d4f9960ba.jpg',
-          cpuVendor: 'AMD',
+          vendorCPU: 'AMD',
           chipset: 'AM4',
-          addedBy: seededUsers[1]
+          createdBy: seededUsers[1]
         }
       ]);
     })
     .then(cpus => {
       console.log(`${cpus.length} CPUs created`);
-      seededCpus = cpus;
+      seededCPUs = cpus;
       return Part.create([
         {
-          type: 'gpu',
+          type: 'GPU',
           name: 'GTX 780',
           image: 'http://www.nvidia.co.uk/gtx-700-graphics-cards/static/img/gallery/780/gtx-780-10.jpg',
-          addedBy: seededUsers[0],
-          gpuVendor: 'Nvidia'
+          createdBy: seededUsers[0],
+          vendorGPU: 'Nvidia'
         },
         {
-          type: 'gpu',
+          type: 'GPU',
           name: 'RX Vega 64',
           image: 'https://www.overclockers.co.uk/media/image/AMD-Radeon-RX-Vega-Limited-Edition_3.png',
-          addedBy: seededUsers[1],
-          gpuVendor: 'AMD'
+          createdBy: seededUsers[1],
+          vendorGPU: 'AMD'
         }]);
     })
     .then(gpus => {
       console.log(`${gpus.length} GPUs created`);
-      seededGpus = gpus;
+      seededGPUs = gpus;
       return Part.create([
         {
-          type: 'mobo',
+          type: 'Motherboard',
           name: 'Maximus VIII Impact',
           image: 'https://images10.newegg.com/ProductImage/13-132-638-02.jpg',
           size: 'Mini-ITX',
-          cpuVendor: 'Intel',
+          vendorCPU: 'Intel',
           chipset: 'Z170',
-          addedBy: seededUsers[0]
+          createdBy: seededUsers[0]
         },
         {
-          type: 'mobo',
+          type: 'Motherboard',
           name: 'Crosshair VII',
-          image: 'https://www.asu.com/media/global/products/gURCpzWlZ6L8DGny/P_setting_000_1_90_end_500.png',
+          image: 'https://eteknix-eteknixltd.netdna-ssl.com/wp-content/uploads/2017/05/asuscvihero802ac4.jpg',
           size: 'ATX',
-          cpuVendor: 'AMD',
+          vendorCPU: 'AMD',
           chipset: 'AM4',
-          addedBy: seededUsers[1]
+          createdBy: seededUsers[1]
+        },
+        {
+          type: 'Motherboard',
+          name: 'Maximus VII Impact',
+          image: 'https://www.techpowerup.com/img/14-08-11/29e.jpg',
+          size: 'ATX',
+          vendorCPU: 'AMD',
+          chipset: 'Z97',
+          createdBy: seededUsers[0],
+          description: 'A solid board for Haswell and Broadwell CPUs. Has a true 8-phase VRM design that is more than enough to push your CPU to its limits.'
         }]);
     })
-    .then(mobos => {
-      console.log(`${mobos.length} motherboards created`);
-      seededMobos = mobos;
+    .then(motherboards => {
+      console.log(`${motherboards.length} Motherboards created`);
+      seededMotherboards = motherboards;
       return Part.create([
         {
-          type: 'psu',
+          type: 'PSU',
           name: 'EVGA 850W G2',
           image: 'https://images.evga.com/products/gallery/png/220-G2-0850-XR_LG_1.png',
           psuSize: 'ATX',
           power: 850,
-          addedBy: seededUsers[0]
+          createdBy: seededUsers[0]
         },
         {
-          type: 'psu',
+          type: 'PSU',
           name: 'HX 1000i',
           image: 'https://images-na.ssl-images-amazon.com/images/I/51-7QtHptBL._SX355_.jpg',
           psuSize: 'ATX',
           power: 1000,
-          addedBy: seededUsers[1]
+          createdBy: seededUsers[1]
+        },
+        {
+          type: 'PSU',
+          name: 'Corsair SF450',
+          image: 'https://www.gamersnexus.net/media/k2/items/cache/dcaeef4c16b8a8dd2169c4e6191f97b9_XL.jpg',
+          psuSize: 'ATX',
+          power: 1000,
+          createdBy: seededUsers[1],
+          description: 'A dead silent SFX PSU with excellent ripple and efficiency.'
         }]);
     })
     .then(psus => {
@@ -146,20 +166,29 @@ mongoose.connect(dbURI, (err, db) => {
       seededPsus = psus;
       return Part.create([
         {
-          type: 'ram',
+          type: 'RAM',
           name: 'Trident Z 3200MHz',
           image: 'https://images-na.ssl-images-amazon.com/images/I/71vKio5VaYL._SL1500_.jpg',
           ramType: 'DDR4',
           capacity: 8,
-          addedBy: seededUsers[0]
+          createdBy: seededUsers[0]
         },
         {
-          type: 'ram',
+          type: 'RAM',
           name: 'HyperX Fury',
           image: 'https://sep.yimg.com/ay/outletpc/hyperx-fury-16gb-2-x-8gb-ddr4-2133-ram-desktop-cl14-xmp-black-dimm-288-pin-hx421c14fb2k2-16-memory-kit-69.jpg',
           ramType: 'DDR4',
           capacity: 16,
-          addedBy: seededUsers[1]
+          createdBy: seededUsers[1]
+        },
+        {
+          type: 'RAM',
+          name: 'Corsair Dominator Platinum',
+          image: 'https://i2.wp.com/www.ocdrift.com/wp-content/uploads/2014/08/dom_pt_x4_c.png',
+          ramType: 'DDR3',
+          capacity: 16,
+          createdBy: seededUsers[1],
+          description: 'Low latency, high speed DDR3 RAM with a beautiful chrome aesthetic.'
         }]);
     })
     .then(ram => {
@@ -167,20 +196,20 @@ mongoose.connect(dbURI, (err, db) => {
       seededRam = ram;
       return Part.create([
         {
-          type: 'storage',
+          type: 'Storage',
           name: '840 EVO',
           image: 'https://images-na.ssl-images-amazon.com/images/I/71y1FKz0I9L._SY355_.jpg',
           capacity: 500,
           storageType: 'SSD',
-          addedBy: seededUsers[0]
+          createdBy: seededUsers[0]
         },
         {
-          type: 'storage',
+          type: 'Storage',
           name: 'WD Black',
           image: 'https://images-eu.ssl-images-amazon.com/images/I/41wAdOm-YKL._SL500_AC_SS350_.jpg',
           capacity: 1000,
           storageType: 'HDD',
-          addedBy: seededUsers[1]
+          createdBy: seededUsers[1]
         }]);
     })
     .then(storage => {
@@ -188,33 +217,35 @@ mongoose.connect(dbURI, (err, db) => {
       seededStorage = storage;
       return Computer.create([
         {
+          type: 'Computer',
           name: 'My First Computer',
-          image: 'https://i.pinimg.com/736x/41/2d/11/412d11b67072b252c757d8d1d3598d15--desktop-computers-gaming.jpg',
+          image: 'https://lh3.googleusercontent.com/23y8SXb6j8ynqxJoqnM72bvQ8U2lRUv5Z3HgRgN5CuQrambzqPy61dnePqHzkTrmIcDKf19SrFkYcB4ZmTh6lsK52dtbsZvpQa6i8sufM5CkVyGWAWdPspCMh5qYVHKdV16oqONsrWWhDJXeRS9zIbvueuoT2ouAJbvOwVM-SaWav23kLg6SjrZ3jzxkT-y6sx0un48wmK-c01ZdR8krrPhMOCRpPqviPFHMKqUNUUeRSvFPcY-a4KStlFRUUmdonYKIVK19cI_ndZ5TReYhypmySIi0MpC4eA1oyACUjtvggywmH5aAatwbbeYWxEGMCKQV0fQKwnIFTOgfqQldExrNmlKsIZ0P6JJnKKkpMQCpKTalL-SxGSzR0zOmwJpcRTgZo3c3vFkMgjWp5y3q8cJErMJa3i9GTq2y7tqHd1gIg3ZBfgmzJ92COMKgAZdAJYmWoRj_I_kEqQP6Qh-L1lXmrns_bkMFkcXItlI6T_L5_4rRD8rdoLvCmTadeB4P7NlsVhnVmRnwbl0UGvysHX1oLL0c9Epw3TZB9psT90EjUyfOcS8LencTeDZVJjT7KEVEms_eomKOvHwFRY006NI3Hofvr9n5y5NAv0as8yLTeG2E5f3YTeqIaRKgl8DwWrx3vMaA2r7IJbTlGr04r1sbLyxscke0GxuDamjlEQ=w887-h665-no?.jpg',
           description: 'My very first computer!',
           createdBy: seededUsers[0],
           case: seededCases[0],
-          cpu: seededCpus[0],
-          gpu: seededGpus[0],
-          mobo: seededMobos[0],
+          cpu: seededCPUs[0],
+          gpu: seededGPUs[0],
+          motherboard: seededMotherboards[0],
           psu: seededPsus[0],
           ram: seededRam[0],
           storage: seededStorage[0]
         },
         {
-          name: 'AMD FTW Build',
-          image: 'https://cdn.pcpartpicker.com/static/forever/images/userbuild/226205.895856ea92be2b9cff5e36ff70eb2606.1600.jpg',
-          description: 'An All AMD Build.',
+          type: 'Computer',
+          name: 'An All AMD Build',
+          image: 'https://www.overclockers.co.uk/media/image/thumbnail/FS1BZOG_173795_750x750.jpg',
+          description: 'Ryzen and Vega working together in harmony.',
           createdBy: seededUsers[1],
           case: seededCases[1],
-          cpu: seededCpus[1],
-          gpu: seededGpus[1],
-          mobo: seededMobos[1],
+          cpu: seededCPUs[1],
+          gpu: seededGPUs[1],
+          motherboard: seededMotherboards[1],
           psu: seededPsus[1],
           ram: seededRam[1],
           storage: seededStorage[1]
         }]);
     })
-    .then(computers => console.log(`${computers.length} computers created!`))
+    .then(computers => console.log(`${computers.length} Computers created!`))
     .catch(err => console.log(err))
     .finally(() => mongoose.connection.close());
 });

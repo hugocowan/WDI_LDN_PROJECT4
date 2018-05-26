@@ -23,7 +23,7 @@ class ComputerShow extends React.Component {
       .delete(`/api/computers/${id}`, {
         headers: { Authorization: `Bearer ${Auth.getToken()}` }
       })
-      .then(() => this.props.history.push('/computers'));
+      .then(() => this.props.history.push('/index'));
   }
 
   handleCommentChange = ({ target: { name, value } }) => {
@@ -87,8 +87,7 @@ class ComputerShow extends React.Component {
         </div>
         <div className="column is-6">
           <h1 className="title is-1">{computer.name}</h1>
-          <h2 className="subtitle is-2">{computer.restaurant}</h2>
-          <p>{computer.description}</p>
+          <h2 className="subtitle is-8">{computer.description}</h2>
           <p className="price">{'💰'.repeat(computer.price)}</p>
 
           <hr />

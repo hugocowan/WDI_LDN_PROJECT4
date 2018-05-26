@@ -4,6 +4,7 @@ const computerSchema = new mongoose.Schema({
   name: { type: String, required: true },
   image: { type: String },
   description: { type: String },
+  type: { type: String, enum: ['Computer'], required: true },
   rating: {
     type: Number,
     min: 1, max: 5
@@ -24,7 +25,7 @@ const computerSchema = new mongoose.Schema({
     type: mongoose.Schema.ObjectId,
     ref: 'Part'
   },
-  mobo: {
+  motherboard: {
     type: mongoose.Schema.ObjectId,
     ref: 'Part'
   },

@@ -4,7 +4,7 @@ function indexRoute (req, res, next) {
   Computer
     .find()
     .populate({
-      path: 'case cpu gpu mobo psu ram storage comments',
+      path: 'Case CPU GPU Motherboard psu ram storage comments createdBy',
       populate: { path: 'createdBy' }
     })
     .exec()
@@ -16,7 +16,7 @@ function showRoute (req, res, next) {
   Computer
     .findById(req.params.id)
     .populate({
-      path: 'case cpu gpu mobo psu ram storage comments createdBy',
+      path: 'Case CPU GPU Motherboard psu ram storage comments createdBy',
       populate: { path: 'createdBy' }
     })
     .then((computer) => {
@@ -27,6 +27,7 @@ function showRoute (req, res, next) {
 }
 
 function createRoute (req, res, next) {
+  req.body.createdBy = req.currentUser;
   Computer
     .create(req.body)
     .then(computer => res.status(201).json(computer))

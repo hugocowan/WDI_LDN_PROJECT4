@@ -8,23 +8,39 @@ class Index extends React.Component{
   componentDidMount() {
     axios
       .get('/api/computers')
-      .then(res => this.setState({ computers: res.data }, () => console.log(this.state)));
+      .then(res => this.setState({ computers: res.data }));
+
     axios
       .get('/api/parts')
       .then(res => this.setState({ parts: res.data }));
   }
-  render(){
+  render() {
+    const allModels = Object.keys(this.state);
+
     return(
-      <div>
-        {this.state.computers && this.state.computers.map(computer =>
-          <div key={computer._id}>
-            <Link to={`/computers/${computer._id}`}>{computer.name}</Link>
-          </div>
-        )}
-        {this.state.parts && this.state.parts.map(part =>
-          <div key={part._id}>
-            <Link to={`/parts/${part._id}`}>{part.name}</Link>
-          </div>
+      <div className="columns is-multiline is-mobile">
+        {allModels.map(model =>
+          this.state[`${model}`] && this.state[`${model}`].map(item =>
+            <div className="column is-4-desktop is-6-tablet is-12-mobile" key={item._id}>
+              <Link to={`/${model}/${item._id}`}>
+                <div className="card">
+                  <div
+                    className="card-image"
+                    style={{ backgroundImage: `url(${item.image})` }}
+                  ></div>
+                  <div className="card-content">
+                    <div className="media">
+                      <div className="media-content">
+                        <p className="title is-4">{item.name}</p>
+                        <p className="subtitle is-6">{item.description}</p>
+                        <p className="subtitle is-6">Created by {item.createdBy.username}</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </Link>
+            </div>
+          )
         )}
       </div>
     );

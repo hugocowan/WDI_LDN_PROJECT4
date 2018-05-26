@@ -3,6 +3,7 @@
 const Computer = require('../../../models/computer');
 
 const computerData = {
+  type: 'Computer',
   name: 'My First Computer',
   image: 'https://i.pinimg.com/736x/41/2d/11/412d11b67072b252c757d8d1d3598d15--desktop-computers-gaming.jpg',
   description: 'My very first computer!'

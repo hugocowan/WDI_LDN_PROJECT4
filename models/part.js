@@ -4,7 +4,7 @@ const partSchema = new mongoose.Schema({
   type: {
     type: String,
     enum: [
-      'case', 'cpu', 'gpu', 'mobo', 'psu', 'ram', 'storage'
+      'Case', 'CPU', 'GPU', 'Motherboard', 'PSU', 'RAM', 'Storage'
     ],
     required: true
   },
@@ -18,15 +18,15 @@ const partSchema = new mongoose.Schema({
     type: String,
     enum: ['E-ATX', 'ATX', 'Micro-ATX', 'Mini-ITX'],
     required: function() {
-      return (this.partType === 'case' ||
-              this.partType === 'mobo');
+      return (this.partType === 'Case' ||
+              this.partType === 'Motherboard');
     }
   },
   psuSize: {
     type: String,
     enum: ['ATX', 'SFX', 'SFX-L'],
     required: function() {
-      return this.partType === 'psu';
+      return this.partType === 'PSU';
     }
   },
   link: { type: String },
@@ -40,23 +40,23 @@ const partSchema = new mongoose.Schema({
     type: Number,
     min: 1, max: 5
   },
-  addedBy: {
+  createdBy: {
     type: mongoose.Schema.ObjectId,
     ref: 'User'
   },
-  cpuVendor: {
+  vendorCPU: {
     type: String,
     enum: ['Intel', 'AMD'],
     required: function() {
-      return (this.partType === 'cpu' ||
-              this.partType === 'mobo');
+      return (this.partType === 'CPU' ||
+              this.partType === 'Motherboard');
     }
   },
-  gpuVendor: {
+  vendorGPU: {
     type: String,
     enum: ['Intel', 'AMD', 'Nvidia'],
     required: function() {
-      return this.partType === 'gpu';
+      return this.partType === 'GPU';
     }
   },
   chipset: {
@@ -66,8 +66,8 @@ const partSchema = new mongoose.Schema({
       'FM2+', 'AM3+', 'AM4', 'X399'
     ],
     required: function() {
-      return (this.partType === 'cpu' ||
-              this.partType === 'mobo');
+      return (this.partType === 'CPU' ||
+              this.partType === 'Motherboard');
     }
   },
   baseFreq: { type: Number },
@@ -80,7 +80,7 @@ const partSchema = new mongoose.Schema({
     type: String,
     enum: ['DDR2', 'DDR3', 'DDR4'],
     required: function() {
-      return this.partType === 'ram';
+      return this.partType === 'RAM';
     }
   },
   capacity: { type: Number },
@@ -88,7 +88,7 @@ const partSchema = new mongoose.Schema({
     type: String,
     enum: ['SSD', 'HDD'],
     required: function() {
-      return this.partType === 'storage';
+      return this.partType === 'Storage';
     }
   }
 });

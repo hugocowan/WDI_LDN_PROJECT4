@@ -16,42 +16,42 @@ const userData = {
 };
 
 let partData = [{
-  type: 'case',
+  type: 'Case',
   name: 'Fractal Design Node 304',
   image: 'https://www.scan.co.uk/images/products/super/2084488-l-a.jpg',
   size: 'Mini-ITX'
 }, {
-  type: 'cpu',
+  type: 'CPU',
   name: '6700k',
   image: 'http://www.kitguru.net/wp-content/uploads/2015/06/intel_core_pentium_devil_s_canyon_lga1150_haswell.jpg',
-  cpuVendor: 'Intel',
+  vendorCPU: 'Intel',
   chipset: 'Z170'
 }, {
-  type: 'gpu',
+  type: 'GPU',
   name: 'GTX 780',
   image: 'http://www.nvidia.co.uk/gtx-700-graphics-cards/static/img/gallery/780/gtx-780-10.jpg',
-  gpuVendor: 'Nvidia'
+  vendorGPU: 'Nvidia'
 }, {
-  type: 'mobo',
+  type: 'Motherboard',
   name: 'Maximus VIII Impact',
   image: 'https://images10.newegg.com/ProductImage/13-132-638-02.jpg',
   size: 'Mini-ITX',
-  cpuVendor: 'Intel',
+  vendorCPU: 'Intel',
   chipset: 'Z170'
 }, {
-  type: 'psu',
+  type: 'PSU',
   name: 'EVGA 850W G2',
   image: 'https://images.evga.com/products/gallery/png/220-G2-0850-XR_LG_1.png',
   psuSize: 'ATX',
   power: 850
 }, {
-  type: 'ram',
+  type: 'RAM',
   name: 'Trident Z 3200MHz',
   image: 'https://images-na.ssl-images-amazon.com/images/I/71vKio5VaYL._SL1500_.jpg',
   ramType: 'DDR4',
   capacity: 8
 }, {
-  type: 'storage',
+  type: 'Storage',
   name: '840 EVO',
   image: 'https://images-na.ssl-images-amazon.com/images/I/71y1FKz0I9L._SY355_.jpg',
   capacity: 500,
@@ -59,6 +59,7 @@ let partData = [{
 }];
 
 let computerData = {
+  type: 'Computer',
   name: 'My First Computer',
   image: 'https://i.pinimg.com/736x/41/2d/11/412d11b67072b252c757d8d1d3598d15--desktop-computers-gaming.jpg',
   description: 'My very first computer!'
@@ -77,7 +78,7 @@ describe('PUT /computers/:id', () => {
       .then(() => User.create(userData))
       .then(user => {
         partData = partData.map(part => {
-          part.addedBy = user;
+          part.createdBy = user;
           return part;
         });
         computerData.createdBy = user._id;
@@ -86,27 +87,18 @@ describe('PUT /computers/:id', () => {
       })
       .then(() =>  Part.create(partData))
       .then((parts) => {
-        // console.log('About to fail', {
-        //   ...computerData,
-        //   case: parts.find(part => part.type === 'case')._id,
-        //   cpu: parts.find(part => part.type === 'cpu')._id,
-        //   gpu: parts.find(part => part.type === 'gpu')._id,
-        //   mobo: parts.find(part => part.type === 'mobo')._id,
-        //   psu: parts.find(part => part.type === 'psu')._id,
-        //   ram: parts.find(part => part.type === 'ram')._id,
-        //   storage: parts.find(part => part.type === 'storage')._id
-        // });
         return Computer.create({
+          type: computerData.type,
           name: computerData.name,
           image: computerData.image,
           description: computerData.description,
-          case: parts.find(part => part.type === 'case')._id,
-          cpu: parts.find(part => part.type === 'cpu')._id,
-          gpu: parts.find(part => part.type === 'gpu')._id,
-          mobo: parts.find(part => part.type === 'mobo')._id,
-          psu: parts.find(part => part.type === 'psu')._id,
-          ram: parts.find(part => part.type === 'ram')._id,
-          storage: parts.find(part => part.type === 'storage')._id
+          case: parts.find(part => part.type === 'Case')._id,
+          cpu: parts.find(part => part.type === 'CPU')._id,
+          gpu: parts.find(part => part.type === 'GPU')._id,
+          motherboard: parts.find(part => part.type === 'Motherboard')._id,
+          psu: parts.find(part => part.type === 'PSU')._id,
+          ram: parts.find(part => part.type === 'RAM')._id,
+          storage: parts.find(part => part.type === 'Storage')._id
         });
       })
       .then(computer => {

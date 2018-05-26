@@ -14,7 +14,7 @@ function createComputerComment(req, res, next){
       Computer
         .findById(req.params.id)
         .populate({
-          path: 'comments addedBy',
+          path: 'comments createdBy',
           populate: { path: 'createdBy' }
         })
         .exec()
@@ -54,7 +54,7 @@ function createPartComment(req, res, next){
       Part
         .findById(req.params.id)
         .populate({
-          path: 'comments addedBy',
+          path: 'comments createdBy',
           populate: { path: 'createdBy' }
         })
         .exec()

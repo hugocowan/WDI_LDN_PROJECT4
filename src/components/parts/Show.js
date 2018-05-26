@@ -23,7 +23,7 @@ class PartShow extends React.Component {
       .delete(`/api/parts/${id}`, {
         headers: { Authorization: `Bearer ${Auth.getToken()}` }
       })
-      .then(() => this.props.history.push('/parts'));
+      .then(() => this.props.history.push('/index'));
   }
 
   handleCommentChange = ({ target: { name, value } }) => {
@@ -62,14 +62,14 @@ class PartShow extends React.Component {
       <div className="columns is-multiline">
         <div className="column is-6">
           <div className="hero-image" style={{ backgroundImage: `url(${part.image})` }} />
-          {Auth.isCurrentUser(part.addedBy) && <Link
+          {Auth.isCurrentUser(part.createdBy) && <Link
             to={`/parts/${part._id}/edit`}
             className="button"
           >
             Edit
           </Link>}
           {' '}
-          {Auth.isCurrentUser(part.addedBy) && <button
+          {Auth.isCurrentUser(part.createdBy) && <button
             className="button is-danger"
             onClick={this.handleDelete}
           >
@@ -87,9 +87,10 @@ class PartShow extends React.Component {
         </div>
         <div className="column is-6">
           <h1 className="title is-1">{part.name}</h1>
-          <h2 className="subtitle is-2">{part.restaurant}</h2>
-          <p>{part.description}</p>
-          <p className="price">{'💰'.repeat(part.price)}</p>
+          <h2 className="subtitle is-6">{part.vendorCPU} {part.type}</h2>
+          <h2 className="subtitle is-6">{part.description}</h2>
+          {part.chipset && <h2 className="subtitle is-6">{part.chipset} socket</h2>}
+          <p className="price">{part.price}</p>
 
           <hr />
 

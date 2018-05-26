@@ -3,6 +3,7 @@ const Part = require('../models/part');
 function indexRoute (req, res, next) {
   Part
     .find()
+    .populate('createdBy')
     .exec()
     .then((parts) => res.json(parts))
     .catch(next);
@@ -12,7 +13,7 @@ function showRoute (req, res, next) {
   Part
     .findById(req.params.id)
     .populate({
-      path: 'comments addedBy',
+      path: 'comments createdBy',
       populate: { path: 'createdBy' }
     })
     .then((part) => {
@@ -23,6 +24,7 @@ function showRoute (req, res, next) {
 }
 
 function createRoute (req, res, next) {
+  req.body.createdBy = req.currentUser;
   Part
     .create(req.body)
     .then(part => res.status(201).json(part))

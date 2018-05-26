@@ -14,7 +14,7 @@ const userData = {
 };
 
 const ramData =  {
-  type: 'ram',
+  type: 'RAM',
   name: 'Trident Z 3200MHz',
   image: 'https://images-na.ssl-images-amazon.com/images/I/71vKio5VaYL._SL1500_.jpg',
   ramType: 'DDR4',
