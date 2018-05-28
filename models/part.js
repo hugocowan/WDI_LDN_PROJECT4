@@ -16,7 +16,7 @@ const partSchema = new mongoose.Schema({
   }],
   size: {
     type: String,
-    enum: ['E-ATX', 'ATX', 'Micro-ATX', 'Mini-ITX', 'SFX', 'SFX-L'],
+    enum: ['E-ATX', 'ATX', 'Micro-ATX', 'Mini-ITX', 'SFX'],
     required: function() {
       return (this.partType === 'Case' ||
               this.partType === 'Motherboard' ||

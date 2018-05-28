@@ -18,7 +18,20 @@ class ComputersNew extends React.Component{
 
   handleChange = ({ target: { name, value } }) => {
     const errors = { ...this.state.errors, [name]: '' };
-    this.setState({ errors, [name]: value }, () => console.log(this.state));
+    let size = null;
+    let vendor = null;
+    let chipset = null;
+    let ramType = null;
+
+    if(this.state.parts.find(part => part._id === value)){
+      const part = this.state.parts.find(part => part._id === value);
+      if(part.size) size = part.size;
+      if(part.vendor) vendor = part.vendor;
+      if(part.chipset) chipset = part.chipset;
+      if(part.ramType) ramType = part.ramType;
+    }
+
+    this.setState({ errors, [name]: value, [`${name}Enums`]: { size, vendor, chipset, ramType } }, () => console.log(this.state));
   }
 
   handleSubmit = e => {
