@@ -13,21 +13,21 @@ const partData = [{
   type: 'CPU',
   name: '6700k',
   image: 'http://www.kitguru.net/wp-content/uploads/2015/06/intel_core_pentium_devil_s_canyon_lga1150_haswell.jpg',
-  vendorCPU: 'Intel',
+  vendor: 'Intel',
   chipset: 'Z170'
 },
 {
   type: 'GPU',
   name: 'GTX 780',
   image: 'http://www.nvidia.co.uk/gtx-700-graphics-cards/static/img/gallery/780/gtx-780-10.jpg',
-  vendorGPU: 'Nvidia'
+  vendor: 'Nvidia'
 },
 {
   type: 'Motherboard',
   name: 'Maximus VIII Impact',
   image: 'https://images10.newegg.com/ProductImage/13-132-638-02.jpg',
   size: 'Mini-ITX',
-  vendorCPU: 'Intel',
+  vendor: 'Intel',
   chipset: 'Z170'
 },
 {
@@ -61,21 +61,21 @@ const partData = [{
   type: 'CPU',
   name: '2700X',
   image: 'https://www.notebookcheck.net/fileadmin/_processed_/2/e/csm_AMD_Ryzen_7_2700X_09_6d4f9960ba.jpg',
-  vendorCPU: 'AMD',
+  vendor: 'AMD',
   chipset: 'AM4'
 },
 {
   type: 'GPU',
   name: 'RX Vega 64',
   image: 'https://www.overclockers.co.uk/media/image/AMD-Radeon-RX-Vega-Limited-Edition_3.png',
-  vendorGPU: 'AMD'
+  vendor: 'AMD'
 },
 {
   type: 'Motherboard',
   name: 'Crosshair VII',
   image: 'https://www.asu.com/media/global/products/gURCpzWlZ6L8DGny/P_setting_000_1_90_end_500.png',
   size: 'ATX',
-  vendorCPU: 'AMD',
+  vendor: 'AMD',
   chipset: 'AM4'
 },
 {

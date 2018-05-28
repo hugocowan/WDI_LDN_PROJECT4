@@ -87,7 +87,7 @@ class PartShow extends React.Component {
         </div>
         <div className="column is-6">
           <h1 className="title is-1">{part.name}</h1>
-          <h2 className="subtitle is-6">{part.vendorCPU} {part.type}</h2>
+          <h2 className="subtitle is-6">{part.vendor} {part.type}</h2>
           <h2 className="subtitle is-6">{part.description}</h2>
           {part.chipset && <h2 className="subtitle is-6">{part.chipset} socket</h2>}
           <p className="price">{part.price}</p>

@@ -24,19 +24,19 @@ let partData = [{
   type: 'CPU',
   name: '6700k',
   image: 'http://www.kitguru.net/wp-content/uploads/2015/06/intel_core_pentium_devil_s_canyon_lga1150_haswell.jpg',
-  vendorCPU: 'Intel',
+  vendor: 'Intel',
   chipset: 'Z170'
 }, {
   type: 'GPU',
   name: 'GTX 780',
   image: 'http://www.nvidia.co.uk/gtx-700-graphics-cards/static/img/gallery/780/gtx-780-10.jpg',
-  vendorGPU: 'Nvidia'
+  vendor: 'Nvidia'
 }, {
   type: 'Motherboard',
   name: 'Maximus VIII Impact',
   image: 'https://images10.newegg.com/ProductImage/13-132-638-02.jpg',
   size: 'Mini-ITX',
-  vendorCPU: 'Intel',
+  vendor: 'Intel',
   chipset: 'Z170'
 }, {
   type: 'PSU',

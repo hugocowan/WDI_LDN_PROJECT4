@@ -44,25 +44,19 @@ const partSchema = new mongoose.Schema({
     type: mongoose.Schema.ObjectId,
     ref: 'User'
   },
-  vendorCPU: {
-    type: String,
-    enum: ['Intel', 'AMD'],
-    required: function() {
-      return (this.partType === 'CPU' ||
-              this.partType === 'Motherboard');
-    }
-  },
-  vendorGPU: {
+  vendor: {
     type: String,
     enum: ['Intel', 'AMD', 'Nvidia'],
     required: function() {
-      return this.partType === 'GPU';
+      return (this.partType === 'GPU' ||
+              this.partType === 'CPU' ||
+              this.partType === 'Motherboard');
     }
   },
   chipset: {
     type: String,
     enum: [
-      'Z87', 'Z97', 'Z170', 'Z270', 'Z370', 'Z390', 'X99', 'X299',
+      'Z87', 'Z97', 'Z170', 'Z270', 'Z370', 'Z390', 'X99', 'X299', 'X79',
       'FM2+', 'AM3+', 'AM4', 'X399'
     ],
     required: function() {
