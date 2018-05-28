@@ -19,9 +19,9 @@ const partSchema = new mongoose.Schema({
     //0: mini-itx | 1: micro-atx | 2: atx | 3: e-atx
     enum: [ 0, 1, 2, 3],
     required: function() {
-      return (this.partType === 'Case' ||
-              this.partType === 'Motherboard' ||
-              this.partType === 'PSU');
+      return (this.type === 'Case' ||
+              this.type === 'Motherboard' ||
+              this.type === 'PSU');
     }
   },
   link: { type: String },
@@ -43,9 +43,9 @@ const partSchema = new mongoose.Schema({
     type: String,
     enum: ['Intel', 'AMD', 'Nvidia'],
     required: function() {
-      return (this.partType === 'GPU' ||
-              this.partType === 'CPU' ||
-              this.partType === 'Motherboard');
+      return (this.type === 'GPU' ||
+              this.type === 'CPU' ||
+              this.type === 'Motherboard');
     }
   },
   chipset: {
@@ -59,8 +59,8 @@ const partSchema = new mongoose.Schema({
     //11: 'AM4', 12: 'X399'
     enum: [ 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12 ],
     required: function() {
-      return (this.partType === 'CPU' ||
-              this.partType === 'Motherboard');
+      return (this.type === 'CPU' ||
+              this.type === 'Motherboard');
     }
   },
   baseFreq: { type: Number },
@@ -73,7 +73,7 @@ const partSchema = new mongoose.Schema({
     type: String,
     enum: ['DDR2', 'DDR3', 'DDR4'],
     required: function() {
-      return this.partType === 'RAM';
+      return this.type === 'RAM';
     }
   },
   capacity: { type: Number },
@@ -81,7 +81,7 @@ const partSchema = new mongoose.Schema({
     type: String,
     enum: ['SSD', 'HDD'],
     required: function() {
-      return this.partType === 'Storage';
+      return this.type === 'Storage';
     }
   }
 });

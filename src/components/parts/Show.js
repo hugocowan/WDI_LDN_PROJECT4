@@ -57,7 +57,18 @@ class PartShow extends React.Component {
 
   render(){
     const { part } = this.state;
+
+    const sizes = [ 'Mini-ITX', 'Micro-ATX',
+      'ATX', 'E-ATX'
+    ];
+
+    const chipsets =[ 'X79', 'Z87', 'Z97',
+      'FM2+', 'AM3+', 'X99', 'Z170', 'X299',
+      'Z270', 'Z370', 'Z390', 'AM4', 'X399'
+    ];
+
     if(!part) return null;
+
     return (
       <div className="columns is-multiline">
         <div className="column is-6">
@@ -89,7 +100,7 @@ class PartShow extends React.Component {
           <h1 className="title is-1">{part.name}</h1>
           <h2 className="subtitle is-6">{part.vendor} {part.type}</h2>
           <h2 className="subtitle is-6">{part.description}</h2>
-          {part.chipset && <h2 className="subtitle is-6">{part.chipset} socket</h2>}
+          {part.chipset && <h2 className="subtitle is-6">{chipsets[part.chipset]} socket</h2>}
           <p className="price">{part.price}</p>
 
           <hr />
