@@ -34,7 +34,7 @@ const partData = [{
   type: 'PSU',
   name: 'EVGA 850W G2',
   image: 'https://images.evga.com/products/gallery/png/220-G2-0850-XR_LG_1.png',
-  psuSize: 'ATX',
+  size: 'ATX',
   power: 850
 },
 {
@@ -82,7 +82,7 @@ const partData = [{
   type: 'PSU',
   name: 'HX 1000i',
   image: 'https://images-na.ssl-images-amazon.com/images/I/51-7QtHptBL._SX355_.jpg',
-  psuSize: 'ATX',
+  size: 'ATX',
   power: 1000
 },
 {

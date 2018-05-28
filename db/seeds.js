@@ -196,7 +196,7 @@ mongoose.connect(dbURI, (err, db) => {
           type: 'PSU',
           name: 'EVGA 850W G2',
           image: 'https://images.evga.com/products/gallery/png/220-G2-0850-XR_LG_1.png',
-          psuSize: 'ATX',
+          size: 'ATX',
           power: 850,
           createdBy: seededUsers[0]
         },
@@ -204,7 +204,7 @@ mongoose.connect(dbURI, (err, db) => {
           type: 'PSU',
           name: 'HX 1000i',
           image: 'https://images-na.ssl-images-amazon.com/images/I/51-7QtHptBL._SX355_.jpg',
-          psuSize: 'ATX',
+          size: 'ATX',
           power: 1000,
           createdBy: seededUsers[1]
         },
@@ -212,7 +212,7 @@ mongoose.connect(dbURI, (err, db) => {
           type: 'PSU',
           name: 'Corsair SF450',
           image: 'https://www.gamersnexus.net/media/k2/items/cache/dcaeef4c16b8a8dd2169c4e6191f97b9_XL.jpg',
-          psuSize: 'SFX',
+          size: 'SFX',
           power: 450,
           createdBy: seededUsers[1],
           description: 'A dead silent SFX PSU with excellent ripple and efficiency.'
@@ -221,7 +221,7 @@ mongoose.connect(dbURI, (err, db) => {
           type: 'PSU',
           name: 'Corsair VS650',
           image: 'https://images-na.ssl-images-amazon.com/images/I/81uv9IeA4TL._SL1500_.jpg',
-          psuSize: 'ATX',
+          size: 'ATX',
           power: 650,
           createdBy: seededUsers[2],
           description: 'The Corsair VS series PSU is an ideal choice if you\'re building a home or office system, provides compatibility and reliability. With 0.99 Active Power Factor Correction, you get the peace of mind from knowing that your components are protected from uneven power delivery. And, a dedicated single +12 V rail saves you from the hassle of balancing your components across multiple power cables',

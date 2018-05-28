@@ -16,17 +16,11 @@ const partSchema = new mongoose.Schema({
   }],
   size: {
     type: String,
-    enum: ['E-ATX', 'ATX', 'Micro-ATX', 'Mini-ITX'],
+    enum: ['E-ATX', 'ATX', 'Micro-ATX', 'Mini-ITX', 'SFX', 'SFX-L'],
     required: function() {
       return (this.partType === 'Case' ||
-              this.partType === 'Motherboard');
-    }
-  },
-  psuSize: {
-    type: String,
-    enum: ['ATX', 'SFX', 'SFX-L'],
-    required: function() {
-      return this.partType === 'PSU';
+              this.partType === 'Motherboard' ||
+              this.partType === 'PSU');
     }
   },
   link: { type: String },

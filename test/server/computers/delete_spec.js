@@ -41,7 +41,7 @@ let partData = [{
   type: 'PSU',
   name: 'EVGA 850W G2',
   image: 'https://images.evga.com/products/gallery/png/220-G2-0850-XR_LG_1.png',
-  psuSize: 'ATX',
+  size: 'ATX',
   power: 850
 }, {
   type: 'RAM',
