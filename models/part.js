@@ -50,10 +50,14 @@ const partSchema = new mongoose.Schema({
   },
   chipset: {
     type: String,
-    enum: [
-      'Z87', 'Z97', 'Z170', 'Z270', 'Z370', 'Z390', 'X99', 'X299', 'X79',
-      'FM2+', 'AM3+', 'AM4', 'X399'
-    ],
+    //DDR3:
+    // 0: 'X79', 1: 'Z87', 2: 'Z97',
+    // 3: 'FM2+', 4: 'AM3+',
+
+    //DDR4:
+    //5: 'X99', 6: 'Z170', 7: 'X299', 8: 'Z270', 9: 'Z370', 10: 'Z390',
+    //11: 'AM4', 12: 'X399'
+    enum: [ 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12 ],
     required: function() {
       return (this.partType === 'CPU' ||
               this.partType === 'Motherboard');

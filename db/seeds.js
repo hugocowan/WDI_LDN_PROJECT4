@@ -91,7 +91,7 @@ mongoose.connect(dbURI, (err, db) => {
           name: '6700k',
           image: 'https://ae01.alicdn.com/kf/HTB1V14NNXXXXXXkapXXq6xXFXXXB/Intel-core-Quad-core-I7-6700K-I7-6700K-I7-Processor-LGA-1151-4-40GHz-6M-Level.jpg_640x640.jpg',
           vendor: 'Intel',
-          chipset: 'Z170',
+          chipset: 6,
           createdBy: seededUsers[0]
         },
         {
@@ -99,7 +99,7 @@ mongoose.connect(dbURI, (err, db) => {
           name: '2700X',
           image: 'https://www.notebookcheck.net/fileadmin/_processed_/2/e/csm_AMD_Ryzen_7_2700X_09_6d4f9960ba.jpg',
           vendor: 'AMD',
-          chipset: 'AM4',
+          chipset: 11,
           createdBy: seededUsers[1]
         },
         {
@@ -107,7 +107,7 @@ mongoose.connect(dbURI, (err, db) => {
           name: 'i7 3960X',
           image: 'https://upload.wikimedia.org/wikipedia/commons/2/2e/Intel_Core_i7-3930k_top_IMGP3915_smial_wp.jpg',
           vendor: 'Intel',
-          chipset: 'X79',
+          chipset: 0,
           createdBy: seededUsers[2],
           description: 'An old but solid 6 core, 12 thread CPU.',
           link: 'https://www.amazon.co.uk/Intel-Corei7-3930K-Processor-3-20GHz-SKT2011/dp/B00681D9ZI/ref=pd_lpo_sbs_147_t_0?_encoding=UTF8&psc=1&refRID=NH8SB47HY51V55TXPZPW',
@@ -150,7 +150,7 @@ mongoose.connect(dbURI, (err, db) => {
           image: 'https://images10.newegg.com/ProductImage/13-132-638-02.jpg',
           size: 0,
           vendor: 'Intel',
-          chipset: 'Z170',
+          chipset: 6,
           createdBy: seededUsers[0]
         },
         {
@@ -159,7 +159,7 @@ mongoose.connect(dbURI, (err, db) => {
           image: 'https://eteknix-eteknixltd.netdna-ssl.com/wp-content/uploads/2017/05/asuscvihero802ac4.jpg',
           size: 2,
           vendor: 'AMD',
-          chipset: 'AM4',
+          chipset: 11,
           createdBy: seededUsers[1]
         },
         {
@@ -168,7 +168,7 @@ mongoose.connect(dbURI, (err, db) => {
           image: 'https://images-na.ssl-images-amazon.com/images/I/91Vn-xhsOkL._SL1500_.jpg',
           size: 1,
           vendor: 'Intel',
-          chipset: 'X79',
+          chipset: 0,
           createdBy: seededUsers[2],
           description: 'An old motherboard I\'m using to make a new system with!',
           link: 'https://www.amazon.co.uk/Motherboard-Chipset-Support-Non-ECC-SATA3-0/dp/B07B63PVVJ/ref=sr_1_1?s=computers&ie=UTF8&qid=1527508148&sr=1-1&keywords=x79+motherboard&dpID=61FL36SRoZL&preST=_SY300_QL70_&dpSrc=srch',
@@ -179,8 +179,8 @@ mongoose.connect(dbURI, (err, db) => {
           name: 'Maximus VII Impact',
           image: 'https://www.techpowerup.com/img/14-08-11/29e.jpg',
           size: 0,
-          vendor: 'AMD',
-          chipset: 'Z97',
+          vendor: 'Intel',
+          chipset: 2,
           createdBy: seededUsers[0],
           description: 'A solid board for Haswell and Broadwell CPUs. Has a true 8-phase VRM design that is more than enough to push your CPU to its limits.'
         }]);

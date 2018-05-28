@@ -36,11 +36,6 @@ class ComputersNew extends React.Component{
         console.log('case passed!');
         size = part.size;
 
-      } else if(part.type === 'Case' &&
-                part.value === null) {
-
-        size = null;
-
       } else if(part.type === 'Motherboard' &&
 
         (!this.state.caseEnums ||
@@ -57,15 +52,10 @@ class ComputersNew extends React.Component{
         chipset = part.chipset;
         vendor = part.vendor;
 
-      } else if(part.type === 'Motherboard' &&
-                part.value === null) {
+      } else if(part.type === 'CPU' &&
 
-        size = null;
-
-      }else if(part.type === 'CPU' &&
-
-        (!this.state.motheboardEnums ||
-         this.state.motheboardEnums.chipset === part.chipset) &&
+        (!this.state.motherboardEnums ||
+         this.state.motherboardEnums.chipset === part.chipset) &&
 
         (!this.state.motherboardEnums ||
          this.state.motherboardEnums.vendor === part.vendor)) {
@@ -73,11 +63,6 @@ class ComputersNew extends React.Component{
         console.log('CPU passed!');
         chipset = part.chipset;
         vendor = part.vendor;
-      } else if(part.type === 'CPU' &&
-                part.value === null) {
-
-        size = null;
-
       } else if(part.type === 'GPU' ||
                 part.type === 'Storage' ||
                 part.type === 'PSU') {
@@ -87,37 +72,24 @@ class ComputersNew extends React.Component{
         (part.ramType === 'DDR3' &&
 
          (!this.state.motherboardEnums ||
-         this.state.motherboardEnums.chipset === 'Z87' ||
-         this.state.motherboardEnums.chipset === 'Z97' ||
-         this.state.motherboardEnums.chipset === 'FM2+' ||
-         this.state.motherboardEnums.chipset === 'AM3+' ||
-         this.state.motherboardEnums.chipset === null) &&
-         
+          this.state.motherboardEnums.chipset <= 4) &&
+
          (!this.state.cpuEnums ||
-         this.state.cpuEnums.chipset === 'Z87' ||
-         this.state.cpuEnums.chipset === 'Z97' ||
-         this.state.cpuEnums.chipset === 'FM2+' ||
-         this.state.cpuEnums.chipset === 'AM3+')) ||
+         this.state.cpuEnums.chipset <= 4)) ||
 
         (part.ramType === 'DDR4' &&
 
          (!this.state.motherboardEnums ||
-         this.state.motherboardEnums.chipset !== 'Z87' ||
-         this.state.motherboardEnums.chipset !== 'Z97' ||
-         this.state.motherboardEnums.chipset !== 'FM2+' ||
-         this.state.motherboardEnums.chipset !== 'AM3+') &&
+         this.state.motherboardEnums.chipset >= 5) &&
 
          (!this.state.cpuEnums ||
-         this.state.cpuEnums.chipset !== 'Z87' ||
-         this.state.cpuEnums.chipset !== 'Z97' ||
-         this.state.cpuEnums.chipset !== 'FM2+' ||
-         this.state.cpuEnums.chipset !== 'AM3+'))) {
+         this.state.cpuEnums.chipset >= 5))) {
 
         console.log('ram passed!');
         ramType = part.ramType;
       } else {
         errors[name] = 'Item not compatible with selected components!';
-        return this.setState({ errors });
+        return this.setState({ errors, [name]: value });
       }
     }
 

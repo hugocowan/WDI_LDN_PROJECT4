@@ -1,16 +1,23 @@
 import React from 'react';
 
 const ComputerForm = ({ handleChange, handleSubmit, computer, parts, errors }) => {
+
   const formInvalid = Object.keys(errors).some(key => errors[key]);
+
   const partTypes = [
-    'Case',
-    'CPU',
-    'GPU',
-    'Motherboard',
-    'PSU',
-    'RAM',
-    'Storage'
+    'Case', 'CPU', 'GPU', 'Motherboard',
+    'PSU', 'RAM', 'Storage'
   ];
+
+  const sizes = [ 'Mini-ITX', 'Micro-ATX',
+    'ATX', 'E-ATX'
+  ];
+
+  const chipsets =[ 'X79', 'Z87', 'Z97',
+    'FM2+', 'AM3+', 'X99', 'Z170', 'X299',
+    'Z270', 'Z370', 'Z390', 'AM4', 'X399'
+  ];
+
   return (
     <form onSubmit={handleSubmit}>
       <div className="field">
@@ -58,14 +65,22 @@ const ComputerForm = ({ handleChange, handleSubmit, computer, parts, errors }) =
                 id={type}
                 name={type.toLowerCase()}
                 onChange={handleChange}
-                value={computer[type.toLowerCase()] || ''}
+                value={computer[type.toLowerCase()] &&
+                       computer[type.toLowerCase()]._id ||
+                       computer[type.toLowerCase()] || ''}
               >
                 <option value={null} >Please select</option>
-                {parts.reduce((array, part) => {
-                  part.type === type ? array.push(part) : array;
-                  return array;
-                }, []).map(part =>
-                  <option key={part._id} value={part._id}>{part.name}</option>
+                {parts.filter((part) => part.type === type).map(part =>
+                  <option key={part._id} value={part._id}>
+
+                    {part.ramType ? `${part.ramType}: ${part.name}` :
+                      part.size && part.chipset ? `${sizes[part.size]} ||
+                      ${chipsets[part.chipset]}:  ${part.name}` :
+                        part.size && !part.chipset ? `${sizes[part.size]}:  ${part.name}` :
+                          part.chipset ? `${chipsets[part.chipset]}:  ${part.name}` :
+                            part.storageType ? `${part.storageType}:  ${part.name}`:
+                              part.name}
+                  </option>
                 )}
               </select>
             </div>
