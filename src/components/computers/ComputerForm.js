@@ -60,7 +60,7 @@ const ComputerForm = ({ handleChange, handleSubmit, computer, parts, errors }) =
                 onChange={handleChange}
                 value={computer[type.toLowerCase()] || ''}
               >
-                <option>Please select</option>
+                <option value={null} >Please select</option>
                 {parts.reduce((array, part) => {
                   part.type === type ? array.push(part) : array;
                   return array;

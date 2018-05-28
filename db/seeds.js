@@ -51,7 +51,7 @@ mongoose.connect(dbURI, (err, db) => {
           type: 'Case',
           name: 'Fractal Design Node 304',
           image: 'https://www.scan.co.uk/images/products/super/2084488-l-a.jpg',
-          size: 'Mini-ITX',
+          size: 0,
           createdBy: seededUsers[0],
           description: 'A small form-factor case with deceptively large potential for accommodating high-end components.'
         },
@@ -59,14 +59,14 @@ mongoose.connect(dbURI, (err, db) => {
           type: 'Case',
           name: 'Corsair Obsidian 500D',
           image: 'https://www.overclockers.co.uk/media/image/thumbnail/CA23LCS_179016_800x800.jpg',
-          size: 'ATX',
+          size: 2,
           createdBy: seededUsers[1]
         },
         {
           type: 'Case',
           name: 'NZXT S340',
           image: 'https://images-na.ssl-images-amazon.com/images/I/61sBXjQ93ZL._SL1430_.jpg',
-          size: 'ATX',
+          size: 2,
           createdBy: seededUsers[2],
           description: 'This extremely compact mid tower combines an uncompromising approach to chassis design with pure, minimalist style and everything you need.'
         },
@@ -74,7 +74,7 @@ mongoose.connect(dbURI, (err, db) => {
           type: 'Case',
           name: 'Cooler Master MasterBox Lite 3.1',
           image: 'https://images-na.ssl-images-amazon.com/images/I/81Nh1YIm-ZL._SL1500_.jpg',
-          size: 'Micro-ATX',
+          size: 1,
           createdBy: seededUsers[1],
           description: 'The MasterBox Lite 3.1 mATX Case is your straightforward option for your PC build that doesn\'t ignore good looks, customization, or performance. A sleek DarkMirror front panel and three custom trim colors (included in the box) offer a great first entry point for customization. Additionally, it comes with an edge to edge transparent acrylic side panel to show your internal components. And with support for up to 3 cooling fans and a watercooling system, we ensure your performance will not suffer.',
           link: 'https://www.amazon.co.uk/Cooler-Master-MasterBox-Computer-MCW-L3B3-KANN-01/dp/B071GDSBMN/ref=sr_1_2?s=computers&ie=UTF8&qid=1527509618&sr=1-2&keywords=micro+atx+case&dpID=419FEX%252BwTeL&preST=_SY300_QL70_&dpSrc=srch',
@@ -123,22 +123,19 @@ mongoose.connect(dbURI, (err, db) => {
           type: 'GPU',
           name: 'GTX 780',
           image: 'http://www.nvidia.co.uk/gtx-700-graphics-cards/static/img/gallery/780/gtx-780-10.jpg',
-          createdBy: seededUsers[0],
-          vendor: 'Nvidia'
+          createdBy: seededUsers[0]
         },
         {
           type: 'GPU',
           name: 'RX Vega 64',
           image: 'https://www.overclockers.co.uk/media/image/AMD-Radeon-RX-Vega-Limited-Edition_3.png',
-          createdBy: seededUsers[1],
-          vendor: 'AMD'
+          createdBy: seededUsers[1]
         },
         {
           type: 'GPU',
           name: 'RX 480 Gaming X 8G',
           image: 'https://images-na.ssl-images-amazon.com/images/I/61IViLA3R3L._SL1000_.jpg',
           createdBy: seededUsers[1],
-          vendor: 'AMD',
           link: 'https://www.amazon.co.uk/MSI-GAMING-Express-Graphics-Card/dp/B01JGQBMB4/ref=sr_1_1?s=computers&ie=UTF8&qid=1527508853&sr=1-1&dpID=519mvlkVsAL&preST=_SX300_QL70_&dpSrc=srch',
           price: 275
         }]);
@@ -151,7 +148,7 @@ mongoose.connect(dbURI, (err, db) => {
           type: 'Motherboard',
           name: 'Maximus VIII Impact',
           image: 'https://images10.newegg.com/ProductImage/13-132-638-02.jpg',
-          size: 'Mini-ITX',
+          size: 0,
           vendor: 'Intel',
           chipset: 'Z170',
           createdBy: seededUsers[0]
@@ -160,7 +157,7 @@ mongoose.connect(dbURI, (err, db) => {
           type: 'Motherboard',
           name: 'Crosshair VII',
           image: 'https://eteknix-eteknixltd.netdna-ssl.com/wp-content/uploads/2017/05/asuscvihero802ac4.jpg',
-          size: 'ATX',
+          size: 2,
           vendor: 'AMD',
           chipset: 'AM4',
           createdBy: seededUsers[1]
@@ -169,7 +166,7 @@ mongoose.connect(dbURI, (err, db) => {
           type: 'Motherboard',
           name: 'INTEL X79 Motherboard',
           image: 'https://images-na.ssl-images-amazon.com/images/I/91Vn-xhsOkL._SL1500_.jpg',
-          size: 'Micro-ATX',
+          size: 1,
           vendor: 'Intel',
           chipset: 'X79',
           createdBy: seededUsers[2],
@@ -181,7 +178,7 @@ mongoose.connect(dbURI, (err, db) => {
           type: 'Motherboard',
           name: 'Maximus VII Impact',
           image: 'https://www.techpowerup.com/img/14-08-11/29e.jpg',
-          size: 'ATX',
+          size: 0,
           vendor: 'AMD',
           chipset: 'Z97',
           createdBy: seededUsers[0],
@@ -196,7 +193,7 @@ mongoose.connect(dbURI, (err, db) => {
           type: 'PSU',
           name: 'EVGA 850W G2',
           image: 'https://images.evga.com/products/gallery/png/220-G2-0850-XR_LG_1.png',
-          size: 'ATX',
+          size: 2,
           power: 850,
           createdBy: seededUsers[0]
         },
@@ -204,7 +201,7 @@ mongoose.connect(dbURI, (err, db) => {
           type: 'PSU',
           name: 'HX 1000i',
           image: 'https://images-na.ssl-images-amazon.com/images/I/51-7QtHptBL._SX355_.jpg',
-          size: 'ATX',
+          size: 2,
           power: 1000,
           createdBy: seededUsers[1]
         },
@@ -212,7 +209,7 @@ mongoose.connect(dbURI, (err, db) => {
           type: 'PSU',
           name: 'Corsair SF450',
           image: 'https://www.gamersnexus.net/media/k2/items/cache/dcaeef4c16b8a8dd2169c4e6191f97b9_XL.jpg',
-          size: 'SFX',
+          size: 0,
           power: 450,
           createdBy: seededUsers[1],
           description: 'A dead silent SFX PSU with excellent ripple and efficiency.'
@@ -221,7 +218,7 @@ mongoose.connect(dbURI, (err, db) => {
           type: 'PSU',
           name: 'Corsair VS650',
           image: 'https://images-na.ssl-images-amazon.com/images/I/81uv9IeA4TL._SL1500_.jpg',
-          size: 'ATX',
+          size: 2,
           power: 650,
           createdBy: seededUsers[2],
           description: 'The Corsair VS series PSU is an ideal choice if you\'re building a home or office system, provides compatibility and reliability. With 0.99 Active Power Factor Correction, you get the peace of mind from knowing that your components are protected from uneven power delivery. And, a dedicated single +12 V rail saves you from the hassle of balancing your components across multiple power cables',
