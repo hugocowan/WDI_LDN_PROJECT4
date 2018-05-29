@@ -108,7 +108,52 @@ class ComputerShow extends React.Component {
           </p>
 
           <hr />
-
+          <table className="column table is-striped is-fullwidth is-hoverable">
+            <thead>
+              <tr>
+                <th>Part</th>
+                <th>Name</th>
+                <th>Price</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th>Case</th>
+                <td><Link to={`/parts/${computer.case._id}`}>{computer.case.name}</Link></td>
+                <td>{Decimals.calculate(computer.case.price)}</td>
+              </tr>
+              <tr>
+                <th>CPU</th>
+                <td><Link to={`/parts/${computer.cpu._id}`}>{computer.cpu.name}</Link></td>
+                <td>{Decimals.calculate(computer.cpu.price)}</td>
+              </tr>
+              <tr>
+                <th>GPU</th>
+                <td><Link to={`/parts/${computer.gpu._id}`}>{computer.gpu.name}</Link></td>
+                <td>{Decimals.calculate(computer.gpu.price)}</td>
+              </tr>
+              <tr>
+                <th>Motherboard</th>
+                <td><Link to={`/parts/${computer.motherboard._id}`}>{computer.motherboard.name}</Link></td>
+                <td>{Decimals.calculate(computer.motherboard.price)}</td>
+              </tr>
+              <tr>
+                <th>PSU</th>
+                <td><Link to={`/parts/${computer.psu._id}`}>{computer.psu.name}</Link></td>
+                <td>{Decimals.calculate(computer.psu.price)}</td>
+              </tr>
+              <tr>
+                <th>RAM</th>
+                <td><Link to={`/parts/${computer.ram._id}`}>{computer.ram.name}</Link></td>
+                <td>{Decimals.calculate(computer.ram.price)}</td>
+              </tr>
+              <tr>
+                <th>Storage</th>
+                <td><Link to={`/parts/${computer.storage._id}`}>{computer.storage.name}</Link></td>
+                <td>{Decimals.calculate(computer.storage.price)}</td>
+              </tr>
+            </tbody>
+          </table>
           {computer.comments[0] && computer.comments.map(comment =>
             <div className="column is-12" key={comment._id}>
               <div className="card">
