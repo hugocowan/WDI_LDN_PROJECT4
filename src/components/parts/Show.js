@@ -1,9 +1,10 @@
 import React from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
+
 import Auth from '../../lib/Auth';
 import Stars from '../../lib/Stars';
-
+import Decimals from '../../lib/Decimals';
 import Comments from '../common/Comments';
 
 class PartShow extends React.Component {
@@ -67,14 +68,6 @@ class PartShow extends React.Component {
         // console.log('frontend res.data: ',res.data);
         this.setState({ part: res.data });
       });
-  }
-
-  currency = (price) => {
-    if(price % 1 === 0){
-      return `£${price}.00`;
-    }else if(price.toString().split('.')[1].length === 1){
-      return `£${price}0`;
-    } else return `£${price}`;
   }
 
   changePage = (part) => {
@@ -147,7 +140,7 @@ class PartShow extends React.Component {
             {part.type}</h2>
           <h2 className="subtitle is-6">{part.description}</h2>
           {part.chipset && <h2 className="subtitle is-6">{chipsets[part.chipset]} socket</h2>}
-          <p className="subtitle is-6">Price: {this.currency(part.price)}</p>
+          <p className="subtitle is-6">Price: {Decimals.calculate(part.price)}</p>
 
 
           <table className="column table is-striped is-fullwidth is-hoverable">
@@ -207,7 +200,7 @@ class PartShow extends React.Component {
                   <td>{part.capacity}GB</td>}
                 {part.type === 'PSU' &&
                   <td>{part.power}W</td>}
-                <td>{this.currency(part.price)}</td>
+                <td>{Decimals.calculate(part.price)}</td>
               </tr>
               {parts.map(part =>
                 <tr  key={part._id}>
@@ -239,7 +232,7 @@ class PartShow extends React.Component {
                     <td>{part.capacity}GB</td>}
                   {part.type === 'PSU' &&
                     <td>{part.power}W</td>}
-                  <td>{this.currency(part.price)}</td>
+                  <td>{Decimals.calculate(part.price)}</td>
                 </tr>
               )}
             </tbody>

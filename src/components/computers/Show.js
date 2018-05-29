@@ -1,9 +1,10 @@
 import React from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
+
 import Auth from '../../lib/Auth';
 import Stars from '../../lib/Stars';
-
+import Decimals from '../../lib/Decimals';
 import ComputerComments from '../common/Comments';
 
 class ComputerShow extends React.Component {
@@ -56,14 +57,6 @@ class ComputerShow extends React.Component {
       });
   }
 
-  currency = (price) => {
-    if(price % 1 === 0){
-      return `£${price}.00`;
-    }else if(price.toString().split('.')[1].length === 1){
-      return `£${price}0`;
-    } else return `£${price}`;
-  }
-
   totalPrice = (computer) => {
     return computer.case.price +
     computer.cpu.price +
@@ -111,7 +104,7 @@ class ComputerShow extends React.Component {
           <h1 className="title is-1">{computer.name}</h1>
           <h2 className="subtitle is-8">{computer.description}</h2>
           <p className="subtitle is-6">
-            Total cost: {this.currency(this.totalPrice(computer))}
+            Total cost: {Decimals.calculate(this.totalPrice(computer))}
           </p>
 
           <hr />
