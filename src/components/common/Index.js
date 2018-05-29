@@ -67,9 +67,18 @@ class Index extends React.Component{
     } else return `£${price}`;
   }
 
+  totalPrice = (computer) => {
+    return computer.case.price +
+    computer.cpu.price +
+    computer.gpu.price +
+    computer.motherboard.price +
+    computer.psu.price +
+    computer.ram.price +
+    computer.storage.price;
+  }
+
   render() {
     const allModels = ['computers', 'parts'];
-    console.log(this.state[`${allModels[0]}`]);
 
     return(
       <div>
@@ -96,7 +105,11 @@ class Index extends React.Component{
                         <div className="media-content">
                           <p className="title is-4">{item.name}</p>
                           <p className="subtitle is-6">{this.ellipsis(item.description)}</p>
-                          <p className="subtitle is-6">{this.currency(item.price)}</p>
+                          { item.price && <p className="subtitle is-6">{this.currency(item.price)}</p>}
+                          { item.type === 'Computer' &&
+                          <p className="subtitle is-6">
+                            Total cost: {this.currency(this.totalPrice(item))}
+                          </p>}
                           <p className="subtitle is-6">Created by {item.createdBy.username}</p>
                         </div>
                       </div>

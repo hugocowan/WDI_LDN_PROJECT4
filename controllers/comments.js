@@ -14,7 +14,7 @@ function createComputerComment(req, res, next){
       Computer
         .findById(req.params.id)
         .populate({
-          path: 'comments createdBy',
+          path: 'case cpu gpu motherboard psu ram storage comments createdBy',
           populate: { path: 'createdBy' }
         })
         .exec()
@@ -23,7 +23,7 @@ function createComputerComment(req, res, next){
           return computer.save();
         })
         .then(computer => {
-          res.status(201).json(computer);
+          res.json(computer);
         });
     })
     .catch(next);
@@ -33,7 +33,7 @@ function deleteComputerComment(req, res, next){
   Computer
     .findById(req.params.id)
     .populate({
-      path: 'comments',
+      path: 'case cpu gpu motherboard psu ram storage comments createdBy',
       populate: { path: 'createdBy' }
     })
     .then(computer => {
@@ -41,7 +41,7 @@ function deleteComputerComment(req, res, next){
       computer.comments.remove(req.params.commentId);
       return computer.save();
     })
-    .then(computer => res.status(204).json(computer))
+    .then(computer => res.json(computer))
     .catch(next);
 }
 function createPartComment(req, res, next){
@@ -79,9 +79,9 @@ function deletePartComment(req, res, next){
     .then(part => {
       // console.log(util.inspect(part, { depth: null }));
       part.comments.remove(req.params.commentId);
-      return part.save();
+      part.save();
+      res.json(part);
     })
-    .then(part => res.status(204).json(part))
     .catch(next);
 }
 module.exports = {

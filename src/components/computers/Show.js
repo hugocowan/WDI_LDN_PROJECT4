@@ -55,6 +55,24 @@ class ComputerShow extends React.Component {
       });
   }
 
+  currency = (price) => {
+    if(price % 1 === 0){
+      return `£${price}.00`;
+    }else if(price.toString().split('.')[1].length === 1){
+      return `£${price}0`;
+    } else return `£${price}`;
+  }
+
+  totalPrice = (computer) => {
+    return computer.case.price +
+    computer.cpu.price +
+    computer.gpu.price +
+    computer.motherboard.price +
+    computer.psu.price +
+    computer.ram.price +
+    computer.storage.price;
+  }
+
   render(){
     const { computer } = this.state;
     if(!computer) return null;
@@ -88,7 +106,9 @@ class ComputerShow extends React.Component {
         <div className="column is-6">
           <h1 className="title is-1">{computer.name}</h1>
           <h2 className="subtitle is-8">{computer.description}</h2>
-          <p className="price">{'💰'.repeat(computer.price)}</p>
+          <p className="subtitle is-6">
+            Total cost: {this.currency(this.totalPrice(computer))}
+          </p>
 
           <hr />
 

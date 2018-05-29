@@ -138,6 +138,9 @@ mongoose.connect(dbURI, (err, db) => {
           image: 'https://images-na.ssl-images-amazon.com/images/I/412a5AxsTEL.jpg',
           createdBy: seededUsers[0],
           description: 'An old GPU I\'ve had for years. Still fine for 1080p, though the maxwell architecture it\'s based on hasn\'t aged too well.',
+          vram: 3,
+          speed: 902,
+          vendor: 'Nvidia',
           link: 'https://www.amazon.co.uk/GeForce-DirectCU-Graphics-Express-Display/dp/B00DWV3NM6/ref=sr_1_10?s=computers&ie=UTF8&qid=1527584170&sr=1-10&keywords=gtx+780',
           price: 350.00
         },
@@ -147,6 +150,9 @@ mongoose.connect(dbURI, (err, db) => {
           image: 'https://images-na.ssl-images-amazon.com/images/I/61PLpwa3daL._SL1000_.jpg',
           createdBy: seededUsers[1],
           description: 'Excellent for heavy compute workloads, plus you can make your money back thanks to cryptocurrency mining!',
+          vram: 8,
+          speed: 1546,
+          vendor: 'AMD',
           link: 'https://www.amazon.co.uk/Gigabyte-Radeon-Vega-Graphics-Card/dp/B078KM88CX/ref=sr_1_2?s=computers&ie=UTF8&qid=1527584265&sr=1-2&keywords=rx+vega+64&dpID=51RKpJviZ4L&preST=_SY300_QL70_&dpSrc=srch',
           price: 548.99
         },
@@ -156,6 +162,9 @@ mongoose.connect(dbURI, (err, db) => {
           image: 'https://images-na.ssl-images-amazon.com/images/I/61IViLA3R3L._SL1000_.jpg',
           createdBy: seededUsers[1],
           description: 'A solid card for 1080p or even 1440p gaming. One of AMD\'s best price/performance cards, even now.',
+          vram: 8,
+          speed: 1316,
+          vendor: 'AMD',
           link: 'https://www.amazon.co.uk/MSI-GAMING-Express-Graphics-Card/dp/B01JGQBMB4/ref=sr_1_1?s=computers&ie=UTF8&qid=1527508853&sr=1-1&dpID=519mvlkVsAL&preST=_SX300_QL70_&dpSrc=srch',
           price: 275
         }]);
@@ -388,7 +397,7 @@ mongoose.connect(dbURI, (err, db) => {
         {
           type: 'Computer',
           name: 'Old meets New',
-          image: 'https://images-na.ssl-images-amazon.com/images/I/91LH%2BhJAZbL._SL1500_.jpg',
+          image: 'https://cdn.mos.cms.futurecdn.net/f33c9a59d9ad3e90b0c541ed3aa24965.jpg',
           description: 'Old, perfectly good CPU and motherboard parts used with a modern case and graphics card.',
           createdBy: seededUsers[2],
           case: seededCases[3],

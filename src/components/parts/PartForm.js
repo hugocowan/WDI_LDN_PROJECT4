@@ -76,6 +76,7 @@ const ComputerForm = ({ handleChange, handleSubmit, part, errors }) => {
         />
         {errors.price && <small>{errors.price}</small>}
       </div>
+
       {(part.type === 'Case' ||
       part.type === 'Motherboard' ||
       part.type === 'PSU') &&
@@ -98,6 +99,7 @@ const ComputerForm = ({ handleChange, handleSubmit, part, errors }) => {
         </div>
         {errors.size && <small>{errors.size}</small>}
       </div>}
+      
       {part.type === 'GPU' &&
       <div className="field">
         <label htmlFor="vendor">Vendor</label>

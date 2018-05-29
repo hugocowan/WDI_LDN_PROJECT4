@@ -44,6 +44,7 @@ const partSchema = new mongoose.Schema({
     enum: ['Intel', 'AMD', 'Nvidia'],
     required: function() {
       return (this.type === 'CPU' ||
+              this.type === 'GPU' ||
               this.type === 'Motherboard');
     }
   },
@@ -62,8 +63,6 @@ const partSchema = new mongoose.Schema({
               this.type === 'Motherboard');
     }
   },
-  baseFreq: { type: Number },
-  boostFreq: { type: Number },
   vram: { type: Number },
   speed: { type: Number },
   power: { type: Number },

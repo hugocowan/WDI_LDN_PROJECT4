@@ -13,8 +13,19 @@ class PartShow extends React.Component {
   componentDidMount(){
     const { id } = this.props.match.params;
     axios
-      .get(`/api/parts/${id}`)
-      .then(res => this.setState({ part: res.data }, () => console.log(this.state)));
+      .get('/api/parts')
+      .then(res => {
+        const currentPart = res.data.find(part => part._id === id);
+        const comparisonParts = res.data.filter(part =>
+          part.ramType ?
+            (part.type === currentPart.type &&
+            part._id !== id &&
+            part.ramType === currentPart.ramType) :
+            (part.type === currentPart.type &&
+              part._id !== id));
+        this.setState({ part: currentPart, parts: comparisonParts }, () =>
+          console.log(this.state.part));
+      });
   }
 
   handleDelete = () => {
@@ -45,18 +56,29 @@ class PartShow extends React.Component {
   }
 
   handleCommentDelete = (comment) => {
+    console.log(this.state);
     const { id } = this.props.match.params;
     axios
       .delete(`/api/parts/${id}/comments/${comment._id}`, {
         headers: { Authorization: `Bearer ${Auth.getToken()}` }
       })
       .then(res => {
+        console.log(res);
         this.setState({ part: res.data });
       });
   }
 
+  currency = (price) => {
+    if(price % 1 === 0){
+      return `£${price}.00`;
+    }else if(price.toString().split('.')[1].length === 1){
+      return `£${price}0`;
+    } else return `£${price}`;
+  }
+
   render(){
     const { part } = this.state;
+    const { parts } = this.state;
 
     const sizes = [ 'Mini-ITX', 'Micro-ATX',
       'ATX', 'E-ATX'
@@ -86,6 +108,8 @@ class PartShow extends React.Component {
           >
               Delete
           </button>}
+          {' '}
+          <a target="_blank" href={part.link} className="button is-info">Where to Buy</a>
 
           <hr />
 
@@ -98,10 +122,76 @@ class PartShow extends React.Component {
         </div>
         <div className="column is-6">
           <h1 className="title is-1">{part.name}</h1>
-          <h2 className="subtitle is-6">{part.vendor} {part.type}</h2>
+          <h2 className="subtitle is-6">{part.vendor}
+            {sizes[part.size]}
+            {' '}
+            {part.ramType}
+            {' '}
+            {part.storageType}
+            {' '}
+            {part.type}</h2>
           <h2 className="subtitle is-6">{part.description}</h2>
           {part.chipset && <h2 className="subtitle is-6">{chipsets[part.chipset]} socket</h2>}
-          <p className="price">{part.price}</p>
+          <p className="subtitle is-6">{this.currency(part.price)}</p>
+
+          {part.type === 'RAM' &&
+          <table className="column is-6 table is-striped is-fullwidth is-hoverable">
+            <thead>
+              <tr>
+                <th>Name</th>
+                <th>Type</th>
+                <th>Speed</th>
+                <th>Capacity</th>
+                <th>Price</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr className="currentItem">
+                <th>{part.name}</th>
+                <th>{part.ramType}</th>
+                <th>{part.speed}MHz</th>
+                <th>{part.capacity}GB</th>
+                <th>{this.currency(part.price)}</th>
+              </tr>
+              {parts.map(part =>
+                <tr key={part._id}>
+                  <th>{part.name}</th>
+                  <th>{part.ramType}</th>
+                  <th>{part.speed}MHz</th>
+                  <th>{part.capacity}GB</th>
+                  <th>{this.currency(part.price)}</th>
+                </tr>)}
+            </tbody>
+          </table>}
+          {part.type === 'GPU' &&
+          <table className="column is-6 table is-striped is-fullwidth is-hoverable">
+            <thead>
+              <tr>
+                <th>Name</th>
+                <th>Vendor</th>
+                <th>Clockspeed</th>
+                <th>VRAM</th>
+                <th>Price</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr className="currentItem">
+                <th>{part.name}</th>
+                <th>{part.vendor}</th>
+                <th>{part.speed}MHz</th>
+                <th>{part.vram}GB</th>
+                <th>{this.currency(part.price)}</th>
+              </tr>
+              {parts.map(part =>
+                <tr key={part._id}>
+                  <th>{part.name}</th>
+                  <th>{part.vendor}</th>
+                  <th>{part.speed}MHz</th>
+                  <th>{part.vram}GB</th>
+                  <th>{this.currency(part.price)}</th>
+                </tr>)}
+            </tbody>
+          </table>}
 
           <hr />
 
