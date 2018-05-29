@@ -70,18 +70,37 @@ const ComputerForm = ({ handleChange, handleSubmit, computer, parts, errors }) =
                        computer[type.toLowerCase()] || ''}
               >
                 <option value={null} >Please select</option>
+
                 {parts.filter((part) => part.type === type).map(part =>
                   <option key={part._id} value={part._id}>
 
                     {part.ramType ? `${part.ramType}: ${part.name}` :
                       part.size && part.chipset ? `${sizes[part.size]} ||
-                      ${chipsets[part.chipset]}:  ${part.name}` :
+                    ${chipsets[part.chipset]}:  ${part.name}` :
                         part.size && !part.chipset ? `${sizes[part.size]}:  ${part.name}` :
                           part.chipset ? `${chipsets[part.chipset]}:  ${part.name}` :
                             part.storageType ? `${part.storageType}:  ${part.name}`:
                               part.name}
                   </option>
                 )}
+
+                {/* {parts.reduce((accumulator, part) => {
+                  if(part.type === type){
+                    console.log(part);
+                    return <option key={part._id} value={part._id}>
+
+                      {part.ramType ? `${part.ramType}: ${part.name}` :
+                        part.size && part.chipset ? `${sizes[part.size]} ||
+                      ${chipsets[part.chipset]}:  ${part.name}` :
+                          part.size && !part.chipset ? `${sizes[part.size]}:  ${part.name}` :
+                            part.chipset ? `${chipsets[part.chipset]}:  ${part.name}` :
+                              part.storageType ? `${part.storageType}:  ${part.name}`:
+                                part.name}
+                    </option>;
+                  }
+                })} */}
+
+
               </select>
             </div>
           </div>

@@ -4,39 +4,45 @@ const Computer = require('../../../models/computer');
 const Part = require('../../../models/part');
 
 const partData = [{
+  //0
   type: 'Case',
   name: 'Fractal Design Node 304',
   image: 'https://www.scan.co.uk/images/products/super/2084488-l-a.jpg',
-  size: 'Mini-ITX'
+  size: 0
 },
+//1
 {
   type: 'CPU',
   name: '6700k',
   image: 'http://www.kitguru.net/wp-content/uploads/2015/06/intel_core_pentium_devil_s_canyon_lga1150_haswell.jpg',
   vendor: 'Intel',
-  chipset: 'Z170'
+  chipset: 6
 },
+//2
 {
   type: 'GPU',
   name: 'GTX 780',
   image: 'http://www.nvidia.co.uk/gtx-700-graphics-cards/static/img/gallery/780/gtx-780-10.jpg',
   vendor: 'Nvidia'
 },
+//3
 {
   type: 'Motherboard',
   name: 'Maximus VIII Impact',
   image: 'https://images10.newegg.com/ProductImage/13-132-638-02.jpg',
-  size: 'Mini-ITX',
+  size: 0,
   vendor: 'Intel',
-  chipset: 'Z170'
+  chipset: 6
 },
+//4
 {
   type: 'PSU',
   name: 'EVGA 850W G2',
   image: 'https://images.evga.com/products/gallery/png/220-G2-0850-XR_LG_1.png',
-  size: 'ATX',
+  size: 2,
   power: 850
 },
+//5
 {
   type: 'RAM',
   name: 'Trident Z 3200MHz',
@@ -44,6 +50,7 @@ const partData = [{
   ramType: 'DDR4',
   capacity: 8
 },
+//6
 {
   type: 'Storage',
   name: '840 EVO',
@@ -51,40 +58,46 @@ const partData = [{
   capacity: 500,
   storageType: 'SSD'
 },
+//7
 {
   type: 'Case',
   name: 'Corsair Obsidian 500D',
   image: 'https://www.overclockers.co.uk/media/image/thumbnail/CA23LCS_179016_800x800.jpg',
-  size: 'ATX'
+  size: 0
 },
+//8
 {
   type: 'CPU',
   name: '2700X',
   image: 'https://www.notebookcheck.net/fileadmin/_processed_/2/e/csm_AMD_Ryzen_7_2700X_09_6d4f9960ba.jpg',
   vendor: 'AMD',
-  chipset: 'AM4'
+  chipset: 11
 },
+//9
 {
   type: 'GPU',
   name: 'RX Vega 64',
   image: 'https://www.overclockers.co.uk/media/image/AMD-Radeon-RX-Vega-Limited-Edition_3.png',
   vendor: 'AMD'
 },
+//10
 {
   type: 'Motherboard',
   name: 'Crosshair VII',
   image: 'https://www.asu.com/media/global/products/gURCpzWlZ6L8DGny/P_setting_000_1_90_end_500.png',
-  size: 'ATX',
+  size: 2,
   vendor: 'AMD',
-  chipset: 'AM4'
+  chipset: 11
 },
+//11
 {
   type: 'PSU',
   name: 'HX 1000i',
   image: 'https://images-na.ssl-images-amazon.com/images/I/51-7QtHptBL._SX355_.jpg',
-  size: 'ATX',
+  size: 2,
   power: 1000
 },
+//12
 {
   type: 'RAM',
   name: 'HyperX Fury',
@@ -92,6 +105,7 @@ const partData = [{
   ramType: 'DDR4',
   capacity: 16
 },
+//13
 {
   type: 'Storage',
   name: 'WD Black',
@@ -131,22 +145,22 @@ describe('GET /computers', () => {
         return Computer.create([{
           ...computerData[0],
           case: parts[0],
-          cpu: parts[2],
-          gpu: parts[4],
-          motherboard: parts[6],
-          psu: parts[8],
-          ram: parts[10],
-          storage: parts[12]
+          cpu: parts[1],
+          gpu: parts[2],
+          motherboard: parts[3],
+          psu: parts[4],
+          ram: parts[5],
+          storage: parts[6]
         },
         {
           ...computerData[1],
-          case: parts[3],
-          cpu: parts[5],
-          gpu: parts[7],
-          motherboard: parts[9],
+          case: parts[7],
+          cpu: parts[8],
+          gpu: parts[9],
+          motherboard: parts[10],
           psu: parts[11],
-          ram: parts[13],
-          storage: parts[15]
+          ram: parts[12],
+          storage: parts[13]
         }])
           .then(() => done());
       });

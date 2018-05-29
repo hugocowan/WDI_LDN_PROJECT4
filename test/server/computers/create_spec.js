@@ -18,13 +18,13 @@ let partData = [{
   type: 'Case',
   name: 'Fractal Design Node 304',
   image: 'https://www.scan.co.uk/images/products/super/2084488-l-a.jpg',
-  size: 'Mini-ITX'
+  size: 0
 }, {
   type: 'CPU',
   name: '6700k',
   image: 'http://www.kitguru.net/wp-content/uploads/2015/06/intel_core_pentium_devil_s_canyon_lga1150_haswell.jpg',
   vendor: 'Intel',
-  chipset: 'Z170'
+  chipset: 6
 }, {
   type: 'GPU',
   name: 'GTX 780',
@@ -34,14 +34,14 @@ let partData = [{
   type: 'Motherboard',
   name: 'Maximus VIII Impact',
   image: 'https://images10.newegg.com/ProductImage/13-132-638-02.jpg',
-  size: 'Mini-ITX',
+  size: 0,
   vendor: 'Intel',
-  chipset: 'Z170'
+  chipset: 6
 }, {
   type: 'PSU',
   name: 'EVGA 850W G2',
   image: 'https://images.evga.com/products/gallery/png/220-G2-0850-XR_LG_1.png',
-  size: 'ATX',
+  size: 2,
   power: 850
 }, {
   type: 'RAM',
@@ -128,7 +128,7 @@ describe('POST /computers', () => {
           if(['name', 'image', 'description', 'rating', 'type'].includes(field)) {
             expect(res.body[field]).to.deep.eq(computerData[field]);
           } else {
-            expect(computerData[field].equals(res.body[field])).to.be.ok;
+            expect(computerData[field].equals(res.body[field]._id || res.body[field])).to.be.ok;
           }
         });
         done();

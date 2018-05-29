@@ -43,8 +43,7 @@ const partSchema = new mongoose.Schema({
     type: String,
     enum: ['Intel', 'AMD', 'Nvidia'],
     required: function() {
-      return (this.type === 'GPU' ||
-              this.type === 'CPU' ||
+      return (this.type === 'CPU' ||
               this.type === 'Motherboard');
     }
   },
