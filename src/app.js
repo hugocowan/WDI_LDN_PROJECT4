@@ -6,6 +6,8 @@ import {
   Switch
 } from 'react-router-dom';
 
+
+import 'font-awesome/css/font-awesome.min.css';
 import 'bulma';
 import './assets/scss/style.scss';
 

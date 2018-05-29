@@ -2,6 +2,7 @@ import React from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
 import Auth from '../../lib/Auth';
+import Stars from '../../lib/Stars';
 
 import ComputerComments from '../common/Comments';
 
@@ -80,6 +81,9 @@ class ComputerShow extends React.Component {
       <div className="columns is-multiline">
         <div className="column is-6">
           <div className="hero-image" style={{ backgroundImage: `url(${computer.image})` }} />
+          {computer.comments[0] ?
+            <div dangerouslySetInnerHTML={Stars.avgRating(computer.comments)} /> :
+            'No ratings yet!'}
           {Auth.isCurrentUser(computer.createdBy) && <Link
             to={`/computers/${computer._id}/edit`}
             className="button"

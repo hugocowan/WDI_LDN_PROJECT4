@@ -3,6 +3,7 @@ import axios from 'axios';
 import { Link } from 'react-router-dom';
 import _ from 'lodash';
 
+import Stars from '../../lib/Stars';
 import SortFilterBar from './SortFilterBar';
 
 class Index extends React.Component{
@@ -37,6 +38,7 @@ class Index extends React.Component{
     });
     return _.orderBy(filtered, field, dir);
   }
+
   partsSortedAndFiltered = () => {
     const [field, dir] = this.state.sort.split('|');
     const re = new RegExp(this.state.search, 'i');
@@ -49,6 +51,7 @@ class Index extends React.Component{
   showComputers = () => {
     this.setState({ computersShow: true, partsShow: false }, () => console.log(this.state));
   }
+
   showParts = () => {
     this.setState({ computersShow: false, partsShow: true }, () => console.log(this.state));
   }
@@ -110,6 +113,9 @@ class Index extends React.Component{
                           <p className="subtitle is-6">
                             Total cost: {this.currency(this.totalPrice(item))}
                           </p>}
+                          {item.comments[0] ?
+                            <div dangerouslySetInnerHTML={Stars.avgRating(item.comments)} /> :
+                            'No ratings yet!'}
                           <p className="subtitle is-6">Created by {item.createdBy.username}</p>
                         </div>
                       </div>

@@ -2,6 +2,7 @@ import React from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
 import Auth from '../../lib/Auth';
+import Stars from '../../lib/Stars';
 
 import Comments from '../common/Comments';
 
@@ -87,12 +88,6 @@ class PartShow extends React.Component {
     this.setState({ part, parts });
   }
 
-  avgRating = (comments) => {
-    const totalStars = comments.reduce((total, comment) => total + parseInt(comment.rating), 0);
-    const averageStars = totalStars/comments.length;
-    console.log(averageStars);
-  }
-
   render(){
     const { part } = this.state;
     const { parts } = this.state;
@@ -112,6 +107,9 @@ class PartShow extends React.Component {
       <div className="columns is-multiline">
         <div className="column is-6">
           <div className="hero-image" style={{ backgroundImage: `url(${part.image})` }} />
+          {part.comments[0] ?
+            <div dangerouslySetInnerHTML={Stars.avgRating(part.comments)} /> :
+            'No ratings yet!'}
           {Auth.isCurrentUser(part.createdBy) && <Link
             to={`/parts/${part._id}/edit`}
             className="button"
@@ -127,7 +125,6 @@ class PartShow extends React.Component {
           </button>}
           {' '}
           <a target="_blank" href={part.link} className="button is-info">Where to Buy</a>
-          {part.comments[0] && <p>rating: {this.avgRating(part.comments)}</p>}
 
           <hr />
 
