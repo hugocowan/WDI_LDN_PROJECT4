@@ -76,6 +76,15 @@ class PartShow extends React.Component {
     } else return `£${price}`;
   }
 
+  changePage = (part) => {
+    this.props.history.push(`/parts/${part._id}`);
+    const parts = this.state.parts.filter(otherPart =>
+      otherPart._id !== part._id);
+    parts.push(this.state.part);
+    this.setState({ part, parts });
+
+  }
+
   render(){
     const { part } = this.state;
     const { parts } = this.state;
@@ -132,66 +141,103 @@ class PartShow extends React.Component {
             {part.type}</h2>
           <h2 className="subtitle is-6">{part.description}</h2>
           {part.chipset && <h2 className="subtitle is-6">{chipsets[part.chipset]} socket</h2>}
-          <p className="subtitle is-6">{this.currency(part.price)}</p>
+          <p className="subtitle is-6">Price: {this.currency(part.price)}</p>
 
-          {part.type === 'RAM' &&
-          <table className="column is-6 table is-striped is-fullwidth is-hoverable">
+
+          <table className="column table is-striped is-fullwidth is-hoverable">
             <thead>
               <tr>
                 <th>Name</th>
-                <th>Type</th>
-                <th>Speed</th>
-                <th>Capacity</th>
+                {(part.type === 'CPU' ||
+                  part.type === 'GPU' ||
+                  part.type === 'Motherboard') && <th>Vendor</th>}
+                {(part.type === 'CPU' ||
+                  part.type === 'Motherboard') &&
+                  <th>Chipset</th>}
+                {part.type === 'RAM' &&
+                <th>Type</th>}
+                {(part.type === 'Case' ||
+                  part.type === 'Motherboard' ||
+                  part.type === 'PSU') &&
+                  <th>Size</th>}
+                {(part.type === 'CPU' ||
+                  part.type === 'GPU' ||
+                  part.type === 'RAM') &&
+                  <th>Clockspeed</th>}
+                {(part.type === 'GPU') &&
+                  <th>VRAM</th>}
+                {(part.type === 'RAM' ||
+                  part.type === 'Storage') &&
+                  <th>Capacity</th>}
+                {part.type === 'PSU' &&
+                  <th>Power</th>}
                 <th>Price</th>
               </tr>
             </thead>
             <tbody>
               <tr className="currentItem">
                 <th>{part.name}</th>
-                <th>{part.ramType}</th>
-                <th>{part.speed}MHz</th>
-                <th>{part.capacity}GB</th>
-                <th>{this.currency(part.price)}</th>
+                {(part.type === 'CPU' ||
+                  part.type === 'GPU' ||
+                  part.type === 'Motherboard') && <td>{part.vendor}</td>}
+                {(part.type === 'CPU' ||
+                  part.type === 'Motherboard') &&
+                  <td>{chipsets[part.chipset]} socket</td>}
+                {part.type === 'RAM' &&
+                <td>{part.ramType}</td>}
+                {(part.type === 'Case' ||
+                  part.type === 'Motherboard' ||
+                  part.type === 'PSU') &&
+                  <td>{sizes[part.size]}</td>}
+                {part.type === 'CPU' &&
+                <td>{part.speed}GHz</td>}
+                {(part.type === 'RAM' ||
+                  part.type === 'GPU') &&
+                  <td>{part.speed}MHz</td>}
+                {part.type === 'GPU' &&
+                <td>{part.vram}GB</td>}
+                {(part.type === 'RAM' ||
+                  part.type === 'Storage') &&
+                  <td>{part.capacity}GB</td>}
+                {part.type === 'PSU' &&
+                  <td>{part.power}W</td>}
+                <td>{this.currency(part.price)}</td>
               </tr>
               {parts.map(part =>
-                <tr key={part._id}>
-                  <th>{part.name}</th>
-                  <th>{part.ramType}</th>
-                  <th>{part.speed}MHz</th>
-                  <th>{part.capacity}GB</th>
-                  <th>{this.currency(part.price)}</th>
-                </tr>)}
+                <tr  key={part._id}>
+                  <th>
+                    <a onClick={() => this.changePage(part)}>
+                      {part.name}
+                    </a>
+                  </th>
+                  {(part.type === 'CPU' ||
+                    part.type === 'GPU' ||
+                    part.type === 'Motherboard') && <td>{part.vendor}</td>}
+                  {(part.type === 'CPU' ||
+                    part.type === 'Motherboard') &&
+                  <td>{chipsets[part.chipset]} socket</td>}
+                  {part.type === 'RAM' && <td>{part.ramType}</td>}
+                  {(part.type === 'Case' ||
+                    part.type === 'Motherboard' ||
+                    part.type === 'PSU') &&
+                    <td>{sizes[part.size]}</td>}
+                  {part.type === 'CPU' &&
+                  <td>{part.speed}GHz</td>}
+                  {(part.type === 'RAM' ||
+                    part.type === 'GPU') &&
+                    <td>{part.speed}MHz</td>}
+                  {part.type === 'GPU' &&
+                  <td>{part.vram}GB</td>}
+                  {(part.type === 'RAM' ||
+                    part.type === 'Storage') &&
+                    <td>{part.capacity}GB</td>}
+                  {part.type === 'PSU' &&
+                    <td>{part.power}W</td>}
+                  <td>{this.currency(part.price)}</td>
+                </tr>
+              )}
             </tbody>
-          </table>}
-          {part.type === 'GPU' &&
-          <table className="column is-6 table is-striped is-fullwidth is-hoverable">
-            <thead>
-              <tr>
-                <th>Name</th>
-                <th>Vendor</th>
-                <th>Clockspeed</th>
-                <th>VRAM</th>
-                <th>Price</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr className="currentItem">
-                <th>{part.name}</th>
-                <th>{part.vendor}</th>
-                <th>{part.speed}MHz</th>
-                <th>{part.vram}GB</th>
-                <th>{this.currency(part.price)}</th>
-              </tr>
-              {parts.map(part =>
-                <tr key={part._id}>
-                  <th>{part.name}</th>
-                  <th>{part.vendor}</th>
-                  <th>{part.speed}MHz</th>
-                  <th>{part.vram}GB</th>
-                  <th>{this.currency(part.price)}</th>
-                </tr>)}
-            </tbody>
-          </table>}
+          </table>
 
           <hr />
 
