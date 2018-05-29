@@ -3,7 +3,10 @@ const Part = require('../models/part');
 function indexRoute (req, res, next) {
   Part
     .find()
-    .populate('createdBy')
+    .populate({
+      path: 'comments createdBy',
+      populate: { path: 'createdBy' }
+    })
     .exec()
     .then((parts) => res.json(parts))
     .catch(next);
@@ -58,6 +61,4 @@ module.exports = {
   create: createRoute,
   update: updateRoute,
   delete: deleteRoute
-  // commentCreate: commentCreateRoute,
-  // commentDelete: commentDeleteRoute
 };

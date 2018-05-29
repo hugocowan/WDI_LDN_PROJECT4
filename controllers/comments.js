@@ -22,8 +22,17 @@ function createComputerComment(req, res, next){
           computer.comments.push(newComment);
           return computer.save();
         })
-        .then(computer => {
-          res.json(computer);
+        .then(() => {
+          Computer
+            .findById(req.params.id)
+            .populate({
+              path: 'case cpu gpu motherboard psu ram storage comments createdBy',
+              populate: { path: 'createdBy' }
+            })
+            .exec()
+            .then(computer => {
+              res.json(computer);
+            });
         });
     })
     .catch(next);
@@ -45,12 +54,10 @@ function deleteComputerComment(req, res, next){
     .catch(next);
 }
 function createPartComment(req, res, next){
-  // console.log('currentuser: ', req.currentUser);
   req.body.createdBy = req.currentUser;
   Comment
     .create(req.body)
     .then(comment => {
-      const newComment = comment;
       Part
         .findById(req.params.id)
         .populate({
@@ -59,11 +66,21 @@ function createPartComment(req, res, next){
         })
         .exec()
         .then(part => {
-          part.comments.push(newComment);
+          part.comments.push(comment);
           return part.save();
         })
-        .then(part => {
-          res.status(201).json(part);
+        .then(() => {
+          Part
+            .findById(req.params.id)
+            .populate({
+              path: 'comments createdBy',
+              populate: { path: 'createdBy' }
+            })
+            .exec()
+            .then(part => {
+              console.log(part);
+              res.status(201).json(part);
+            });
         });
     })
     .catch(next);
@@ -73,7 +90,7 @@ function deletePartComment(req, res, next){
   Part
     .findById(req.params.id)
     .populate({
-      path: 'comments',
+      path: 'comments createdBy',
       populate: { path: 'createdBy' }
     })
     .then(part => {

@@ -50,20 +50,21 @@ class PartShow extends React.Component {
         headers: { Authorization: `Bearer ${Auth.getToken()}` }
       })
       .then((res) => {
+        console.log(res.data);
         this.setState({ part: res.data, comment: {} });
       });
 
   }
 
   handleCommentDelete = (comment) => {
-    console.log(this.state);
+    // console.log(this.state);
     const { id } = this.props.match.params;
     axios
       .delete(`/api/parts/${id}/comments/${comment._id}`, {
         headers: { Authorization: `Bearer ${Auth.getToken()}` }
       })
       .then(res => {
-        console.log(res);
+        console.log('frontend res.data: ',res.data);
         this.setState({ part: res.data });
       });
   }
@@ -78,11 +79,22 @@ class PartShow extends React.Component {
 
   changePage = (part) => {
     this.props.history.push(`/parts/${part._id}`);
+
     const parts = this.state.parts.filter(otherPart =>
       otherPart._id !== part._id);
-    parts.push(this.state.part);
-    this.setState({ part, parts });
 
+    parts.push(this.state.part);
+
+    this.setState({ part, parts });
+  }
+
+  avgRating = () => {
+    let stars = '';
+    for(let i = 0; i<Math.floor(this.avgRating); i++) {
+      stars += '<i class="fa fa-star"></i> ';
+    }
+    if(this.avgRating % 1 > 0) stars += '<i class="fa fa-star-half"></i>';
+    return stars;
   }
 
   render(){
@@ -119,6 +131,7 @@ class PartShow extends React.Component {
           </button>}
           {' '}
           <a target="_blank" href={part.link} className="button is-info">Where to Buy</a>
+          <p>rating: {this.avgRating()}</p>
 
           <hr />
 
