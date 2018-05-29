@@ -23,8 +23,7 @@ class PartShow extends React.Component {
             part.ramType === currentPart.ramType) :
             (part.type === currentPart.type &&
               part._id !== id));
-        this.setState({ part: currentPart, parts: comparisonParts }, () =>
-          console.log(this.state.part));
+        this.setState({ part: currentPart, parts: comparisonParts });
       });
   }
 
@@ -50,7 +49,7 @@ class PartShow extends React.Component {
         headers: { Authorization: `Bearer ${Auth.getToken()}` }
       })
       .then((res) => {
-        console.log(res.data);
+        // console.log(res.data);
         this.setState({ part: res.data, comment: {} });
       });
 
@@ -64,7 +63,7 @@ class PartShow extends React.Component {
         headers: { Authorization: `Bearer ${Auth.getToken()}` }
       })
       .then(res => {
-        console.log('frontend res.data: ',res.data);
+        // console.log('frontend res.data: ',res.data);
         this.setState({ part: res.data });
       });
   }
@@ -88,13 +87,10 @@ class PartShow extends React.Component {
     this.setState({ part, parts });
   }
 
-  avgRating = () => {
-    let stars = '';
-    for(let i = 0; i<Math.floor(this.avgRating); i++) {
-      stars += '<i class="fa fa-star"></i> ';
-    }
-    if(this.avgRating % 1 > 0) stars += '<i class="fa fa-star-half"></i>';
-    return stars;
+  avgRating = (comments) => {
+    const totalStars = comments.reduce((total, comment) => total + parseInt(comment.rating), 0);
+    const averageStars = totalStars/comments.length;
+    console.log(averageStars);
   }
 
   render(){
@@ -131,7 +127,7 @@ class PartShow extends React.Component {
           </button>}
           {' '}
           <a target="_blank" href={part.link} className="button is-info">Where to Buy</a>
-          <p>rating: {this.avgRating()}</p>
+          {part.comments[0] && <p>rating: {this.avgRating(part.comments)}</p>}
 
           <hr />
 
