@@ -14,7 +14,7 @@ const SortFilterBar = ({ handleChange, data, showComputers, showParts, isParts, 
                 <option value="name|asc">Name (A - Z)</option>
                 <option value="name|desc">Name (Z - A)</option>
                 <option value="price|desc">Price (Hi - Lo)</option>
-                <option value="price|asc">Name (Lo - Hi)</option>
+                <option value="price|asc">Price (Lo - Hi)</option>
               </select>
             </div>
           </div>
@@ -31,7 +31,7 @@ const SortFilterBar = ({ handleChange, data, showComputers, showParts, isParts, 
                 <option value="name|asc">Name (A - Z)</option>
                 <option value="name|desc">Name (Z - A)</option>
                 <option value="price|desc">Price (Hi - Lo)</option>
-                <option value="price|asc">Name (Lo - Hi)</option>
+                <option value="price|asc">Price (Lo - Hi)</option>
               </select>
             </div>
           </div>

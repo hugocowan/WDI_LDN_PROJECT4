@@ -53,6 +53,20 @@ class Index extends React.Component{
     this.setState({ computersShow: false, partsShow: true }, () => console.log(this.state));
   }
 
+  ellipsis = (string) => {
+    if(string.length > 60) {
+      return `${string.substring(0, 60)}...`;
+    } else return string;
+  }
+
+  currency = (price) => {
+    if(price % 1 === 0){
+      return `£${price}.00`;
+    }else if(price.toString().split('.')[1].length === 1){
+      return `£${price}0`;
+    } else return `£${price}`;
+  }
+
   render() {
     const allModels = ['computers', 'parts'];
     console.log(this.state[`${allModels[0]}`]);
@@ -81,7 +95,8 @@ class Index extends React.Component{
                       <div className="media">
                         <div className="media-content">
                           <p className="title is-4">{item.name}</p>
-                          <p className="subtitle is-6">{item.description}</p>
+                          <p className="subtitle is-6">{this.ellipsis(item.description)}</p>
+                          <p className="subtitle is-6">{this.currency(item.price)}</p>
                           <p className="subtitle is-6">Created by {item.createdBy.username}</p>
                         </div>
                       </div>

@@ -53,14 +53,19 @@ mongoose.connect(dbURI, (err, db) => {
           image: 'https://www.scan.co.uk/images/products/super/2084488-l-a.jpg',
           size: 0,
           createdBy: seededUsers[0],
-          description: 'A small form-factor case with deceptively large potential for accommodating high-end components.'
+          description: 'A small form-factor case with deceptively large potential for accommodating high-end components.',
+          price: 75.26,
+          link: 'https://www.amazon.co.uk/Fractal-Design-Node-304-Case/dp/B009PIEMUC'
         },
         {
           type: 'Case',
           name: 'Corsair Obsidian 500D',
-          image: 'https://www.overclockers.co.uk/media/image/thumbnail/CA23LCS_179016_800x800.jpg',
+          image: 'https://images-na.ssl-images-amazon.com/images/I/81UIOQgpe5L._SL1500_.jpg',
           size: 2,
-          createdBy: seededUsers[1]
+          createdBy: seededUsers[1],
+          description: 'This chassis encompasses all the iconic CORSAIR design elements such as beautiful smoked tempered glass, sleek aluminum construction, and an easy access hinged door to satisfy the most discerning builder.',
+          price: 127.10,
+          link: 'https://www.amazon.co.uk/Corsair-Obsidian-Mid-Tower-Tempered-Aluminium/dp/B074T6691B'
         },
         {
           type: 'Case',
@@ -68,7 +73,9 @@ mongoose.connect(dbURI, (err, db) => {
           image: 'https://images-na.ssl-images-amazon.com/images/I/61sBXjQ93ZL._SL1430_.jpg',
           size: 2,
           createdBy: seededUsers[2],
-          description: 'This extremely compact mid tower combines an uncompromising approach to chassis design with pure, minimalist style and everything you need.'
+          description: 'This extremely compact mid tower combines an uncompromising approach to chassis design with pure, minimalist style and everything you need.',
+          price: 66.94,
+          link: 'https://www.amazon.co.uk/NZXT-CA-S340W-B1-Source-Midi-Tower-Case/dp/B00NGMIBUU/ref=sr_1_3?s=computers&ie=UTF8&qid=1527584034&sr=1-3&keywords=NZXT+S340'
         },
         {
           type: 'Case',
@@ -92,7 +99,10 @@ mongoose.connect(dbURI, (err, db) => {
           image: 'https://ae01.alicdn.com/kf/HTB1V14NNXXXXXXkapXXq6xXFXXXB/Intel-core-Quad-core-I7-6700K-I7-6700K-I7-Processor-LGA-1151-4-40GHz-6M-Level.jpg_640x640.jpg',
           vendor: 'Intel',
           chipset: 6,
-          createdBy: seededUsers[0]
+          createdBy: seededUsers[0],
+          description: 'Quad core CPU with hyperthreading. Doesn\'t clock as fast as newer CPUs, but has the same core architecture as the latest of Intel\'s offerings.',
+          link: 'https://www.amazon.co.uk/Intel-Processor-Threads-LGA1151-Socket/dp/B010T6DQTQ/ref=sr_1_2?s=computers&ie=UTF8&qid=1527584082&sr=1-2&keywords=6700k&dpID=51A-JynzGML&preST=_SY300_QL70_&dpSrc=srch',
+          price: 306.99
         },
         {
           type: 'CPU',
@@ -100,7 +110,10 @@ mongoose.connect(dbURI, (err, db) => {
           image: 'https://www.notebookcheck.net/fileadmin/_processed_/2/e/csm_AMD_Ryzen_7_2700X_09_6d4f9960ba.jpg',
           vendor: 'AMD',
           chipset: 11,
-          createdBy: seededUsers[1]
+          createdBy: seededUsers[1],
+          description: 'An 8 core 16 thread beast of a processor that clocks up to 4.2GHz all by itself.',
+          link: 'https://www.amazon.co.uk/AMD-Ryzen-8-Core-Wraith-Cooler/dp/B07B428M7F/ref=sr_1_1?s=computers&ie=UTF8&qid=1527584114&sr=1-1&keywords=2700x&dpID=41N0skoNQBL&preST=_SX300_QL70_&dpSrc=srch',
+          price: 274.99
         },
         {
           type: 'CPU',
@@ -121,21 +134,28 @@ mongoose.connect(dbURI, (err, db) => {
       return Part.create([
         {
           type: 'GPU',
-          name: 'GTX 780',
-          image: 'http://www.nvidia.co.uk/gtx-700-graphics-cards/static/img/gallery/780/gtx-780-10.jpg',
-          createdBy: seededUsers[0]
+          name: ' ASUS GTX 780 DirectCU II',
+          image: 'https://images-na.ssl-images-amazon.com/images/I/412a5AxsTEL.jpg',
+          createdBy: seededUsers[0],
+          description: 'An old GPU I\'ve had for years. Still fine for 1080p, though the maxwell architecture it\'s based on hasn\'t aged too well.',
+          link: 'https://www.amazon.co.uk/GeForce-DirectCU-Graphics-Express-Display/dp/B00DWV3NM6/ref=sr_1_10?s=computers&ie=UTF8&qid=1527584170&sr=1-10&keywords=gtx+780',
+          price: 350.00
         },
         {
           type: 'GPU',
-          name: 'RX Vega 64',
-          image: 'https://www.overclockers.co.uk/media/image/AMD-Radeon-RX-Vega-Limited-Edition_3.png',
-          createdBy: seededUsers[1]
+          name: 'Gigabyte RX Vega 64',
+          image: 'https://images-na.ssl-images-amazon.com/images/I/61PLpwa3daL._SL1000_.jpg',
+          createdBy: seededUsers[1],
+          description: 'Excellent for heavy compute workloads, plus you can make your money back thanks to cryptocurrency mining!',
+          link: 'https://www.amazon.co.uk/Gigabyte-Radeon-Vega-Graphics-Card/dp/B078KM88CX/ref=sr_1_2?s=computers&ie=UTF8&qid=1527584265&sr=1-2&keywords=rx+vega+64&dpID=51RKpJviZ4L&preST=_SY300_QL70_&dpSrc=srch',
+          price: 548.99
         },
         {
           type: 'GPU',
           name: 'RX 480 Gaming X 8G',
           image: 'https://images-na.ssl-images-amazon.com/images/I/61IViLA3R3L._SL1000_.jpg',
           createdBy: seededUsers[1],
+          description: 'A solid card for 1080p or even 1440p gaming. One of AMD\'s best price/performance cards, even now.',
           link: 'https://www.amazon.co.uk/MSI-GAMING-Express-Graphics-Card/dp/B01JGQBMB4/ref=sr_1_1?s=computers&ie=UTF8&qid=1527508853&sr=1-1&dpID=519mvlkVsAL&preST=_SX300_QL70_&dpSrc=srch',
           price: 275
         }]);
@@ -151,16 +171,22 @@ mongoose.connect(dbURI, (err, db) => {
           size: 0,
           vendor: 'Intel',
           chipset: 6,
-          createdBy: seededUsers[0]
+          createdBy: seededUsers[0],
+          description: 'One of the best Mini-ITX boards out there for Skylake/Kabylake CPUs. Bit of a shame that it doesn\'t have any M.2 slots.',
+          link: 'https://www.amazon.co.uk/ASUS-MAXIMUS-VIII-IMPACT-Motherboards/dp/B016F3QWRK/ref=sr_1_2?s=computers&ie=UTF8&qid=1527584369&sr=1-2&keywords=maximus+viii+impact&dpID=51E1ygz1pCL&preST=_SY300_QL70_&dpSrc=srch',
+          price: 129
         },
         {
           type: 'Motherboard',
-          name: 'Crosshair VII',
+          name: 'Crosshair VII Hero',
           image: 'https://eteknix-eteknixltd.netdna-ssl.com/wp-content/uploads/2017/05/asuscvihero802ac4.jpg',
           size: 2,
           vendor: 'AMD',
           chipset: 11,
-          createdBy: seededUsers[1]
+          createdBy: seededUsers[1],
+          description: 'A 10 phase motherboard that can handle even LN2 overclocking with a breeze.',
+          link: 'https://www.amazon.co.uk/ASUS-X470-ROG-CROSSHAIR-HERO/dp/B07CG2V6ZD/ref=sr_1_2?s=computers&ie=UTF8&qid=1527584423&sr=1-2&keywords=crosshair+vii&dpID=51xwbZAXDNL&preST=_SY300_QL70_&dpSrc=srch',
+          price: 261.76
         },
         {
           type: 'Motherboard',
@@ -182,7 +208,9 @@ mongoose.connect(dbURI, (err, db) => {
           vendor: 'Intel',
           chipset: 2,
           createdBy: seededUsers[0],
-          description: 'A solid board for Haswell and Broadwell CPUs. Has a true 8-phase VRM design that is more than enough to push your CPU to its limits.'
+          description: 'A solid board for Haswell and Broadwell CPUs. Has a true 8-phase VRM design that is more than enough to push your CPU to its limits.',
+          link: 'https://www.amazon.co.uk/MAXIMUS-VII-IMPACT-LGA1150-Motherboard/dp/B00MI8D1YE/ref=sr_1_1?s=computers&ie=UTF8&qid=1527584376&sr=1-1&keywords=maximus+vii+impact',
+          price: 510.00
         }]);
     })
     .then(motherboards => {
@@ -195,15 +223,21 @@ mongoose.connect(dbURI, (err, db) => {
           image: 'https://images.evga.com/products/gallery/png/220-G2-0850-XR_LG_1.png',
           size: 2,
           power: 850,
-          createdBy: seededUsers[0]
+          createdBy: seededUsers[0],
+          link: 'https://www.amazon.co.uk/EVGA-SuperNOVA-Modular-Tester-220-G2-0850-X3/dp/B01BGG5PTM/ref=sr_1_1?s=computers&ie=UTF8&qid=1527584527&sr=1-1&keywords=850w+g2&dpID=51t-le50qQL&preST=_SY300_QL70_&dpSrc=srch',
+          price: 137.94,
+          description: '10 year warranty, 80+ Gold efficiency, fan turns off at low loads. Absolutely silent.'
         },
         {
           type: 'PSU',
-          name: 'HX 1000i',
-          image: 'https://images-na.ssl-images-amazon.com/images/I/51-7QtHptBL._SX355_.jpg',
+          name: 'HX 1000',
+          image: 'https://images-na.ssl-images-amazon.com/images/I/81I02GY0-UL._SL1500_.jpg',
           size: 2,
           power: 1000,
-          createdBy: seededUsers[1]
+          createdBy: seededUsers[1],
+          link: 'https://www.amazon.co.uk/Corsair-CP-9020074-UK-Certified-Thermally-Controlled/dp/B071XV8P6F/ref=sr_1_1?s=computers&ie=UTF8&qid=1527584646&sr=1-1&keywords=corsair%2Bhx1000i&th=1',
+          price: 171.12,
+          description: 'Corsair’s HX Series power supplies give you extremely tight voltage regulation, virtually silent operation, and a fully modular cable set. With all Japanese 105°C capacitors, they’re a great choice for high performance PCs where reliability is essential. 80 PLUS Platinum efficiency reduces operating cost and excess heat, and together with the fluid dynamic bearing fan and Zero RPM Fan Mode technology, gives you virtually silent operation.'
         },
         {
           type: 'PSU',
@@ -212,7 +246,9 @@ mongoose.connect(dbURI, (err, db) => {
           size: 0,
           power: 450,
           createdBy: seededUsers[1],
-          description: 'A dead silent SFX PSU with excellent ripple and efficiency.'
+          description: 'A dead silent SFX PSU with excellent ripple and efficiency.',
+          link: 'https://www.amazon.co.uk/Corsair-SF450-Fully-Modular-Supply/dp/B01CR5XJR6/ref=sr_1_1?s=computers&ie=UTF8&qid=1527584732&sr=1-1&keywords=corsair+sf450&dpID=416Wgp-UNfL&preST=_SX300_QL70_&dpSrc=srch',
+          price: 80.34
         },
         {
           type: 'PSU',
@@ -236,15 +272,23 @@ mongoose.connect(dbURI, (err, db) => {
           image: 'https://images-na.ssl-images-amazon.com/images/I/71vKio5VaYL._SL1500_.jpg',
           ramType: 'DDR4',
           capacity: 8,
-          createdBy: seededUsers[0]
+          speed: 3200,
+          createdBy: seededUsers[0],
+          link: 'https://www.amazon.co.uk/G-SKILL-F4-3200C14D-16GTZR-Trident-PC4-25600-Channel/dp/B01N6PVEAW/ref=sr_1_2?s=computers&ie=UTF8&qid=1527584790&sr=1-2&keywords=trident+z+3200&dpID=41SYlOnZ4qL&preST=_SX300_QL70_&dpSrc=srch',
+          price: 279.98,
+          description: 'Samsung B-die RAM - exceptionally low latency. Best ICs to use with Ryzen, and just great RAM overall. Highly overclockable.'
         },
         {
           type: 'RAM',
           name: 'HyperX Fury',
           image: 'https://sep.yimg.com/ay/outletpc/hyperx-fury-16gb-2-x-8gb-ddr4-2133-ram-desktop-cl14-xmp-black-dimm-288-pin-hx421c14fb2k2-16-memory-kit-69.jpg',
           ramType: 'DDR4',
-          capacity: 16,
-          createdBy: seededUsers[1]
+          capacity: 8,
+          speed: 2400,
+          createdBy: seededUsers[1],
+          link: 'https://www.amazon.co.uk/HyperX-HX424C15FBK2-Memory-Skylake-Ready/dp/B013H7Q86C/ref=sr_1_2?s=computers&ie=UTF8&qid=1527584907&sr=1-2&keywords=hyperx+fury+ddr4&dpID=41dIGpq6FsL&preST=_SY300_QL70_&dpSrc=srch',
+          price: 161.46,
+          description: 'Affordable DDR4 kit that gives an acceptable capacity for today\'s workloads.'
         },
         {
           type: 'RAM',
@@ -252,8 +296,11 @@ mongoose.connect(dbURI, (err, db) => {
           image: 'https://i2.wp.com/www.ocdrift.com/wp-content/uploads/2014/08/dom_pt_x4_c.png',
           ramType: 'DDR3',
           capacity: 16,
+          speed: 2133,
           createdBy: seededUsers[1],
-          description: 'Low latency, high speed DDR3 RAM with a beautiful chrome aesthetic.'
+          description: 'Low latency, high speed DDR3 RAM with a beautiful chrome aesthetic.',
+          link: 'https://www.corsair.com/us/en/Categories/Products/Memory/DOMINATOR%C2%AE-PLATINUM-%E2%80%94-8GB-%282-x-4GB%29-DDR3-DRAM-2133MHz-C9-Memory-Kit/p/CMD8GX3M2A2133C9?qty=1&productCodePost=CMD8GX3M2A2133C9&CSRFToken=96792b09-eca2-4af7-882a-e93f238afd5f',
+          price: 194.99
         },
         {
           type: 'RAM',
@@ -263,7 +310,7 @@ mongoose.connect(dbURI, (err, db) => {
           capacity: 16,
           speed: 1600,
           createdBy: seededUsers[2],
-          description: 'DDR3. CAS Latency: CL11, Bus Clock: 1600 MHz.',
+          description: 'DDR3. CAS Latency: CL11, Bus Clock: 1600 MHz. Affordable.',
           link: 'https://www.amazon.co.uk/QUMOX-8GB-1600MHz-PC3-12800-MEMORY/dp/B00W6WEXTO/ref=sr_1_4?s=computers&ie=UTF8&qid=1527509227&sr=1-4&keywords=16gb+ddr3&dpID=51PEFi8hyOL&preST=_SY300_QL70_&dpSrc=srch',
           price: 97
         }]);
@@ -278,7 +325,10 @@ mongoose.connect(dbURI, (err, db) => {
           image: 'https://images-na.ssl-images-amazon.com/images/I/71y1FKz0I9L._SY355_.jpg',
           capacity: 500,
           storageType: 'SSD',
-          createdBy: seededUsers[0]
+          createdBy: seededUsers[0],
+          description: 'Built without moving components, this Samsung 840 EVO SSD (Solid State Drive) renders silent operation and durability. The SAS, SATA III interface of this 2.5" Internal drive enables quick and efficient data transfer. For storing digital content and data backup, the 840 EVO model offers 500 GB space.',
+          link: 'http://r.twenga.co.uk/g1.php?t=123153737893&site_id=9720237&cat_id=56083&s_s=1500&turl=aHR0cDovL3JvdmVyLmViYXkuY29tL3JvdmVyLzEvNzEwLTUzNDgxLTE5MjU1LTAvMT9mZjM9NCZwdWI9NTU3NDYzMTY2MiZ0b29saWQ9MTAwMDEmY2FtcGlkPTUzMzgyNDMzMDUmY3VzdG9taWQ9Jm1wcmU9aHR0cCUzQSUyRiUyRnd3dy5lYmF5LmNvLnVrJTJGaXRtJTJGU2Ftc3VuZy04NDAtRVZPLU1aLTdURTUwMC01MDBHQi1JbnRlcm5hbC1TU0QtNi0zNS1jbS0yLTUtR29vZC1Vc2VkLUNvbmRpdGlvbi0lMkYxMjMxNTM3Mzc4OTM=&s_ap=1o7&s_crid=255269357271&s_d=c&s_tid=pla-402737809916&s_adid=53038382819&s_cid=1078317322&s_oid=123153737893&s_pid=402737809916&s_mcid=119960979&s_adtype=pla&gclid=Cj0KCQjw9LPYBRDSARIsAHL7J5m5ZZ1sjpQYWnDFBAz3yWuf8uoMP4G_HZkBr2_DRGe78_8fdx0mZhwaAqH4EALw_wcB',
+          price: 89.99
         },
         {
           type: 'Storage',
@@ -286,7 +336,10 @@ mongoose.connect(dbURI, (err, db) => {
           image: 'https://images-eu.ssl-images-amazon.com/images/I/41wAdOm-YKL._SL500_AC_SS350_.jpg',
           capacity: 1000,
           storageType: 'HDD',
-          createdBy: seededUsers[1]
+          createdBy: seededUsers[1],
+          description: '1TB WD Black WD1003FZEX, 3.5" HDD, SATA III - 6Gb/s, 7200rpm, 64MB Cache; For Creatives, Enthusiasts & Gamers; 1TB WD BLACK is Smarter than the Average Drive',
+          link: 'https://www.amazon.co.uk/WD-TB-Performance-Hard-Drive/dp/B00FJRS6FU',
+          price: 65.10
         },
         {
           type: 'Storage',
@@ -321,7 +374,7 @@ mongoose.connect(dbURI, (err, db) => {
         {
           type: 'Computer',
           name: 'An All AMD Build',
-          image: 'https://www.overclockers.co.uk/media/image/thumbnail/FS1BZOG_173795_750x750.jpg',
+          image: 'https://images-na.ssl-images-amazon.com/images/I/91LH%2BhJAZbL._SL1500_.jpg',
           description: 'Ryzen and Vega working together in harmony.',
           createdBy: seededUsers[1],
           case: seededCases[1],
