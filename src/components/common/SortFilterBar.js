@@ -3,11 +3,13 @@ import React from 'react';
 const SortFilterBar = ({ handleChange, data, showComputers, showParts, isParts, isComputers }) => {
   return(
     <div className="columns">
-      {isParts && <div className="column is-10">
+      <div className="column is-12">
+        {isParts &&
         <div className="field column is-5">
           <input className="input" placeholder="Search for Parts" name="search" onChange={handleChange} value={data.search}/>
-        </div>
-        <div className="field column is-5">
+        </div>}
+        {isParts &&
+        <div className="field column">
           <div className="control">
             <div className="select">
               <select onChange={handleChange} name="sort" value={data.sort}>
@@ -18,13 +20,27 @@ const SortFilterBar = ({ handleChange, data, showComputers, showParts, isParts, 
               </select>
             </div>
           </div>
-        </div>
-      </div>}
-      {isComputers && <div className="column is-10">
+          <div className="buttons has-addons">
+            <button
+              className="button"
+              onClick={showComputers}
+            >
+                Computers
+            </button>
+            <button
+              className="button"
+              onClick={showParts}
+            >
+                  Parts
+            </button>
+          </div>
+        </div>}
+        {isComputers &&
         <div className="field column is-5">
           <input className="input" placeholder="Search for Computers" name="computerSearch" onChange={handleChange} value={data.computerSearch}/>
-        </div>
-        <div className="field column is-5">
+        </div>}
+        {isComputers &&
+        <div className="field column">
           <div className="control">
             <div className="select">
               <select onChange={handleChange} name="computerSort" value={data.computerSort}>
@@ -35,21 +51,21 @@ const SortFilterBar = ({ handleChange, data, showComputers, showParts, isParts, 
               </select>
             </div>
           </div>
-        </div>
-      </div>}
-      <div className="buttons has-addons column is-2">
-        <button
-          className="button"
-          onClick={showComputers}
-        >
-          Computers
-        </button>
-        <button
-          className="button"
-          onClick={showParts}
-        >
-          Parts
-        </button>
+          <div className="buttons has-addons">
+            <button
+              className="button"
+              onClick={showComputers}
+            >
+                Computers
+            </button>
+            <button
+              className="button"
+              onClick={showParts}
+            >
+                  Parts
+            </button>
+          </div>
+        </div>}
       </div>
     </div>
   );

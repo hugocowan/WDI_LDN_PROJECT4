@@ -25,7 +25,7 @@ const partSchema = new mongoose.Schema({
     }
   },
   link: { type: String },
-  price: { type: Number },
+  price: { type: Number, required: true },
   description: { type: String },
   location: {
     lat: { type: Number },

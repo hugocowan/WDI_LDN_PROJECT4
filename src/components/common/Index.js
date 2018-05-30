@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import _ from 'lodash';
 
 import Stars from '../../lib/Stars';
+import Decimals from '../../lib/Decimals';
 import SortFilterBar from './SortFilterBar';
 
 class Index extends React.Component{
@@ -108,11 +109,19 @@ class Index extends React.Component{
                         <div className="media-content">
                           <p className="title is-4">{item.name}</p>
                           <p className="subtitle is-6">{this.ellipsis(item.description)}</p>
-                          { item.price && <p className="subtitle is-6">{this.currency(item.price)}</p>}
+                          { item.price && <p className="subtitle is-6"><span>{Decimals.calculate(item.price)}</span></p>}
                           { item.type === 'Computer' &&
-                          <p className="subtitle is-6">
-                            Total cost: {this.currency(this.totalPrice(item))}
-                          </p>}
+                          <div>
+                            <p className="subtitle is-6">
+                              CPU: {item.cpu.name}<br />
+                              GPU: {item.gpu.name}<br />
+                              RAM: {item.ram.capacity}GB<br />
+
+                            </p>
+                            <p className="subtitle is-5">
+                              Total cost: <span>{Decimals.calculate(this.totalPrice(item))}</span>
+                            </p>
+                          </div>}
                           {item.comments[0] ?
                             <div dangerouslySetInnerHTML={Stars.avgRating(item.comments)} /> :
                             'No ratings yet!'}

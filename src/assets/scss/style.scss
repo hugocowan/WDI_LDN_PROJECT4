@@ -4,6 +4,7 @@
   background-repeat: no-repeat;
   height: 300px;
 }
+
 .price{
   font-size: 40px;
   margin: 5px 0;
@@ -12,4 +13,19 @@
 .hero-image{
   @extend .card-image;
   height: 500px;
+  width: inherit;
+}
+.subtitle span{
+  font-weight: bold;
+}
+
+.parts-info{
+  display: flex;
+  align-items: flex-start;
+  img{
+    // align-self: flex-start;
+  }
+  p{
+
+  }
 }

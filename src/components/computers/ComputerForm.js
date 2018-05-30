@@ -1,4 +1,7 @@
 import React from 'react';
+import Carousel from 'nuka-carousel';
+
+import Decimals from '../../lib/Decimals';
 
 const ComputerForm = ({ handleChange, handleSubmit, computer, parts, errors }) => {
 
@@ -17,6 +20,18 @@ const ComputerForm = ({ handleChange, handleSubmit, computer, parts, errors }) =
     'FM2+', 'AM3+', 'X99', 'Z170', 'X299',
     'Z270', 'Z370', 'Z390', 'AM4', 'X399'
   ];
+
+  // const cases = parts.filter(part => part.type === 'Case');
+
+  function handleSlideChange(index, type) {
+    if(index === 0){
+      return handleChange({ target: { name: type, value: null } });
+    }
+    const filteredParts = parts.filter(part => part.type === type);
+
+    console.log('filteredParts: ',filteredParts);
+    handleChange({ target: { name: type, value: filteredParts[index-1]._id } });
+  }
 
   return (
     <form onSubmit={handleSubmit}>
@@ -57,55 +72,31 @@ const ComputerForm = ({ handleChange, handleSubmit, computer, parts, errors }) =
         {errors.description && <small>{errors.description}</small>}
       </div>
       {parts && partTypes.map(type =>
-        <div key={type} className="field">
+        <div key={type}>
           <label htmlFor={type}>{type}</label>
-          <div className="control">
-            <div className="select">
-              <select
-                id={type}
-                name={type.toLowerCase()}
-                onChange={handleChange}
-                value={computer[type.toLowerCase()] &&
-                       computer[type.toLowerCase()]._id ||
-                       computer[type.toLowerCase()] || ''}
-              >
-                <option value={null} >Please select</option>
+          <Carousel
+            key={type}
+            className="field carousel"
+            cellAlign="center"
+            slideWidth={0.4}
+            cellSpacing={350}
+            afterSlide={(index) => handleSlideChange(index, type)}
+          >
+            <img src={`http://placehold.it/500x600/ffffff/d3d3d3/&text=Choose+Your+${type}`}/>
+            {parts.filter((part) => part.type === type).map(part =>
+              <div
+                className="parts-info"
+                key={part._id}>
+                <img
+                  src={`${part.image}`}
+                />
+                <p>{part.name}</p>
+              </div>
+            )}
+          </Carousel>
+        </div>
+      )}
 
-                {parts.filter((part) => part.type === type).map(part =>
-                  <option key={part._id} value={part._id}>
-
-                    {part.ramType ? `${part.ramType}: ${part.name}` :
-                      part.size && part.chipset ? `${sizes[part.size]} ||
-                    ${chipsets[part.chipset]}:  ${part.name}` :
-                        part.size && !part.chipset ? `${sizes[part.size]}:  ${part.name}` :
-                          part.chipset ? `${chipsets[part.chipset]}:  ${part.name}` :
-                            part.storageType ? `${part.storageType}:  ${part.name}`:
-                              part.name}
-                  </option>
-                )}
-
-                {/* {parts.reduce((accumulator, part) => {
-                  if(part.type === type){
-                    console.log(part);
-                    return <option key={part._id} value={part._id}>
-
-                      {part.ramType ? `${part.ramType}: ${part.name}` :
-                        part.size && part.chipset ? `${sizes[part.size]} ||
-                      ${chipsets[part.chipset]}:  ${part.name}` :
-                          part.size && !part.chipset ? `${sizes[part.size]}:  ${part.name}` :
-                            part.chipset ? `${chipsets[part.chipset]}:  ${part.name}` :
-                              part.storageType ? `${part.storageType}:  ${part.name}`:
-                                part.name}
-                    </option>;
-                  }
-                })} */}
-
-
-              </select>
-            </div>
-          </div>
-          {errors[type.toLowerCase()] && <small>{errors[type.toLowerCase()]}</small>}
-        </div>)}
 
       <button disabled={formInvalid} className="button is-primary">Submit</button>
     </form>

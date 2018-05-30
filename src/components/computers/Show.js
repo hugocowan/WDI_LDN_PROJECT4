@@ -102,8 +102,8 @@ class ComputerShow extends React.Component {
         </div>
         <div className="column is-6">
           <h1 className="title is-1">{computer.name}</h1>
-          <h2 className="subtitle is-8">{computer.description}</h2>
-          <p className="subtitle is-6">
+          <h2 className="subtitle is-5">{computer.description}</h2>
+          <p className="subtitle is-8">
             Total cost: {Decimals.calculate(this.totalPrice(computer))}
           </p>
 

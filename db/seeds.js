@@ -400,7 +400,7 @@ mongoose.connect(dbURI, (err, db) => {
         {
           type: 'Computer',
           name: 'Old meets New',
-          image: 'https://cdn.mos.cms.futurecdn.net/f33c9a59d9ad3e90b0c541ed3aa24965.jpg',
+          image: 'https://cdn.pcpartpicker.com/static/forever/images/userbuild/195398.1dea42a2497146f3874b2e9707bff094.1600.jpg',
           description: 'Old, perfectly good CPU and motherboard parts used with a modern case and graphics card.',
           createdBy: seededUsers[2],
           case: seededCases[3],
