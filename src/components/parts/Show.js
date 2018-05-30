@@ -108,6 +108,8 @@ class PartShow extends React.Component {
             {part.storageType}
             {' '}
             {part.type}</h2>
+          {part.chipset && <h2 className="subtitle is-6">{chipsets[part.chipset]} socket</h2>}
+          <p className="subtitle is-6">Price: {Decimals.calculate(part.price)}</p>
           <div className="hero-image" style={{ backgroundImage: `url(${part.image})` }} />
           {part.comments[0] ?
             <div dangerouslySetInnerHTML={Stars.avgRating(part.comments)} /> :
@@ -128,20 +130,13 @@ class PartShow extends React.Component {
           {' '}
           <a target="_blank" href={part.link} className="button is-info">Where to Buy</a>
 
+          <h2 className="show-description subtitle is-6">{part.description}</h2>
+
           <hr />
 
-          {Auth.isAuthenticated() && <Comments
-            handleCommentChange = {this.handleCommentChange}
-            handleCommentSubmit = {this.handleCommentSubmit}
-            comment = {this.state.comment}
-          />}
-
         </div>
-        <div className="column is-6">
-          <h2 className="subtitle is-6">{part.description}</h2>
-          {part.chipset && <h2 className="subtitle is-6">{chipsets[part.chipset]} socket</h2>}
-          <p className="subtitle is-6">Price: {Decimals.calculate(part.price)}</p>
 
+        <div className="show-column-right column is-6">
 
           <table className="column table is-striped is-fullwidth is-hoverable">
             <thead>
@@ -240,6 +235,12 @@ class PartShow extends React.Component {
 
           <hr />
 
+          {Auth.isAuthenticated() && <Comments
+            handleCommentChange = {this.handleCommentChange}
+            handleCommentSubmit = {this.handleCommentSubmit}
+            comment = {this.state.comment}
+          />}
+
           {part.comments[0] && part.comments.map(comment =>
             <div className="column is-11" key={comment._id}>
               <div className="card">
@@ -256,11 +257,14 @@ class PartShow extends React.Component {
                   className="button is-danger comment-delete"
                   onClick={() => this.handleCommentDelete(comment)}
                 >
-                  Delete
+                    Delete
                 </button>}
               </div>
             </div>
           )}
+
+
+
         </div>
       </div>
     );
