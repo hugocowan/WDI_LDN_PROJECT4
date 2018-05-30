@@ -10,8 +10,6 @@ import SortFilterBar from './SortFilterBar';
 class Index extends React.Component{
   state = {
     search: '',
-    computerSearch: '',
-    computerSort: 'name|asc',
     sort: 'name|asc',
     computersShow: false,
     partsShow: true
@@ -31,22 +29,24 @@ class Index extends React.Component{
     this.setState({ [name]: value });
   }
 
-  computersSortedAndFiltered = () => {
-    const [field, dir] = this.state.computerSort.split('|');
-    const re = new RegExp(this.state.computerSearch, 'i');
-    const filtered = _.filter(this.state.computers, computer => {
-      return re.test(computer.name) || re.test(computer.type);
-    });
-    return _.orderBy(filtered, field, dir);
-  }
-
-  partsSortedAndFiltered = () => {
+  sortAndFilter = () => {
     const [field, dir] = this.state.sort.split('|');
     const re = new RegExp(this.state.search, 'i');
-    const filtered = _.filter(this.state.parts, part => {
-      return re.test(part.name) || re.test(part.type);
-    });
-    return _.orderBy(filtered, field, dir);
+
+    function filter(items){
+      const filtered = _.filter(items, item => {
+        return re.test(item.name) || re.test(item.type);
+      });
+      return _.orderBy(filtered, field, dir);
+    }
+
+    if(this.state.computersShow){
+      return filter(this.state.computers);
+    } else if(this.state.filteredParts) {
+      return filter(this.state.filteredParts);
+    } else {
+      return filter(this.state.parts);
+    }
   }
 
   showComputers = () => {
@@ -55,6 +55,34 @@ class Index extends React.Component{
 
   showParts = () => {
     this.setState({ computersShow: false, partsShow: true }, () => console.log(this.state));
+  }
+
+  toggleFilter = ({ target: { name } }) => {
+    const toggledParts = { ...this.state.toggledParts };
+    let toggleKeys = Object.keys(toggledParts);
+    const getKeys = () => toggleKeys = Object.keys(toggledParts);
+
+    if(toggleKeys.includes(name)){
+
+      delete toggledParts[name];
+      getKeys();
+
+      const filteredParts = this.state.parts.filter(part =>
+        !toggleKeys.includes(part.type));
+
+      return this.setState({ filteredParts, toggledParts });
+    }
+
+    toggledParts[name] = name;
+    getKeys();
+
+    const filteredParts = this.state.parts.filter(part =>
+      toggleKeys.includes(part.type));
+    this.setState({ filteredParts, toggledParts });
+  }
+
+  resetFilters = () => {
+    window.location.reload();
   }
 
   ellipsis = (string) => {
@@ -85,55 +113,70 @@ class Index extends React.Component{
     const allModels = ['computers', 'parts'];
 
     return(
-      <div>
-        <SortFilterBar
-          showComputers = {this.showComputers}
-          showParts = {this.showParts}
-          handleChange={this.handleChange}
-          data={this.state}
-          isParts = {this.state.partsShow}
-          isComputers = {this.state.computersShow}
-        />
-        <div className="columns is-multiline is-mobile">
-          {allModels.map(model =>
-            (this.state[model] && this.state[`${model}Show`]) && this[`${model}SortedAndFiltered`]().map(item =>
-              <div className="column is-4-desktop is-6-tablet is-12-mobile" key={item._id}>
-                <Link to={`/${model}/${item._id}`}>
-                  <div className="card">
-                    <div
-                      className="card-image"
-                      style={{ backgroundImage: `url(${item.image})` }}
-                    ></div>
-                    <div className="card-content">
-                      <div className="media">
-                        <div className="media-content">
-                          <p className="title is-4">{item.name}</p>
-                          <p className="subtitle is-6">{this.ellipsis(item.description)}</p>
-                          { item.price && <p className="subtitle is-6"><span>{Decimals.calculate(item.price)}</span></p>}
-                          { item.type === 'Computer' &&
-                          <div>
-                            <p className="subtitle is-6">
-                              CPU: {item.cpu.name}<br />
-                              GPU: {item.gpu.name}<br />
-                              RAM: {item.ram.capacity}GB<br />
 
-                            </p>
-                            <p className="subtitle is-5">
-                              Total cost: <span>{Decimals.calculate(this.totalPrice(item))}</span>
-                            </p>
-                          </div>}
-                          {item.comments[0] ?
-                            <div dangerouslySetInnerHTML={Stars.avgRating(item.comments)} /> :
-                            'No ratings yet!'}
-                          <p className="subtitle is-6">Created by {item.createdBy.username}</p>
+      <div>
+
+        <div className="columns is-multiline is-mobile">
+
+          <div className="column is-2-desktop is-2-tablet is-4-mobile">
+            <SortFilterBar
+              showComputers = {this.showComputers}
+              showParts = {this.showParts}
+              handleChange={this.handleChange}
+              toggleFilter={this.toggleFilter}
+              resetFilters={this.resetFilters}
+              data={this.state}
+              isParts = {this.state.partsShow}
+              isComputers = {this.state.computersShow}
+            />
+          </div>
+
+          <div className="column is-10-desktop is-10-tablet is-8-mobile">
+            <div className="columns is-multiline">
+
+              {allModels.map(model =>
+                (this.state[model] && this.state[`${model}Show`]) && this.sortAndFilter().map(item =>
+                  <div className="column is-4-desktop is-6-tablet is-12-mobile" key={item._id}>
+                    <Link to={`/${model}/${item._id}`}>
+                      <div className="card">
+                        <div
+                          className="card-image"
+                          style={{ backgroundImage: `url(${item.image})` }}
+                        ></div>
+                        <div className="card-content">
+                          <div className="media">
+                            <div className="media-content">
+                              <p className="title is-4">{item.name}</p>
+                              <p className="subtitle is-6">{this.ellipsis(item.description)}</p>
+                              { item.price && <p className="subtitle is-6"><span>{Decimals.calculate(item.price)}</span></p>}
+                              { item.type === 'Computer' &&
+                            <div>
+                              <p className="subtitle is-6">
+                                CPU: {item.cpu.name}<br />
+                                GPU: {item.gpu.name}<br />
+                                RAM: {item.ram.capacity}GB<br />
+
+                              </p>
+                              <p className="subtitle is-5">
+                                Total cost: <span>{Decimals.calculate(this.totalPrice(item))}</span>
+                              </p>
+                            </div>}
+                              {item.comments[0] ?
+                                <div dangerouslySetInnerHTML={Stars.avgRating(item.comments)} /> :
+                                'No ratings yet!'}
+                              <p className="subtitle is-6">Created by {item.createdBy.username}</p>
+                            </div>
+                          </div>
                         </div>
                       </div>
-                    </div>
+                    </Link>
                   </div>
-                </Link>
-              </div>
-            )
-          )}
+                )
+              )}
+
+            </div>
+          </div>
+
         </div>
       </div>
     );

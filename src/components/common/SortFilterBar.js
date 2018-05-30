@@ -1,73 +1,118 @@
 import React from 'react';
 
-const SortFilterBar = ({ handleChange, data, showComputers, showParts, isParts, isComputers }) => {
+const SortFilterBar = ({ handleChange, data, showComputers, showParts, toggleFilter, resetFilters }) => {
   return(
-    <div className="columns">
-      <div className="column is-12">
-        {isParts &&
-        <div className="field column is-5">
-          <input className="input" placeholder="Search for Parts" name="search" onChange={handleChange} value={data.search}/>
-        </div>}
-        {isParts &&
-        <div className="field column">
-          <div className="control">
-            <div className="select">
-              <select onChange={handleChange} name="sort" value={data.sort}>
-                <option value="name|asc">Name (A - Z)</option>
-                <option value="name|desc">Name (Z - A)</option>
-                <option value="price|desc">Price (Hi - Lo)</option>
-                <option value="price|asc">Price (Lo - Hi)</option>
-              </select>
-            </div>
-          </div>
-          <div className="buttons has-addons">
-            <button
-              className="button"
-              onClick={showComputers}
-            >
-                Computers
-            </button>
-            <button
-              className="button"
-              onClick={showParts}
-            >
-                  Parts
-            </button>
-          </div>
-        </div>}
-        {isComputers &&
-        <div className="field column is-5">
-          <input className="input" placeholder="Search for Computers" name="computerSearch" onChange={handleChange} value={data.computerSearch}/>
-        </div>}
-        {isComputers &&
-        <div className="field column">
-          <div className="control">
-            <div className="select">
-              <select onChange={handleChange} name="computerSort" value={data.computerSort}>
-                <option value="name|asc">Name (A - Z)</option>
-                <option value="name|desc">Name (Z - A)</option>
-                <option value="price|desc">Price (Hi - Lo)</option>
-                <option value="price|asc">Price (Lo - Hi)</option>
-              </select>
-            </div>
-          </div>
-          <div className="buttons has-addons">
-            <button
-              className="button"
-              onClick={showComputers}
-            >
-                Computers
-            </button>
-            <button
-              className="button"
-              onClick={showParts}
-            >
-                  Parts
-            </button>
-          </div>
-        </div>}
+
+
+    <nav className="panel column is-12">
+      <p className="panel-heading">
+        Filters
+      </p>
+      <div className="panel-block">
+        <p className="control has-icons-left">
+          <input
+            className="input is-small"
+            placeholder="Search"
+            name="search"
+            onChange={handleChange} value={data.search}
+          />
+          <span className="icon is-small is-left">
+            <i className="fas fa-search" aria-hidden="true"></i>
+          </span>
+        </p>
       </div>
-    </div>
+      <div className="panel-block">
+        <button
+          className="button is-info is-outlined is-fullwidth"
+          onClick={showComputers}
+        >
+          Computers
+        </button>
+      </div>
+      <div className="panel-block">
+        <button
+          className="button is-info is-outlined is-fullwidth"
+          onClick={showParts}
+        >
+          Parts
+        </button>
+      </div>
+      <div className="panel-block">
+        <div className="control">
+          <div className="select">
+            <select onChange={handleChange} name="sort" value={data.sort}>
+              <option value="name|asc">Name(A - Z)</option>
+              <option value="name|desc">Name(Z - A)</option>
+              <option value="price|desc">Price(Hi - Lo)</option>
+              <option value="price|asc">Price(Lo - Hi)</option>
+            </select>
+          </div>
+        </div>
+      </div>
+      <label className="panel-block">
+        <input
+          type="checkbox"
+          name="Case"
+          onClick={toggleFilter}
+        />
+        Cases
+      </label>
+      <label className="panel-block">
+        <input
+          type="checkbox"
+          name="CPU"
+          onClick={toggleFilter}
+        />
+        CPUs
+      </label>
+      <label className="panel-block">
+        <input
+          type="checkbox"
+          name="GPU"
+          onClick={toggleFilter}
+        />
+        GPUs
+      </label>
+      <label className="panel-block">
+        <input
+          type="checkbox"
+          name="Motherboard"
+          onClick={toggleFilter}
+        />
+        Mobos
+      </label>
+      <label className="panel-block">
+        <input
+          type="checkbox"
+          name="PSU"
+          onClick={toggleFilter}
+        />
+        PSUs
+      </label>
+      <label className="panel-block">
+        <input
+          type="checkbox"
+          name="RAM"
+          onClick={toggleFilter}
+        />
+        RAM
+      </label>
+      <label className="panel-block">
+        <input
+          type="checkbox"
+          name="Storage"
+          onClick={toggleFilter}
+        />
+        Storage
+      </label>
+      <div className="panel-block">
+        <button
+          className="button is-link is-outlined is-fullwidth"
+          onClick={resetFilters}>
+          Reset
+        </button>
+      </div>
+    </nav>
   );
 };
 

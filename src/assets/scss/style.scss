@@ -1,8 +1,37 @@
+
+//Index page
+
+
+.column.is-12, .column.is-12-tablet {
+  @media screen and (min-width: 769px){
+    flex: none;
+    width: 16%;
+    position: fixed;
+    left: 0;
+  }
+  @media screen and (max-width: 768px){
+    position: fixed;
+  }
+}
+
+
+
 .card-image{
   background-position: center;
   background-size: cover;
   background-repeat: no-repeat;
   height: 300px;
+}
+
+.section {
+    padding: 1rem 1rem;
+}
+
+@media screen and (min-width: 1088px){
+  .container {
+      max-width: 1125px;
+      width: 1125px;
+  }
 }
 
 .price{
