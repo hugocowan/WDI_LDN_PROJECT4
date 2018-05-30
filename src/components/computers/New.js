@@ -118,7 +118,6 @@ class ComputersNew extends React.Component{
   }
 
   render() {
-    if(!this.state.parts) return null;
     return(
       <ComputerForm
         handleChange={this.handleChange}

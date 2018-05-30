@@ -111,24 +111,28 @@ class PartShow extends React.Component {
           {part.chipset && <h2 className="subtitle is-6">{chipsets[part.chipset]} socket</h2>}
           <p className="subtitle is-6">Price: {Decimals.calculate(part.price)}</p>
           <div className="hero-image" style={{ backgroundImage: `url(${part.image})` }} />
-          {part.comments[0] ?
-            <div dangerouslySetInnerHTML={Stars.avgRating(part.comments)} /> :
-            'No ratings yet!'}
-          {Auth.isCurrentUser(part.createdBy) && <Link
-            to={`/parts/${part._id}/edit`}
-            className="button"
-          >
-            Edit
-          </Link>}
-          {' '}
-          {Auth.isCurrentUser(part.createdBy) && <button
-            className="button is-danger"
-            onClick={this.handleDelete}
-          >
-              Delete
-          </button>}
-          {' '}
-          <a target="_blank" href={part.link} className="button is-info">Where to Buy</a>
+
+          <div className="show-buttons">
+
+
+            <div dangerouslySetInnerHTML={Stars.avgRating(part.comments)} />
+
+            {Auth.isCurrentUser(part.createdBy) && <Link
+              to={`/parts/${part._id}/edit`}
+              className="button"
+            >
+              Edit
+            </Link>}
+
+            {Auth.isCurrentUser(part.createdBy) && <button
+              className="button is-danger"
+              onClick={this.handleDelete}
+            >
+                Delete
+            </button>}
+            <a target="_blank" href={part.link} className="button is-info">Where to Buy</a>
+
+          </div>
 
           <h2 className="show-description subtitle is-6">{part.description}</h2>
 

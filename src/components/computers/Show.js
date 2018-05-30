@@ -16,7 +16,7 @@ class ComputerShow extends React.Component {
     const { id } = this.props.match.params;
     axios
       .get(`/api/computers/${id}`)
-      .then(res => this.setState({ computer: res.data }, () => console.log(this.state)));
+      .then(res => this.setState({ computer: res.data }));
   }
 
   handleDelete = () => {
@@ -74,9 +74,7 @@ class ComputerShow extends React.Component {
       <div className="columns is-multiline">
         <div className="column is-6">
           <div className="hero-image" style={{ backgroundImage: `url(${computer.image})` }} />
-          {computer.comments[0] ?
-            <div dangerouslySetInnerHTML={Stars.avgRating(computer.comments)} /> :
-            'No ratings yet!'}
+          <div dangerouslySetInnerHTML={Stars.avgRating(computer.comments)} />
           {Auth.isCurrentUser(computer.createdBy) && <Link
             to={`/computers/${computer._id}/edit`}
             className="button"

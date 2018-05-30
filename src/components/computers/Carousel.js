@@ -20,7 +20,7 @@ const FormCarousel = ({ parts, type, handleSlideChange }) => {
       className="field carousel"
       cellAlign="center"
       slideWidth={0.4}
-      cellSpacing={450}
+      cellSpacing={500}
       afterSlide={index => handleSlideChange(index, type)}>
 
       <img src={`http://placehold.it/500x600/d3d3d3/000000/&text=Choose+Your+${type}`}/>

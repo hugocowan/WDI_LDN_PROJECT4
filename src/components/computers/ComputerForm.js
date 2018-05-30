@@ -10,6 +10,8 @@ const ComputerForm = ({ handleChange, handleSubmit, computer, parts, errors, han
     'PSU', 'RAM', 'Storage'
   ];
 
+  console.log(computer);
+
   return (
     <form onSubmit={handleSubmit}>
       <div className="field">

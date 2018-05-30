@@ -161,9 +161,7 @@ class Index extends React.Component{
                                 Total cost: <span>{Decimals.calculate(this.totalPrice(item))}</span>
                               </p>
                             </div>}
-                              {item.comments[0] ?
-                                <div dangerouslySetInnerHTML={Stars.avgRating(item.comments)} /> :
-                                'No ratings yet!'}
+                              <div dangerouslySetInnerHTML={Stars.avgRating(item.comments)} />
                               <p className="subtitle is-6">Created by {item.createdBy.username}</p>
                             </div>
                           </div>
