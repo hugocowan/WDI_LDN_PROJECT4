@@ -19,13 +19,27 @@
   font-weight: bold;
 }
 
+.error{
+  color: #9A150E;
+}
+
 .parts-info{
   display: flex;
   align-items: flex-start;
   img{
-    // align-self: flex-start;
+    align-self: center;
   }
   p{
-
+    position: absolute;
+    right: 90%;
+    width: 200px;
+    @media(max-width: 640px) and (min-width: 348px){
+      left: 0%;
+      bottom: 20%;
+    }
+    @media(max-width: 347px){
+      left: -30%;
+      bottom: 30%;
+    }
   }
 }

@@ -16,7 +16,18 @@ class ComputersNew extends React.Component{
       .then(res => this.setState({ parts: res.data }));
   }
 
+  handleSlideChange = (index, type) => {
+    if(index === 0){
+      return this.handleChange({ target: { name: type, value: null } });
+    }
+    const filteredParts = this.state.parts.filter(part => part.type === type);
+
+    // console.log('filteredParts: ',filteredParts);
+    this.handleChange({ target: { name: type.toLowerCase(), value: filteredParts[index-1]._id } });
+  }
+
   handleChange = ({ target: { name, value } }) => {
+    // console.log(name, value)
     const errors = { ...this.state.errors, [name]: '' };
     let size = null;
     let vendor = null;
@@ -112,6 +123,7 @@ class ComputersNew extends React.Component{
       <ComputerForm
         handleChange={this.handleChange}
         handleSubmit={this.handleSubmit}
+        handleSlideChange={this.handleSlideChange}
         computer={this.state}
         errors={this.state.errors}
         parts={this.state.parts}
