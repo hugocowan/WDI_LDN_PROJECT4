@@ -41,8 +41,7 @@
 
 .hero-image{
   @extend .card-image;
-  height: 500px;
-  width: inherit;
+  width: 100%;
 }
 .subtitle span{
   font-weight: bold;

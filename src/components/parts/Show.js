@@ -99,6 +99,15 @@ class PartShow extends React.Component {
     return (
       <div className="columns is-multiline">
         <div className="column is-6">
+          <h1 className="title is-1">{part.name}</h1>
+          <h2 className="subtitle is-6">{part.vendor}
+            {sizes[part.size]}
+            {' '}
+            {part.ramType}
+            {' '}
+            {part.storageType}
+            {' '}
+            {part.type}</h2>
           <div className="hero-image" style={{ backgroundImage: `url(${part.image})` }} />
           {part.comments[0] ?
             <div dangerouslySetInnerHTML={Stars.avgRating(part.comments)} /> :
@@ -129,15 +138,6 @@ class PartShow extends React.Component {
 
         </div>
         <div className="column is-6">
-          <h1 className="title is-1">{part.name}</h1>
-          <h2 className="subtitle is-6">{part.vendor}
-            {sizes[part.size]}
-            {' '}
-            {part.ramType}
-            {' '}
-            {part.storageType}
-            {' '}
-            {part.type}</h2>
           <h2 className="subtitle is-6">{part.description}</h2>
           {part.chipset && <h2 className="subtitle is-6">{chipsets[part.chipset]} socket</h2>}
           <p className="subtitle is-6">Price: {Decimals.calculate(part.price)}</p>
@@ -241,7 +241,7 @@ class PartShow extends React.Component {
           <hr />
 
           {part.comments[0] && part.comments.map(comment =>
-            <div className="column is-12" key={comment._id}>
+            <div className="column is-11" key={comment._id}>
               <div className="card">
                 <div className="card-content">
                   <div className="media">
