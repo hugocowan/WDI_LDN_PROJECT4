@@ -1,5 +1,6 @@
 import React from 'react';
 import Carousel from 'nuka-carousel';
+import Delay from 'react-delay';
 
 import Decimals from '../../lib/Decimals';
 
@@ -13,7 +14,8 @@ const chipsets =[ 'X79', 'Z87', 'Z97',
 ];
 
 
-const FormCarousel = ({ parts, type, handleSlideChange }) => {
+const FormCarousel = ({ parts, computer, type, handleSlideChange }) => {
+  if(computer && !computer.case) return null;
   return (
     <Carousel
       key={type}
@@ -23,7 +25,9 @@ const FormCarousel = ({ parts, type, handleSlideChange }) => {
       cellSpacing={500}
       afterSlide={index => handleSlideChange(index, type)}>
 
-      <img src={`http://placehold.it/500x600/d3d3d3/000000/&text=Choose+Your+${type}`}/>
+      <img style={{
+        height: '450px'
+      }} src={computer[type.toLowerCase()].image || `http://placehold.it/500x600/d3d3d3/000000/&text=Choose+Your+${type}`}/>
 
       {parts.filter((part) => part.type === type).map(part =>
         <div

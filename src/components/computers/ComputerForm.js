@@ -10,7 +10,7 @@ const ComputerForm = ({ handleChange, handleSubmit, computer, parts, errors, han
     'PSU', 'RAM', 'Storage'
   ];
 
-  console.log(computer);
+  // console.log(parts);
 
   return (
     <form onSubmit={handleSubmit}>
@@ -58,6 +58,7 @@ const ComputerForm = ({ handleChange, handleSubmit, computer, parts, errors, han
           {errors[type.toLowerCase()] && <div className="error">{errors[type.toLowerCase()]}</div>}
           <FormCarousel
             parts={parts}
+            computer={computer}
             type={type}
             handleSlideChange={handleSlideChange}
           />
