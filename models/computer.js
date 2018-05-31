@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 
 const computerSchema = new mongoose.Schema({
-  name: { type: String, required: true },
+  name: { type: String, required: 'Name is required.' },
   image: { type: String },
   description: { type: String },
   type: { type: String, enum: ['Computer'], required: true },

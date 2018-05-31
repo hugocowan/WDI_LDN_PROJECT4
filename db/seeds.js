@@ -40,6 +40,13 @@ mongoose.connect(dbURI, (err, db) => {
       password: 'r',
       passwordConfirmation: 'r',
       picture: 'https://www.publicdomainpictures.net/pictures/140000/velka/computer-guy.jpg'
+    },
+    {
+      username: 'Matt',
+      email: 'm@m',
+      password: 'm',
+      passwordConfirmation: 'm',
+      picture: 'https://media.townhall.com/thm/resources/images/headshots/mattvespa.jpg'
     }
   ])
     .then(users => {
@@ -128,6 +135,18 @@ mongoose.connect(dbURI, (err, db) => {
           description: 'An old but solid 6 core, 12 thread CPU.',
           link: 'https://www.amazon.co.uk/Intel-Corei7-3930K-Processor-3-20GHz-SKT2011/dp/B00681D9ZI/ref=pd_lpo_sbs_147_t_0?_encoding=UTF8&psc=1&refRID=NH8SB47HY51V55TXPZPW',
           price: 350
+        },
+        {
+          type: 'CPU',
+          name: 'i7 8600k',
+          image: 'https://images-na.ssl-images-amazon.com/images/I/818KAP71ZBL._SL1500_.jpg',
+          vendor: 'Intel',
+          speed: 4.3,
+          chipset: 9,
+          createdBy: seededUsers[3],
+          description: 'The 8th generation Intel Core i5-8600K comes with six processing cores and six threads. It\'s overclockable and supports the fastest DDR4 memory speeds.',
+          link: 'https://www.amazon.co.uk/Intel-BX80684I58600K-Core-i5-8600K-Processor/dp/B0759FKH8K',
+          price: 199
         }
       ]);
     })
@@ -223,6 +242,18 @@ mongoose.connect(dbURI, (err, db) => {
           description: 'A solid board for Haswell and Broadwell CPUs. Has a true 8-phase VRM design that is more than enough to push your CPU to its limits.',
           link: 'https://www.amazon.co.uk/MAXIMUS-VII-IMPACT-LGA1150-Motherboard/dp/B00MI8D1YE/ref=sr_1_1?s=computers&ie=UTF8&qid=1527584376&sr=1-1&keywords=maximus+vii+impact',
           price: 510.00
+        },
+        {
+          type: 'Motherboard',
+          name: 'GIGABYTE Z370 Aorus Ultra',
+          image: 'https://images-na.ssl-images-amazon.com/images/I/71kfyAFDjGL._SL1000_.jpg',
+          size: 2,
+          vendor: 'Intel',
+          chipset: 9,
+          createdBy: seededUsers[3],
+          description: 'A solid board for Haswell and Broadwell CPUs. Has a true 8-phase VRM design that is more than enough to push your CPU to its limits.',
+          link: 'https://www.amazon.co.uk/Z370-Aorus-Ultra-Gaming-Motherboard/dp/B075ZQ6V9R/ref=sr_1_1?s=computers&ie=UTF8&qid=1527779559&sr=1-1&keywords=z370+motherboard&dpID=61DZEDlnPyL&preST=_SY300_QL70_&dpSrc=srch',
+          price: 149.58
         }]);
     })
     .then(motherboards => {
@@ -409,6 +440,20 @@ mongoose.connect(dbURI, (err, db) => {
           motherboard: seededMotherboards[2],
           psu: seededPsus[3],
           ram: seededRam[3],
+          storage: seededStorage[2]
+        },
+        {
+          type: 'Computer',
+          name: 'Dream Build',
+          image: 'https://betanews.com/wp-content/uploads/2018/02/CORSAIR-Obsidian-Series-500D-2.png',
+          description: 'Latest components from Intel and AMD as well as Corsair\'s newest case, the 500D. Tempered glass, aluminium and all the pretty lights.',
+          createdBy: seededUsers[3],
+          case: seededCases[1],
+          cpu: seededCPUs[3],
+          gpu: seededGPUs[1],
+          motherboard: seededMotherboards[4],
+          psu: seededPsus[0],
+          ram: seededRam[0],
           storage: seededStorage[2]
         }]);
     })
