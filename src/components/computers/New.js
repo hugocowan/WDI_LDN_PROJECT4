@@ -7,7 +7,28 @@ import ComputerForm from './ComputerForm';
 class ComputersNew extends React.Component{
   state = {
     errors: {},
-    type: 'Computer'
+    type: 'Computer',
+    case: {
+      image: 'http://placehold.it/500x600/d3d3d3/000000/&text=Choose+your+Case'
+    },
+    cpu: {
+      image: 'http://placehold.it/500x600/d3d3d3/000000/&text=Choose+Your+CPU'
+    },
+    gpu: {
+      image: 'http://placehold.it/500x600/d3d3d3/000000/&text=Choose+Your+GPU'
+    },
+    motherboard: {
+      image: 'http://placehold.it/500x600/d3d3d3/000000/&text=Choose+Your+Mobo'
+    },
+    psu: {
+      image: 'http://placehold.it/500x600/d3d3d3/000000/&text=Choose+Your+PSU'
+    },
+    ram: {
+      image: 'http://placehold.it/500x600/d3d3d3/000000/&text=Choose+Your+RAM'
+    },
+    storage: {
+      image: 'http://placehold.it/500x600/d3d3d3/000000/&text=Choose+Your+Storage'
+    }
   };
 
   componentDidMount() {
