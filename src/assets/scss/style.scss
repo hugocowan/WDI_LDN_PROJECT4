@@ -107,8 +107,13 @@
 //carousel
 
 .carousel-starter-image{
-  @media(max-width: 768px){
-    display: none;
+  height: 450px;
+  @media(min-width: 421px) and (max-width: 600px){
+    height: 250px;
+  }
+  @media(max-width: 420px){
+    // display: none;
+    height: 150px;
   }
 }
 

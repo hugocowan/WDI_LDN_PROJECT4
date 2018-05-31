@@ -86,6 +86,7 @@ class Index extends React.Component{
   }
 
   ellipsis = (string) => {
+    if(!string) return null;
     if(string.length > 60) {
       return `${string.substring(0, 60)}...`;
     } else return string;
