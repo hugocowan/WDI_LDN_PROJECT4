@@ -5,19 +5,26 @@
 .column.is-12, .column.is-12-tablet {
   @media screen and (min-width: 769px){
     flex: none;
-    width: 16%;
+    width: 18%;
     position: fixed;
     left: 0;
   }
-  @media screen and (max-width: 768px){
-    position: fixed;
+
+  @media (max-width: 768px){
+    position: relative;
   }
 }
+.hidden-on-mobile{
+  @media (max-width: 768px){
+    display: none;
+  }
+}
+
 
 //Show page
 
 .show-column-right{
-  margin: 5% 0 0 0;
+  margin: 10% 0 0 0;
 }
 
 .show-description{
@@ -28,7 +35,43 @@
   margin: 2% 0 0 0;
   .button{
     margin: 0 10px;
+    padding: 1%;
   }
+  .stars{
+    margin: 2%;
+  }
+}
+
+//carousel
+
+.carousel-starter-image{
+  @media(max-width: 768px){
+    display: none;
+  }
+}
+
+.desktop-show-stars{
+  margin: 1%;
+}
+
+.tag:not(body) {
+    align-items: center;
+    background-color: whitesmoke;
+    border-radius: 4px;
+    color: #4a4a4a;
+    display: inline-flex;
+    font-size: 0.85rem;
+    height: 2em;
+    justify-content: center;
+    line-height: 1.5;
+    padding-left: 0.75em;
+    padding-right: 0.75em;
+    white-space: nowrap;
+    margin: 1%;
+    &.bolder{
+      font-size: 20px;
+      font-weight: bold;
+    }
 }
 
 .card-image{
@@ -57,6 +100,9 @@
 .hero-image{
   @extend .card-image;
   width: 90%;
+  @media(max-width: 768px){
+    width: 100%;
+  }
 }
 .subtitle span{
   font-weight: bold;

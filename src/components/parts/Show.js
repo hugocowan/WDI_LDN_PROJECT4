@@ -100,22 +100,23 @@ class PartShow extends React.Component {
       <div className="columns is-multiline">
         <div className="column is-6">
           <h1 className="title is-1">{part.name}</h1>
-          <h2 className="subtitle is-6">{part.vendor}
+          <span className="tag">{part.vendor}
+            {' '}
             {sizes[part.size]}
             {' '}
             {part.ramType}
             {' '}
             {part.storageType}
             {' '}
-            {part.type}</h2>
-          {part.chipset && <h2 className="subtitle is-6">{chipsets[part.chipset]} socket</h2>}
-          <p className="subtitle is-6">Price: {Decimals.calculate(part.price)}</p>
+            {part.type}</span>
+          {part.chipset && <span className="tag">{chipsets[part.chipset]} socket</span>}
+          <span className="tag bold">Price: {Decimals.calculate(part.price)}</span>
           <div className="hero-image" style={{ backgroundImage: `url(${part.image})` }} />
 
           <div className="show-buttons">
-
-
-            <div dangerouslySetInnerHTML={Stars.avgRating(part.comments)} />
+            <div
+              className="stars"
+              dangerouslySetInnerHTML={Stars.avgRating(part.comments)} />
 
             {Auth.isCurrentUser(part.createdBy) && <Link
               to={`/parts/${part._id}/edit`}
@@ -134,9 +135,31 @@ class PartShow extends React.Component {
 
           </div>
 
+          <hr />
+
           <h2 className="show-description subtitle is-6">{part.description}</h2>
 
-          <hr />
+          {part.comments[0] && part.comments.map(comment =>
+            <div className="column is-11" key={comment._id}>
+              <div className="card">
+                <div className="card-content">
+                  <div className="media">
+                    <div className="media-content">
+                      <p className="title is-4">{comment.content}</p>
+                      <p className="subtitle is-3 price">{'⭐️'.repeat(comment.rating)}</p>
+                      <p className="subtitle is-8">by user {comment.createdBy.username}</p>
+                    </div>
+                  </div>
+                </div>
+                {Auth.isCurrentUser(comment.createdBy) && <button
+                  className="button is-danger comment-delete"
+                  onClick={() => this.handleCommentDelete(comment)}
+                >
+                    Delete
+                </button>}
+              </div>
+            </div>
+          )}
 
         </div>
 
@@ -244,28 +267,6 @@ class PartShow extends React.Component {
             handleCommentSubmit = {this.handleCommentSubmit}
             comment = {this.state.comment}
           />}
-
-          {part.comments[0] && part.comments.map(comment =>
-            <div className="column is-11" key={comment._id}>
-              <div className="card">
-                <div className="card-content">
-                  <div className="media">
-                    <div className="media-content">
-                      <p className="title is-4">{comment.content}</p>
-                      <p className="subtitle is-3 price">{'⭐️'.repeat(comment.rating)}</p>
-                      <p className="subtitle is-8">by user {comment.createdBy.username}</p>
-                    </div>
-                  </div>
-                </div>
-                {Auth.isCurrentUser(comment.createdBy) && <button
-                  className="button is-danger comment-delete"
-                  onClick={() => this.handleCommentDelete(comment)}
-                >
-                    Delete
-                </button>}
-              </div>
-            </div>
-          )}
 
 
 

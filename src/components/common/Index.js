@@ -118,7 +118,7 @@ class Index extends React.Component{
 
         <div className="columns is-multiline is-mobile">
 
-          <div className="filter-bar column is-2-desktop is-2-tablet is-4-mobile">
+          <div className="filter-bar column is-2-desktop is-2-tablet is-12-mobile">
             <SortFilterBar
               showComputers = {this.showComputers}
               showParts = {this.showParts}
@@ -131,7 +131,7 @@ class Index extends React.Component{
             />
           </div>
 
-          <div className="column is-10-desktop is-10-tablet is-8-mobile">
+          <div className="column is-10-desktop is-10-tablet is-12-mobile">
             <div className="columns is-multiline">
 
               {allModels.map(model =>

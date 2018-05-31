@@ -36,6 +36,7 @@ const FormCarousel = ({ parts, computer, type, handleSlideChange }) => {
           {computer[type.toLowerCase()].name &&
             <p className="bold">{Decimals.calculate(computer[type.toLowerCase()].price)}</p>}
           <img
+            className="carousel-starter-image"
             style={{
               height: '450px'
             }}

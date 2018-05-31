@@ -73,39 +73,61 @@ class ComputerShow extends React.Component {
     return (
       <div className="columns is-multiline">
         <div className="column is-6">
+          <h1 className="title is-1">{computer.name}</h1>
           <div className="hero-image" style={{ backgroundImage: `url(${computer.image})` }} />
-          <div dangerouslySetInnerHTML={Stars.avgRating(computer.comments)} />
-          {Auth.isCurrentUser(computer.createdBy) && <Link
-            to={`/computers/${computer._id}/edit`}
-            className="button"
-          >
-            Edit
-          </Link>}
-          {' '}
-          {Auth.isCurrentUser(computer.createdBy) && <button
-            className="button is-danger"
-            onClick={this.handleDelete}
-          >
-              Delete
-          </button>}
+          <div className="show-buttons">
+            <div
+              dangerouslySetInnerHTML={Stars.avgRating(computer.comments)}
+            />
+            {Auth.isCurrentUser(computer.createdBy) && <Link
+              to={`/computers/${computer._id}/edit`}
+              className="button"
+            >
+              Edit
+            </Link>}
+            {' '}
+            {Auth.isCurrentUser(computer.createdBy) && <button
+              className="button is-danger"
+              onClick={this.handleDelete}
+            >
+                Delete
+            </button>}
+          </div>
+
 
           <hr />
 
-          {Auth.isAuthenticated() && <ComputerComments
-            handleCommentChange = {this.handleCommentChange}
-            handleCommentSubmit = {this.handleCommentSubmit}
-            comment = {this.state.comment}
-          />}
+          <h2 className="show-description subtitle is-6">{computer.description}</h2>
+
+          {computer.comments[0] && computer.comments.map(comment =>
+            <div className="column is-11" key={comment._id}>
+              <div className="card">
+                <div className="card-content">
+                  <div className="media">
+                    <div className="media-content">
+                      <p className="title is-4">{comment.content}</p>
+                      <p className="subtitle is-3 price">{'⭐️'.repeat(comment.rating)}</p>
+                      <p className="subtitle is-8">by user {comment.createdBy.username}</p>
+                    </div>
+                  </div>
+                </div>
+                {Auth.isCurrentUser(comment.createdBy) && <button
+                  className="button is-danger comment-delete"
+                  onClick={() => this.handleCommentDelete(comment)}
+                >
+                  Delete
+                </button>}
+              </div>
+            </div>
+          )}
 
         </div>
-        <div className="column is-6">
-          <h1 className="title is-1">{computer.name}</h1>
-          <h2 className="subtitle is-5">{computer.description}</h2>
-          <p className="subtitle is-8">
-            Total cost: {Decimals.calculate(this.totalPrice(computer))}
-          </p>
+        <div className="column show-column-right is-6">
 
-          <hr />
+          <span className="tag bolder">
+            Total cost: {Decimals.calculate(this.totalPrice(computer))}
+          </span>
+
           <table className="column table is-striped is-fullwidth is-hoverable">
             <thead>
               <tr>
@@ -152,27 +174,15 @@ class ComputerShow extends React.Component {
               </tr>
             </tbody>
           </table>
-          {computer.comments[0] && computer.comments.map(comment =>
-            <div className="column is-12" key={comment._id}>
-              <div className="card">
-                <div className="card-content">
-                  <div className="media">
-                    <div className="media-content">
-                      <p className="title is-4">{comment.content}</p>
-                      <p className="subtitle is-3 price">{'⭐️'.repeat(comment.rating)}</p>
-                      <p className="subtitle is-8">by user {comment.createdBy.username}</p>
-                    </div>
-                  </div>
-                </div>
-                {Auth.isCurrentUser(comment.createdBy) && <button
-                  className="button is-danger comment-delete"
-                  onClick={() => this.handleCommentDelete(comment)}
-                >
-                  Delete
-                </button>}
-              </div>
-            </div>
-          )}
+
+          <hr />
+
+          {Auth.isAuthenticated() && <ComputerComments
+            handleCommentChange = {this.handleCommentChange}
+            handleCommentSubmit = {this.handleCommentSubmit}
+            comment = {this.state.comment}
+          />}
+
         </div>
       </div>
     );
