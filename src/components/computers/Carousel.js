@@ -27,7 +27,9 @@ const FormCarousel = ({ parts, computer, type, handleSlideChange }) => {
       afterSlide={index => handleSlideChange(index, type)}>
 
       {computer[type.toLowerCase()] &&
-        <div>
+        <div style={{
+          height: '350px'
+        }}>
           <p>{computer[type.toLowerCase()].name}{computer[type.toLowerCase()].size &&
             `: ${sizes[computer[type.toLowerCase()].size]}`}
           {' '}
