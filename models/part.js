@@ -6,10 +6,10 @@ const partSchema = new mongoose.Schema({
     enum: [
       'Case', 'CPU', 'GPU', 'Motherboard', 'PSU', 'RAM', 'Storage'
     ],
-    required: true
+    required: 'Part type is required.'
   },
-  name: { type: String, required: true },
-  image: { type: String, required: true },
+  name: { type: String, required: 'A name is required.' },
+  image: { type: String, required: 'An image is required.' },
   comments: [{
     type: mongoose.Schema.ObjectId,
     ref: 'Comment'
@@ -18,14 +18,16 @@ const partSchema = new mongoose.Schema({
     type: String,
     //0: mini-itx | 1: micro-atx | 2: atx | 3: e-atx
     enum: [ 0, 1, 2, 3],
-    required: function() {
-      return (this.type === 'Case' ||
+    required: [
+      function() {
+        return (this.type === 'Case' ||
               this.type === 'Motherboard' ||
               this.type === 'PSU');
-    }
+      }, 'Size is required.'
+    ]
   },
-  link: { type: String, required: true },
-  price: { type: Number, required: true },
+  link: { type: String, required: 'A link to a reseller is required.' },
+  price: { type: Number, required: 'Part price is required.' },
   description: { type: String },
   location: {
     lat: { type: Number },
@@ -42,11 +44,13 @@ const partSchema = new mongoose.Schema({
   vendor: {
     type: String,
     enum: ['Intel', 'AMD', 'Nvidia'],
-    required: function() {
-      return (this.type === 'CPU' ||
+    required: [
+      function() {
+        return (this.type === 'CPU' ||
               this.type === 'GPU' ||
               this.type === 'Motherboard');
-    }
+      }, 'Vendor is required.'
+    ]
   },
   chipset: {
     type: String,
@@ -58,51 +62,65 @@ const partSchema = new mongoose.Schema({
     //5: 'X99', 6: 'Z170', 7: 'X299', 8: 'Z270', 9: 'Z370', 10: 'Z390',
     //11: 'AM4', 12: 'X399'
     enum: [ 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12 ],
-    required: function() {
-      return (this.type === 'CPU' ||
+    required: [
+      function() {
+        return (this.type === 'CPU' ||
               this.type === 'Motherboard');
-    }
+      }, 'Chipset is required.'
+    ]
   },
   vram: {
     type: Number,
-    required: function() {
-      return this.type === 'GPU';
-    }
+    required: [
+      function() {
+        return this.type === 'GPU';
+      }, 'VRAM is required.'
+    ]
   },
   speed: {
     type: Number,
-    required: function() {
-      return (this.type === 'CPU' ||
-              this.type === 'GPU');
-    }
+    required: [
+      function() {
+        return (this.type === 'CPU' ||
+                this.type === 'GPU');
+      }, 'Clockspeed is required.'
+    ]
   },
   power: {
     type: Number,
-    required: function() {
-      return (this.type === 'PSU');
-    }
+    required: [
+      function() {
+        return (this.type === 'PSU');
+      }, 'PSU power is required.'
+    ]
   },
   length: { type: Number },
   ramType: {
     type: String,
     enum: ['DDR2', 'DDR3', 'DDR4'],
-    required: function() {
-      return this.type === 'RAM';
-    }
+    required: [
+      function() {
+        return this.type === 'RAM';
+      }, 'RAM type is required.'
+    ]
   },
   capacity: {
     type: Number,
-    required: function() {
-      return (this.type === 'RAM' ||
-              this.type === 'Storage');
-    }
+    required: [
+      function() {
+        return (this.type === 'RAM' ||
+                this.type === 'Storage');
+      }, 'Capacity is required.'
+    ]
   },
   storageType: {
     type: String,
     enum: ['SSD', 'HDD'],
-    required: function() {
-      return this.type === 'Storage';
-    }
+    required: [
+      function() {
+        return this.type === 'Storage';
+      }, 'Storage type is required.'
+    ]
   }
 });
 

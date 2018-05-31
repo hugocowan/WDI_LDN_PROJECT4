@@ -171,7 +171,8 @@ class PartShow extends React.Component {
                 <th>Name</th>
                 {(part.type === 'CPU' ||
                   part.type === 'GPU' ||
-                  part.type === 'Motherboard') && <th>Vendor</th>}
+                  part.type === 'Motherboard') &&
+                  <th>Vendor</th>}
                 {(part.type === 'CPU' ||
                   part.type === 'Motherboard') &&
                   <th>Chipset</th>}
@@ -201,7 +202,8 @@ class PartShow extends React.Component {
                 <th>{part.name}</th>
                 {(part.type === 'CPU' ||
                   part.type === 'GPU' ||
-                  part.type === 'Motherboard') && <td>{part.vendor}</td>}
+                  part.type === 'Motherboard') &&
+                  <td>{part.vendor}</td>}
                 {(part.type === 'CPU' ||
                   part.type === 'Motherboard') &&
                   <td>{chipsets[part.chipset]} socket</td>}
