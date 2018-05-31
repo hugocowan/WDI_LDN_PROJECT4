@@ -24,7 +24,7 @@ const partSchema = new mongoose.Schema({
               this.type === 'PSU');
     }
   },
-  link: { type: String },
+  link: { type: String, required: true },
   price: { type: Number, required: true },
   description: { type: String },
   location: {
@@ -63,9 +63,25 @@ const partSchema = new mongoose.Schema({
               this.type === 'Motherboard');
     }
   },
-  vram: { type: Number },
-  speed: { type: Number },
-  power: { type: Number },
+  vram: {
+    type: Number,
+    required: function() {
+      return this.type === 'GPU';
+    }
+  },
+  speed: {
+    type: Number,
+    required: function() {
+      return (this.type === 'CPU' ||
+              this.type === 'GPU');
+    }
+  },
+  power: {
+    type: Number,
+    required: function() {
+      return (this.type === 'PSU');
+    }
+  },
   length: { type: Number },
   ramType: {
     type: String,
@@ -74,7 +90,13 @@ const partSchema = new mongoose.Schema({
       return this.type === 'RAM';
     }
   },
-  capacity: { type: Number },
+  capacity: {
+    type: Number,
+    required: function() {
+      return (this.type === 'RAM' ||
+              this.type === 'Storage');
+    }
+  },
   storageType: {
     type: String,
     enum: ['SSD', 'HDD'],

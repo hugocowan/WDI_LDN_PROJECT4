@@ -43,89 +43,142 @@ class ComputersNew extends React.Component{
     }
     const filteredParts = this.state.parts.filter(part => part.type === type);
 
-    // console.log('filteredParts: ',filteredParts);
+
     this.handleChange({ target: { name: type.toLowerCase(), value: filteredParts[index-1]._id } });
   }
 
   handleChange = ({ target: { name, value } }) => {
-    // console.log(name, value)
+
     const errors = { ...this.state.errors, [name]: '' };
     let size = null;
     let vendor = null;
     let chipset = null;
     let ramType = null;
 
-    if(value === 'Please select') value = undefined;
+
+
+    const clearError = (name1, name2) => {
+      errors[name1] = '';
+      errors[name2] = '';
+      // console.log('clearing error! name1 =',name1, 'name2 = ', name2);
+      this.setState({ errors, [name]: value });
+      setEnums();
+    };
+
+    const setEnums = () => {
+      console.log('size: ', size, 'vendor: ', vendor, 'chipset: ', chipset, 'ramType: ', ramType);
+      this.setState({ [`${name.toLowerCase()}Enums`]: { size, vendor, chipset, ramType } });
+    };
+
+    const handleErrors = () => {
+      errors[name] = 'Item not compatible with selected components!';
+      this.setState({ errors, [name]: value });
+      setEnums();
+    };
+
+    if(value === null){
+      value = null;
+      size = null;
+      vendor = null;
+      chipset = null;
+      ramType = null;
+      return clearError();
+    }
 
     if(this.state.parts.find(part => part._id === value)) {
 
       const part = this.state.parts.find(part => part._id === value);
 
-      if(part.type === 'Case' &&
-         (!this.state.motherboardEnums ||
-          part.size >= this.state.motherboardEnums.size)){
 
-        console.log('case passed!');
-        size = part.size;
 
-      } else if(part.type === 'Motherboard' &&
+      switch(part.type) {
+        case 'Case':
+          size = part.size;
+          (!this.state.motherboardEnums ||
+         part.size >= this.state.motherboardEnums.size) ?
+            (clearError('case','motherboard')) : handleErrors();
 
-        (!this.state.caseEnums ||
-         part.size <= this.state.caseEnums.size) &&
+          break;
 
-        (!this.state.cpuEnums ||
-         (this.state.cpuEnums.chipset === part.chipset)) &&
+        case 'Motherboard':
 
-       (!this.state.cpuEnums ||
-        (this.state.cpuEnums.vendor === part.vendor))) {
+          // console.log('Motherboard chipset: ', part.chipset);
+          // if(this.state.cpuEnums) console.log('CPU chipset: ', this.state.cpuEnums.chipset);
+          // console.log('state: ',this.state);
 
-        console.log('motherboard passed!');
-        size = part.size;
-        chipset = part.chipset;
-        vendor = part.vendor;
+          size = part.size;
+          chipset = part.chipset;
+          vendor = part.vendor;
 
-      } else if(part.type === 'CPU' &&
+          ((!this.state.caseEnums ||
+           part.size <= this.state.caseEnums.size) &&
 
-        (!this.state.motherboardEnums ||
-         this.state.motherboardEnums.chipset === part.chipset) &&
-
-        (!this.state.motherboardEnums ||
-         this.state.motherboardEnums.vendor === part.vendor)) {
-
-        console.log('CPU passed!');
-        chipset = part.chipset;
-        vendor = part.vendor;
-      } else if(part.type === 'GPU' ||
-                part.type === 'Storage' ||
-                part.type === 'PSU') {
-        console.log('successful GPU/Storage/PSU!');
-      } else if(part.type === 'RAM' &&
-
-        (part.ramType === 'DDR3' &&
-
-         (!this.state.motherboardEnums ||
-          this.state.motherboardEnums.chipset <= 4) &&
+          (!this.state.cpuEnums ||
+           (this.state.cpuEnums.chipset === part.chipset)) &&
 
          (!this.state.cpuEnums ||
-         this.state.cpuEnums.chipset <= 4)) ||
+          (this.state.cpuEnums.vendor === part.vendor))) ?
 
-        (part.ramType === 'DDR4' &&
+            (clearError('motherboard','cpu', 'case')) :
+            handleErrors();
 
-         (!this.state.motherboardEnums ||
-         this.state.motherboardEnums.chipset >= 5) &&
+          break;
 
-         (!this.state.cpuEnums ||
-         this.state.cpuEnums.chipset >= 5))) {
+        case 'CPU':
+          // console.log('CPU chipset: ', part.chipset);
+          // if(this.state.motherboardEnums) console.log('Motherboard chipset: ', this.state.motherboardEnums.chipset);
+          // console.log('state: ',this.state);
 
-        console.log('ram passed!');
-        ramType = part.ramType;
-      } else {
-        errors[name] = 'Item not compatible with selected components!';
-        return this.setState({ errors, [name]: value });
+          chipset = part.chipset;
+          vendor = part.vendor;
+
+          ((!this.state.motherboardEnums ||
+           this.state.motherboardEnums.chipset === part.chipset) &&
+
+          (!this.state.motherboardEnums ||
+           this.state.motherboardEnums.vendor === part.vendor)) ?
+
+            (clearError('cpu','motherboard')) :
+            handleErrors();
+
+          break;
+
+        case 'RAM':
+
+          ramType = part.ramType;
+
+          ((part.ramType === 'DDR3' &&
+
+           (!this.state.motherboardEnums ||
+            this.state.motherboardEnums.chipset <= 4) &&
+
+           (!this.state.cpuEnums ||
+           this.state.cpuEnums.chipset <= 4)) ||
+
+          (part.ramType === 'DDR4' &&
+
+           (!this.state.motherboardEnums ||
+           this.state.motherboardEnums.chipset >= 5) &&
+
+           (!this.state.cpuEnums ||
+           this.state.cpuEnums.chipset >= 5))) ?
+
+            (clearError('ram','motherboard', 'cpu')) : handleErrors();
+
+          break;
+
+        case 'GPU':
+          break;
+        case 'Storage':
+          break;
+        case 'PSU':
+          break;
+
+        default:
+          handleErrors();
       }
     }
-
-    this.setState({ errors, [name]: value, [`${name}Enums`]: { size, vendor, chipset, ramType } }, () => console.log(this.state));
+    this.setState({ errors, [name]: value });
   }
 
   handleSubmit = e => {

@@ -26,7 +26,7 @@ const ComputerForm = ({ handleChange, handleSubmit, part, errors }) => {
             </select>
           </div>
         </div>
-        {errors.type && <small>{errors.type}</small>}
+        {errors.type && <div className="error">{errors.type}</div>}
       </div>
       <div className="field">
         <label htmlFor="name">Name</label>
@@ -38,7 +38,7 @@ const ComputerForm = ({ handleChange, handleSubmit, part, errors }) => {
           onChange={handleChange}
           value={part.name || ''}
         />
-        {errors.name && <small>{errors.name}</small>}
+        {errors.name && <div className="error">{errors.name}</div>}
       </div>
       <div className="field">
         <label htmlFor="image">Image URL</label>
@@ -50,7 +50,7 @@ const ComputerForm = ({ handleChange, handleSubmit, part, errors }) => {
           onChange={handleChange}
           value={part.image || ''}
         />
-        {errors.image && <small>{errors.image}</small>}
+        {errors.image && <div className="error">{errors.image}</div>}
       </div>
       <div className="field">
         <label htmlFor="link">Link</label>
@@ -62,7 +62,7 @@ const ComputerForm = ({ handleChange, handleSubmit, part, errors }) => {
           onChange={handleChange}
           value={part.link || ''}
         />
-        {errors.link && <small>{errors.link}</small>}
+        {errors.link && <div className="error">{errors.link}</div>}
       </div>
       <div className="field">
         <label htmlFor="price">Price</label>
@@ -74,8 +74,81 @@ const ComputerForm = ({ handleChange, handleSubmit, part, errors }) => {
           onChange={handleChange}
           value={part.price || ''}
         />
-        {errors.price && <small>{errors.price}</small>}
+        {errors.price && <div className="error">{errors.price}</div>}
       </div>
+
+      {part.type === 'PSU' && <div className="field">
+        <label htmlFor="power">Power</label>
+        <input
+          id="power"
+          name="power"
+          className="input"
+          placeholder="W"
+          onChange={handleChange}
+          value={part.power || ''}
+        />
+        {errors.power && <div className="error">{errors.power}</div>}
+      </div>}
+
+      {(part.type === 'CPU') &&
+        <div className="field">
+          <label htmlFor="speed">Clockspeed</label>
+          <input
+            id="speed"
+            name="speed"
+            className="input"
+            placeholder="GHz"
+            onChange={handleChange}
+            value={part.speed || ''}
+          />
+          {errors.speed && <div className="error">{errors.speed}</div>}
+        </div>}
+      {(part.type === 'GPU') &&
+      <div>
+        <div className="field">
+          <label htmlFor="speed">Core Clock</label>
+          <input
+            id="speed"
+            name="speed"
+            className="input"
+            placeholder="MHz"
+            onChange={handleChange}
+            value={part.speed || ''}
+          />
+          {errors.speed && <div className="error">{errors.speed}</div>}
+        </div>
+
+        <div className="field">
+          <label htmlFor="vram">VRAM Capacity</label>
+          <input
+            id="vram"
+            name="vram"
+            className="input"
+            placeholder="GB"
+            onChange={handleChange}
+            value={part.vram || ''}
+          />
+          {errors.vram && <div className="error">{errors.vram}</div>}
+        </div>
+
+        <div className="field">
+          <label htmlFor="vendor">Vendor</label>
+          <div className="control">
+            <div className="select">
+              <select
+                id="vendor"
+                name="vendor"
+                onChange={handleChange}
+                value={part.vendor || ''}>
+                <option>Please select</option>
+                <option value="AMD">AMD</option>
+                <option value="Nvidia">Nvidia</option>
+              </select>
+            </div>
+          </div>
+          {errors.vendor && <div className="error">{errors.vendor}</div>}
+        </div>
+      </div>}
 
       {(part.type === 'Case' ||
       part.type === 'Motherboard' ||
@@ -91,33 +164,23 @@ const ComputerForm = ({ handleChange, handleSubmit, part, errors }) => {
               value={part.size || ''}>
               <option>Please select</option>
               <option value="0">Mini-ITX</option>
-              <option value="1">Micro-ATX</option>
+
+              {(part.type === 'Motherboard' ||
+              part.type === 'Case') &&
+                <option value="1">Micro-ATX</option>}
+
               <option value="2">ATX</option>
-              <option value="3">E-ATX</option>
+
+              {(part.type === 'Motherboard' ||
+              part.type === 'Case') &&
+                <option value="3">E-ATX</option>}
+
             </select>
           </div>
         </div>
-        {errors.size && <small>{errors.size}</small>}
+        {errors.size && <div className="error">{errors.size}</div>}
       </div>}
-      
-      {part.type === 'GPU' &&
-      <div className="field">
-        <label htmlFor="vendor">Vendor</label>
-        <div className="control">
-          <div className="select">
-            <select
-              id="vendor"
-              name="vendor"
-              onChange={handleChange}
-              value={part.vendor || ''}>
-              <option>Please select</option>
-              <option value="AMD">AMD</option>
-              <option value="Nvidia">Nvidia</option>
-            </select>
-          </div>
-        </div>
-        {errors.vendor && <small>{errors.vendor}</small>}
-      </div>}
+
       {(part.type === 'CPU' ||
       part.type === 'Motherboard') &&
       <div>
@@ -136,7 +199,7 @@ const ComputerForm = ({ handleChange, handleSubmit, part, errors }) => {
               </select>
             </div>
           </div>
-          {errors.vendor && <small>{errors.vendor}</small>}
+          {errors.vendor && <div className="error">{errors.vendor}</div>}
         </div>
 
         {part.vendor === 'AMD' && <div className="field">
@@ -156,7 +219,7 @@ const ComputerForm = ({ handleChange, handleSubmit, part, errors }) => {
               </select>
             </div>
           </div>
-          {errors.chipset && <small>{errors.chipset}</small>}
+          {errors.chipset && <div className="error">{errors.chipset}</div>}
         </div>}
         {part.vendor === 'Intel' && <div className="field">
           <label htmlFor="chipset">Chipset</label>
@@ -180,45 +243,78 @@ const ComputerForm = ({ handleChange, handleSubmit, part, errors }) => {
               </select>
             </div>
           </div>
-          {errors.chipset && <small>{errors.chipset}</small>}
+          {errors.chipset && <div className="error">{errors.chipset}</div>}
         </div>}
       </div>}
+
       {part.type === 'RAM' &&
-      <div className="field">
-        <label htmlFor="ramType">RAM Type</label>
-        <div className="control">
-          <div className="select">
-            <select
-              id="ramType"
-              name="ramType"
-              onChange={handleChange}
-              value={part.ramType || ''}>
-              <option>Please select</option>
-              <option value="DDR3">DDR3</option>
-              <option value="DDR4">DDR4</option>
-            </select>
+      <div>
+        <div className="field">
+          <label htmlFor="ramType">RAM Type</label>
+          <div className="control">
+            <div className="select">
+              <select
+                id="ramType"
+                name="ramType"
+                onChange={handleChange}
+                value={part.ramType || ''}>
+                <option>Please select</option>
+                <option value="DDR3">DDR3</option>
+                <option value="DDR4">DDR4</option>
+              </select>
+            </div>
           </div>
+          {errors.ramType && <div className="error">{errors.ramType}</div>}
         </div>
-        {errors.ramType && <small>{errors.ramType}</small>}
+
+        <div className="field">
+          <label htmlFor="capacity">Capacity</label>
+          <input
+            id="capacity"
+            name="capacity"
+            className="input"
+            placeholder="GB"
+            onChange={handleChange}
+            value={part.capacity || ''}
+          />
+          {errors.capacity && <div className="error">{errors.capacity}</div>}
+        </div>
       </div>}
+
       {part.type === 'Storage' &&
-      <div className="field">
-        <label htmlFor="storage">Storage Type</label>
-        <div className="control">
-          <div className="select">
-            <select
-              id="storage"
-              name="storage"
-              onChange={handleChange}
-              value={part.storage || ''}>
-              <option>Please select</option>
-              <option value="DDR3">DDR3</option>
-              <option value="DDR4">DDR4</option>
-            </select>
+      <div>
+        <div className="field">
+          <label htmlFor="storageType">Storage Type</label>
+          <div className="control">
+            <div className="select">
+              <select
+                id="storageType"
+                name="storageType"
+                onChange={handleChange}
+                value={part.storageType || ''}>
+                <option>Please select</option>
+                <option value="SSD">SSD</option>
+                <option value="HDD">HDD</option>
+              </select>
+            </div>
           </div>
+          {errors.storageType && <div className="error">{errors.storageType}</div>}
         </div>
-        {errors.storage && <small>{errors.storage}</small>}
+        
+        <div className="field">
+          <label htmlFor="capacity">Capacity</label>
+          <input
+            id="capacity"
+            name="capacity"
+            className="input"
+            placeholder="GB"
+            onChange={handleChange}
+            value={part.capacity || ''}
+          />
+          {errors.capacity && <div className="error">{errors.capacity}</div>}
+        </div>
       </div>}
+
       <div className="field">
         <label htmlFor="description">Description</label>
         <textarea
@@ -229,9 +325,11 @@ const ComputerForm = ({ handleChange, handleSubmit, part, errors }) => {
           onChange={handleChange}
           value={part.description || ''}
         />
-        {errors.description && <small>{errors.description}</small>}
+        {errors.description && <div className="error">{errors.description}</div>}
       </div>
+
       <button disabled={formInvalid} className="button is-primary">Submit</button>
+
     </form>
   );
 };

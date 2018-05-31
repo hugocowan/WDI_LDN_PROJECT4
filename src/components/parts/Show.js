@@ -175,7 +175,8 @@ class PartShow extends React.Component {
                 {(part.type === 'CPU' ||
                   part.type === 'Motherboard') &&
                   <th>Chipset</th>}
-                {part.type === 'RAM' &&
+                {(part.type === 'RAM' ||
+                  part.type === 'Storage') &&
                 <th>Type</th>}
                 {(part.type === 'Case' ||
                   part.type === 'Motherboard' ||
@@ -206,6 +207,8 @@ class PartShow extends React.Component {
                   <td>{chipsets[part.chipset]} socket</td>}
                 {part.type === 'RAM' &&
                 <td>{part.ramType}</td>}
+                {part.type === 'Storage' &&
+                <td>{part.storageType}</td>}
                 {(part.type === 'Case' ||
                   part.type === 'Motherboard' ||
                   part.type === 'PSU') &&
@@ -233,11 +236,15 @@ class PartShow extends React.Component {
                   </th>
                   {(part.type === 'CPU' ||
                     part.type === 'GPU' ||
-                    part.type === 'Motherboard') && <td>{part.vendor}</td>}
+                    part.type === 'Motherboard') &&
+                    <td>{part.vendor}</td>}
                   {(part.type === 'CPU' ||
                     part.type === 'Motherboard') &&
                   <td>{chipsets[part.chipset]} socket</td>}
-                  {part.type === 'RAM' && <td>{part.ramType}</td>}
+                  {part.type === 'RAM' &&
+                  <td>{part.ramType}</td>}
+                  {part.type === 'Storage' &&
+                  <td>{part.storageType}</td>}
                   {(part.type === 'Case' ||
                     part.type === 'Motherboard' ||
                     part.type === 'PSU') &&

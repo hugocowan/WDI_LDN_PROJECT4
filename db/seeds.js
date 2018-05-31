@@ -60,7 +60,7 @@ mongoose.connect(dbURI, (err, db) => {
         {
           type: 'Case',
           name: 'Corsair Obsidian 500D',
-          image: 'https://images-na.ssl-images-amazon.com/images/I/81UIOQgpe5L._SL1500_.jpg',
+          image: 'https://i2.wp.com/www.xtremegaminerd.com/wp-content/uploads/2018/03/Corsair-Obsidian-Series-1000D-case.jpg?resize=800%2C600&ssl=1',
           size: 2,
           createdBy: seededUsers[1],
           description: 'This chassis encompasses all the iconic CORSAIR design elements such as beautiful smoked tempered glass, sleek aluminum construction, and an easy access hinged door to satisfy the most discerning builder.',

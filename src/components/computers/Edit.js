@@ -1,6 +1,7 @@
 import React from 'react';
-import ComputerForm from './ComputerForm';
 import axios from 'axios';
+
+import ComputerForm from './ComputerForm';
 import Auth from '../../lib/Auth';
 
 class ComputerEdit extends React.Component {
@@ -40,32 +41,6 @@ class ComputerEdit extends React.Component {
             this.setState(computer);
           });
       });
-
-    // .then(() => {
-    //   const computer = this.state.computer;
-    //   const partNames = [
-    //     computer.case.name,
-    //     computer.cpu.name,
-    //     computer.gpu.name,
-    //     computer.motherboard.name,
-    //     computer.psu.name,
-    //     computer.ram.name,
-    //     computer.storage.name
-    //   ];
-    //
-    //   const currentParts = partNames.map(name => this.state.parts.filter(part => (part.name === name)));
-    //   // console.log(currentParts);
-    //
-    //   const indexes = currentParts.map(part =>
-    //     this.state.parts.filter(generalPart =>
-    //       part[0].type === generalPart.type).findIndex(generalPart =>
-    //       generalPart.name === part[0].name));
-    //
-    //   indexes.forEach(index =>
-    //     partNames.forEach(name =>
-    //       this.setState({ [name]: index}, () => console.log(this.state))));
-    // });
-
   }
 
   handleSlideChange = (index, type) => {
@@ -79,6 +54,9 @@ class ComputerEdit extends React.Component {
   }
 
   handleChange = ({ target: { name, value } }) => {
+    // console.log(name, value)
+
+
     const errors = { ...this.state.errors, [name]: '' };
     let size = null;
     let vendor = null;
@@ -90,70 +68,85 @@ class ComputerEdit extends React.Component {
     if(this.state.parts.find(part => part._id === value)) {
 
       const part = this.state.parts.find(part => part._id === value);
-
-      if(part.type === 'Case' &&
-         (!this.state.motherboardEnums ||
-          part.size >= this.state.motherboardEnums.size)){
-
-        // console.log('case passed!');
-        size = part.size;
-
-      } else if(part.type === 'Motherboard' &&
-
-        (!this.state.caseEnums ||
-         part.size <= this.state.caseEnums.size) &&
-
-        (!this.state.cpuEnums ||
-         (this.state.cpuEnums.chipset === part.chipset)) &&
-
-       (!this.state.cpuEnums ||
-        (this.state.cpuEnums.vendor === part.vendor))) {
-
-        // console.log('motherboard passed!');
-        size = part.size;
-        chipset = part.chipset;
-        vendor = part.vendor;
-
-      } else if(part.type === 'CPU' &&
-
-        (!this.state.motherboardEnums ||
-         this.state.motherboardEnums.chipset === part.chipset) &&
-
-        (!this.state.motherboardEnums ||
-         this.state.motherboardEnums.vendor === part.vendor)) {
-
-        // console.log('CPU passed!', 'this.state: ',this.state);
-        chipset = part.chipset;
-        vendor = part.vendor;
-      } else if(part.type === 'GPU' ||
-                part.type === 'Storage' ||
-                part.type === 'PSU') {
-        // console.log('successful GPU/Storage/PSU!');
-      } else if(part.type === 'RAM' &&
-
-        (part.ramType === 'DDR3' &&
-
-         (!this.state.motherboardEnums ||
-          this.state.motherboardEnums.chipset <= 4) &&
-
-         (!this.state.cpuEnums ||
-         this.state.cpuEnums.chipset <= 4)) ||
-
-        (part.ramType === 'DDR4' &&
-
-         (!this.state.motherboardEnums ||
-         this.state.motherboardEnums.chipset >= 5) &&
-
-         (!this.state.cpuEnums ||
-         this.state.cpuEnums.chipset >= 5))) {
-
-        // console.log('ram passed!');
-        ramType = part.ramType;
-      } else {
+      const handleErrors = () => {
         errors[name] = 'Item not compatible with selected components!';
         return this.setState({ errors, [name]: value });
+      };
+
+      switch(part.type) {
+        case 'Case':
+
+          (!this.state.motherboardEnums ||
+         part.size >= this.state.motherboardEnums.size) ?
+            size = part.size : handleErrors();
+
+          break;
+
+        case 'Motherboard':
+
+          ((!this.state.caseEnums ||
+           part.size <= this.state.caseEnums.size) &&
+
+          (!this.state.cpuEnums ||
+           (this.state.cpuEnums.chipset === part.chipset)) &&
+
+         (!this.state.cpuEnums ||
+          (this.state.cpuEnums.vendor === part.vendor))) ?
+
+            (size = part.size, chipset = part.chipset, vendor = part.vendor) :
+            handleErrors();
+
+          break;
+
+        case 'CPU':
+
+          ((!this.state.motherboardEnums ||
+           this.state.motherboardEnums.chipset === part.chipset) &&
+
+          (!this.state.motherboardEnums ||
+           this.state.motherboardEnums.vendor === part.vendor)) ?
+
+            (chipset = part.chipset, vendor = part.vendor) :
+            handleErrors();
+
+          break;
+
+        case 'RAM':
+
+          ((part.ramType === 'DDR3' &&
+
+           (!this.state.motherboardEnums ||
+            this.state.motherboardEnums.chipset <= 4) &&
+
+           (!this.state.cpuEnums ||
+           this.state.cpuEnums.chipset <= 4)) ||
+
+          (part.ramType === 'DDR4' &&
+
+           (!this.state.motherboardEnums ||
+           this.state.motherboardEnums.chipset >= 5) &&
+
+           (!this.state.cpuEnums ||
+           this.state.cpuEnums.chipset >= 5))) ?
+
+            ramType = part.ramType : handleErrors();
+
+          break;
+
+        case 'GPU':
+          break;
+        case 'Storage':
+          break;
+        case 'PSU':
+          break;
+
+        default:
+          errors[name] = 'Item not compatible with selected components!';
+          return this.setState({ errors, [name]: value });
       }
     }
+
+    // console.log('errors: ',errors);
 
     this.setState({ errors, [name]: value, [`${name}Enums`]: { size, vendor, chipset, ramType } });
   }
@@ -172,7 +165,7 @@ class ComputerEdit extends React.Component {
   render(){
     // console.log(this.state);
     if(!this.state.parts) return null;
-    console.log(this.state);
+
     return(
       <div>
         <ComputerForm

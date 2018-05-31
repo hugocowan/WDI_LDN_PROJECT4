@@ -1,6 +1,19 @@
 
-//Index page
+//body
 
+.section {
+    padding: 1rem 1rem;
+}
+
+@media screen and (min-width: 1088px){
+  .container {
+      max-width: 1125px;
+      width: 1125px;
+  }
+}
+
+
+//Index page
 
 .column.is-12, .column.is-12-tablet {
   @media screen and (min-width: 769px){
@@ -18,6 +31,17 @@
   @media (max-width: 768px){
     display: none;
   }
+}
+
+.card-image{
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  height: 300px;
+}
+
+.desktop-show-stars{
+  margin: 1%;
 }
 
 
@@ -42,16 +66,21 @@
   }
 }
 
-//carousel
-
-.carousel-starter-image{
-  @media(max-width: 768px){
-    display: none;
-  }
+.bold{
+  font-weight: bold;
+  margin: 5px 0;
 }
 
-.desktop-show-stars{
-  margin: 1%;
+.subtitle span{
+  font-weight: bold;
+}
+
+.hero-image{
+  @extend .card-image;
+  width: 60%;
+  @media(max-width: 768px){
+    width: 100%;
+  }
 }
 
 .tag:not(body) {
@@ -74,42 +103,13 @@
     }
 }
 
-.card-image{
-  background-position: center;
-  background-size: cover;
-  background-repeat: no-repeat;
-  height: 300px;
-}
 
-.section {
-    padding: 1rem 1rem;
-}
+//carousel
 
-@media screen and (min-width: 1088px){
-  .container {
-      max-width: 1125px;
-      width: 1125px;
-  }
-}
-
-.bold{
-  font-weight: bold;
-  margin: 5px 0;
-}
-
-.hero-image{
-  @extend .card-image;
-  width: 90%;
+.carousel-starter-image{
   @media(max-width: 768px){
-    width: 100%;
+    display: none;
   }
-}
-.subtitle span{
-  font-weight: bold;
-}
-
-.error{
-  color: #9A150E;
 }
 
 .parts-info{
@@ -131,4 +131,11 @@
       bottom: 30%;
     }
   }
+}
+
+
+//form
+
+.error{
+  color: #9A150E;
 }
