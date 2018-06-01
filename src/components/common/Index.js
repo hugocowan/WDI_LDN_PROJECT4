@@ -65,12 +65,17 @@ class Index extends React.Component{
     const getKeys = () => toggleKeys = Object.keys(toggledParts);
 
     if(toggleKeys.includes(name)){
-
+      // console.log('part filter getting deleted: ', name);
       delete toggledParts[name];
       getKeys();
 
-      const filteredParts = this.state.parts.filter(part =>
-        !toggleKeys.includes(part.type));
+      const filteredParts = this.state.parts.filter(part => {
+
+        if(toggleKeys[0]){
+          return toggleKeys.includes(part.type);
+
+        } else return !toggleKeys.includes(part.type);
+      });
 
       return this.setState({ filteredParts, toggledParts });
     }
@@ -80,7 +85,9 @@ class Index extends React.Component{
 
     const filteredParts = this.state.parts.filter(part =>
       toggleKeys.includes(part.type));
+
     this.setState({ filteredParts, toggledParts });
+
   }
 
   resetFilters = () => {
