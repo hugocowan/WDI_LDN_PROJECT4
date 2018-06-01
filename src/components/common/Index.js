@@ -6,6 +6,7 @@ import _ from 'lodash';
 import Stars from '../../lib/Stars';
 import Decimals from '../../lib/Decimals';
 import SortFilterBar from './SortFilterBar';
+import Promise from 'bluebird';
 
 class Index extends React.Component{
   state = {
@@ -16,15 +17,12 @@ class Index extends React.Component{
   };
 
   componentDidMount() {
-    axios
-      .get('/api/parts')
-      .then(res => this.setState({ parts: res.data }))
-      .then(() => {
 
-        axios
-          .get('/api/computers')
-          .then(res => this.setState({ computers: res.data }));
-      });
+    Promise.props({
+      parts: axios.get('/api/parts').then(res => res.data),
+      computers: axios.get('/api/computers').then(res => res.data)
+    })
+      .then(data => this.setState(data));
   }
 
   handleChange = ({ target: { name, value } }) => {

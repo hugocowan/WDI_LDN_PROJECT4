@@ -46,6 +46,8 @@ const SortFilterBar = ({ handleChange, data, showComputers, showParts, toggleFil
                 <option value="name|desc">Name(Z - A)</option>
                 <option value="price|desc">Price(Hi - Lo)</option>
                 <option value="price|asc">Price(Lo - Hi)</option>
+                <option value="avgRating|desc">Rating(Hi - Lo)</option>
+                <option value="avgRating|asc">Rating(Lo - Hi)</option>
               </select>
             </div>
           </div>

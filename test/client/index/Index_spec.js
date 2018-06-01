@@ -324,7 +324,8 @@ const computerData = [
 
 describe('Index', () => {
   let wrapper;
-  let promise;
+  let promise1;
+  let promise2;
 
   before(done => {
     // promise = new Promise(function(resolve, reject) {
@@ -336,14 +337,14 @@ describe('Index', () => {
     //   return({ data: computerData });
     // });
 
-    const promise1 = Promise.resolve({ data: partsData });
-    const promise2 = Promise.resolve({ data: computerData });
-
-    promise = Promise.all([promise1, promise2]);
+    promise1 = Promise.resolve({ data: partsData });
+    promise2 = Promise.resolve({ data: computerData });
 
     //If axios can't access the data, sinon returns this data:
-    console.log(promise);
-    sinon.stub(axios, 'get').returns(promise);
+    const stub = sinon.stub(axios, 'get');
+    stub.withArgs('/api/parts').returns(promise1);
+    stub.withArgs('/api/computers').returns(promise2);
+
     done();
   });
   after(done => {
@@ -359,11 +360,13 @@ describe('Index', () => {
     done();
   });
   it('should display 4 cards', done => {
-    promise.then(() => {
-      wrapper.update();
-      console.log(wrapper.debug());
-      expect(wrapper.find('div.card').length).to.eq(partsData.length);
-      done();
+    Promise.all([promise1, promise2]).then(() => {
+      setTimeout(() => {
+        wrapper.update();
+        console.log(wrapper.debug());
+        expect(wrapper.find('div.card').length).to.eq(partsData.length);
+        done();
+      }, 1000);
     });
   });
   xit('should display the correct image, name and restaurant for each part', done => {
