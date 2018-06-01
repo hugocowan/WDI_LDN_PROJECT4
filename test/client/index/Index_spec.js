@@ -30,26 +30,6 @@ const partsData = [
     description: 'This chassis encompasses all the iconic CORSAIR design elements such as beautiful smoked tempered glass, sleek aluminum construction, and an easy access hinged door to satisfy the most discerning builder.',
     price: 127.10,
     link: 'https://www.amazon.co.uk/Corsair-Obsidian-Mid-Tower-Tempered-Aluminium/dp/B074T6691B'
-  },
-  {
-    _id: 3,
-    type: 'Case',
-    name: 'NZXT S340',
-    image: 'https://images-na.ssl-images-amazon.com/images/I/61sBXjQ93ZL._SL1430_.jpg',
-    size: 2,
-    description: 'This extremely compact mid tower combines an uncompromising approach to chassis design with pure, minimalist style and everything you need.',
-    price: 66.94,
-    link: 'https://www.amazon.co.uk/NZXT-CA-S340W-B1-Source-Midi-Tower-Case/dp/B00NGMIBUU/ref=sr_1_3?s=computers&ie=UTF8&qid=1527584034&sr=1-3&keywords=NZXT+S340'
-  },
-  {
-    _id: 4,
-    type: 'Case',
-    name: 'Cooler Master MasterBox Lite 3.1',
-    image: 'https://images-na.ssl-images-amazon.com/images/I/81Nh1YIm-ZL._SL1500_.jpg',
-    size: 1,
-    description: 'The MasterBox Lite 3.1 mATX Case is your straightforward option for your PC build that doesn\'t ignore good looks, customization, or performance. A sleek DarkMirror front panel and three custom trim colors (included in the box) offer a great first entry point for customization. Additionally, it comes with an edge to edge transparent acrylic side panel to show your internal components. And with support for up to 3 cooling fans and a watercooling system, we ensure your performance will not suffer.',
-    link: 'https://www.amazon.co.uk/Cooler-Master-MasterBox-Computer-MCW-L3B3-KANN-01/dp/B071GDSBMN/ref=sr_1_2?s=computers&ie=UTF8&qid=1527509618&sr=1-2&keywords=micro+atx+case&dpID=419FEX%252BwTeL&preST=_SY300_QL70_&dpSrc=srch',
-    price: 38.46
   }
 ];
 
@@ -347,8 +327,22 @@ describe('Index', () => {
   let promise;
 
   before(done => {
-    promise = Promise.resolve({ computers: computerData, parts: partsData });
+    // promise = new Promise(function(resolve, reject) {
+    //   resolve(1);
+    // });
+    // promise.then(() => {
+    //   return({ data: partsData });
+    // }).then(() => {
+    //   return({ data: computerData });
+    // });
+
+    const promise1 = Promise.resolve({ data: partsData });
+    const promise2 = Promise.resolve({ data: computerData });
+
+    promise = Promise.all([promise1, promise2]);
+
     //If axios can't access the data, sinon returns this data:
+    console.log(promise);
     sinon.stub(axios, 'get').returns(promise);
     done();
   });

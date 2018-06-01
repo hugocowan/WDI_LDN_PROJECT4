@@ -17,12 +17,14 @@ class Index extends React.Component{
 
   componentDidMount() {
     axios
-      .get('/api/computers')
-      .then(res => this.setState({ computers: res.data }));
-
-    axios
       .get('/api/parts')
-      .then(res => this.setState({ parts: res.data }, () => console.log(this.state.parts)));
+      .then(res => this.setState({ parts: res.data }))
+      .then(() => {
+
+        axios
+          .get('/api/computers')
+          .then(res => this.setState({ computers: res.data }));
+      });
   }
 
   handleChange = ({ target: { name, value } }) => {
