@@ -57,15 +57,15 @@ class ComputerShow extends React.Component {
       });
   }
 
-  totalPrice = (computer) => {
-    return computer.case.price +
-    computer.cpu.price +
-    computer.gpu.price +
-    computer.motherboard.price +
-    computer.psu.price +
-    computer.ram.price +
-    computer.storage.price;
-  }
+  // totalPrice = (computer) => {
+  //   return computer.case.price +
+  //   computer.cpu.price +
+  //   computer.gpu.price +
+  //   computer.motherboard.price +
+  //   computer.psu.price +
+  //   computer.ram.price +
+  //   computer.storage.price;
+  // }
 
   render(){
     const { computer } = this.state;
@@ -125,7 +125,7 @@ class ComputerShow extends React.Component {
         <div className="column show-column-right is-6">
 
           <span className="tag bolder">
-            Total cost: {Decimals.calculate(this.totalPrice(computer))}
+            Total cost: {Decimals.calculate(computer.price)}
           </span>
 
           <table className="column table is-striped is-fullwidth is-hoverable">

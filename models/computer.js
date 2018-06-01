@@ -63,6 +63,18 @@ computerSchema.virtual('avgRating')
     return Math.round((totalStars/this.comments.length)*2)/2;
   });
 
+computerSchema.virtual('price')
+  .get(function() {
+
+    return this.case.price +
+    this.cpu.price +
+    this.gpu.price +
+    this.motherboard.price +
+    this.psu.price +
+    this.ram.price +
+    this.storage.price;
+  });
+
 computerSchema.set('toJSON', { virtuals: true });
 
 module.exports = mongoose.model('Computer', computerSchema);
