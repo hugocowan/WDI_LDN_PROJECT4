@@ -54,8 +54,6 @@ class ComputerEdit extends React.Component {
   }
 
   handleChange = ({ target: { name, value } }) => {
-    // console.log(name, value)
-
 
     const errors = { ...this.state.errors, [name]: '' };
     let size = null;
@@ -63,26 +61,60 @@ class ComputerEdit extends React.Component {
     let chipset = null;
     let ramType = null;
 
-    if(value === 'Please select') value = undefined;
+
+
+    const clearError = (name1, name2) => {
+      errors[name1] = '';
+      errors[name2] = '';
+      // console.log('clearing error! name1 =',name1, 'name2 = ', name2);
+      this.setState({ errors, [name]: value });
+      setEnums();
+    };
+
+    const setEnums = () => {
+      console.log('size: ', size, 'vendor: ', vendor, 'chipset: ', chipset, 'ramType: ', ramType);
+      this.setState({ [`${name.toLowerCase()}Enums`]: { size, vendor, chipset, ramType } });
+    };
+
+    const handleErrors = () => {
+      errors[name] = 'Item not compatible with selected components!';
+      this.setState({ errors, [name]: value });
+      setEnums();
+    };
+
+    if(value === null){
+      value = null;
+      size = null;
+      vendor = null;
+      chipset = null;
+      ramType = null;
+      return clearError();
+    }
 
     if(this.state.parts.find(part => part._id === value)) {
 
       const part = this.state.parts.find(part => part._id === value);
-      const handleErrors = () => {
-        errors[name] = 'Item not compatible with selected components!';
-        return this.setState({ errors, [name]: value });
-      };
+
+
 
       switch(part.type) {
         case 'Case':
-
+          size = part.size;
           (!this.state.motherboardEnums ||
          part.size >= this.state.motherboardEnums.size) ?
-            size = part.size : handleErrors();
+            (clearError('case','motherboard')) : handleErrors();
 
           break;
 
         case 'Motherboard':
+
+          // console.log('Motherboard chipset: ', part.chipset);
+          // if(this.state.cpuEnums) console.log('CPU chipset: ', this.state.cpuEnums.chipset);
+          // console.log('state: ',this.state);
+
+          size = part.size;
+          chipset = part.chipset;
+          vendor = part.vendor;
 
           ((!this.state.caseEnums ||
            part.size <= this.state.caseEnums.size) &&
@@ -93,12 +125,18 @@ class ComputerEdit extends React.Component {
          (!this.state.cpuEnums ||
           (this.state.cpuEnums.vendor === part.vendor))) ?
 
-            (size = part.size, chipset = part.chipset, vendor = part.vendor) :
+            (clearError('motherboard','cpu', 'case')) :
             handleErrors();
 
           break;
 
         case 'CPU':
+          // console.log('CPU chipset: ', part.chipset);
+          // if(this.state.motherboardEnums) console.log('Motherboard chipset: ', this.state.motherboardEnums.chipset);
+          // console.log('state: ',this.state);
+
+          chipset = part.chipset;
+          vendor = part.vendor;
 
           ((!this.state.motherboardEnums ||
            this.state.motherboardEnums.chipset === part.chipset) &&
@@ -106,12 +144,14 @@ class ComputerEdit extends React.Component {
           (!this.state.motherboardEnums ||
            this.state.motherboardEnums.vendor === part.vendor)) ?
 
-            (chipset = part.chipset, vendor = part.vendor) :
+            (clearError('cpu','motherboard')) :
             handleErrors();
 
           break;
 
         case 'RAM':
+
+          ramType = part.ramType;
 
           ((part.ramType === 'DDR3' &&
 
@@ -129,7 +169,7 @@ class ComputerEdit extends React.Component {
            (!this.state.cpuEnums ||
            this.state.cpuEnums.chipset >= 5))) ?
 
-            ramType = part.ramType : handleErrors();
+            (clearError('ram','motherboard', 'cpu')) : handleErrors();
 
           break;
 
@@ -141,14 +181,10 @@ class ComputerEdit extends React.Component {
           break;
 
         default:
-          errors[name] = 'Item not compatible with selected components!';
-          return this.setState({ errors, [name]: value });
+          handleErrors();
       }
     }
-
-    // console.log('errors: ',errors);
-
-    this.setState({ errors, [name]: value, [`${name}Enums`]: { size, vendor, chipset, ramType } });
+    this.setState({ errors, [name]: value });
   }
 
   handleSubmit = e => {

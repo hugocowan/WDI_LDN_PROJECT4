@@ -22,7 +22,7 @@ class Index extends React.Component{
 
     axios
       .get('/api/parts')
-      .then(res => this.setState({ parts: res.data }));
+      .then(res => this.setState({ parts: res.data }, () => console.log(this.state.parts)));
   }
 
   handleChange = ({ target: { name, value } }) => {
