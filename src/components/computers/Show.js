@@ -74,6 +74,7 @@ class ComputerShow extends React.Component {
       <div className="columns is-multiline">
         <div className="column is-6">
           <h1 className="title is-1">{computer.name}</h1>
+          <p className="show-description subtitle is-6">By {computer.createdBy.username}</p>
           <div className="hero-image" style={{ backgroundImage: `url(${computer.image})` }} />
           <div className="show-buttons">
             <div

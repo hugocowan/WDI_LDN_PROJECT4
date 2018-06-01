@@ -146,6 +146,48 @@ mongoose.connect(dbURI, (err, db) => {
           content: 'This is really, really awesome. Thanks for sharing.',
           rating: 1,
           createdBy: seededUsers[5]
+        },
+        //12
+        {
+          content: 'do you even computer',
+          rating: 5,
+          createdBy: seededUsers[3]
+        },
+        //13
+        {
+          content: 'Never before have I seen such beauty.',
+          rating: 1,
+          createdBy: seededUsers[2]
+        },
+        //14
+        {
+          content: '10/10 part, would part again.',
+          rating: 3,
+          createdBy: seededUsers[5]
+        },
+        //15
+        {
+          content: 'I would be ded before i let this into my house',
+          rating: 5,
+          createdBy: seededUsers[3]
+        },
+        //16
+        {
+          content: 'This is a pretty good part',
+          rating: 2,
+          createdBy: seededUsers[2]
+        },
+        //17
+        {
+          content: 'I am not a robot',
+          rating: 4,
+          createdBy: seededUsers[1]
+        },
+        //18
+        {
+          content: 'It\'s just... terrible. I hate it. I hate you.',
+          rating: 5,
+          createdBy: seededUsers[1]
         }
       ]);
     })
@@ -160,6 +202,9 @@ mongoose.connect(dbURI, (err, db) => {
           size: 0,
           createdBy: seededUsers[0],
           description: 'A small form-factor case with deceptively large potential for accommodating high-end components.',
+          comments: [
+            seededComments[7], seededComments[12]
+          ],
           price: 75.26,
           link: 'https://www.amazon.co.uk/Fractal-Design-Node-304-Case/dp/B009PIEMUC'
         },
@@ -170,6 +215,7 @@ mongoose.connect(dbURI, (err, db) => {
           size: 2,
           createdBy: seededUsers[1],
           description: 'This chassis encompasses all the iconic CORSAIR design elements such as beautiful smoked tempered glass, sleek aluminum construction, and an easy access hinged door to satisfy the most discerning builder.',
+          comments: seededComments[6],
           price: 127.10,
           link: 'https://www.amazon.co.uk/Corsair-Obsidian-Mid-Tower-Tempered-Aluminium/dp/B074T6691B'
         },
@@ -180,6 +226,7 @@ mongoose.connect(dbURI, (err, db) => {
           size: 2,
           createdBy: seededUsers[2],
           description: 'This extremely compact mid tower combines an uncompromising approach to chassis design with pure, minimalist style and everything you need.',
+          comments: seededComments[0],
           price: 66.94,
           link: 'https://www.amazon.co.uk/NZXT-CA-S340W-B1-Source-Midi-Tower-Case/dp/B00NGMIBUU/ref=sr_1_3?s=computers&ie=UTF8&qid=1527584034&sr=1-3&keywords=NZXT+S340'
         },
@@ -190,6 +237,7 @@ mongoose.connect(dbURI, (err, db) => {
           size: 1,
           createdBy: seededUsers[1],
           description: 'The MasterBox Lite 3.1 mATX Case is your straightforward option for your PC build that doesn\'t ignore good looks, customization, or performance. A sleek DarkMirror front panel and three custom trim colors (included in the box) offer a great first entry point for customization. Additionally, it comes with an edge to edge transparent acrylic side panel to show your internal components. And with support for up to 3 cooling fans and a watercooling system, we ensure your performance will not suffer.',
+          comments: seededComments[13],
           link: 'https://www.amazon.co.uk/Cooler-Master-MasterBox-Computer-MCW-L3B3-KANN-01/dp/B071GDSBMN/ref=sr_1_2?s=computers&ie=UTF8&qid=1527509618&sr=1-2&keywords=micro+atx+case&dpID=419FEX%252BwTeL&preST=_SY300_QL70_&dpSrc=srch',
           price: 38.46
         }
@@ -208,6 +256,7 @@ mongoose.connect(dbURI, (err, db) => {
           speed: 4.2,
           createdBy: seededUsers[0],
           description: 'Quad core CPU with hyperthreading. Doesn\'t clock as fast as newer CPUs, but has the same core architecture as the latest of Intel\'s offerings.',
+          comments: seededComments[13],
           link: 'https://www.amazon.co.uk/Intel-Processor-Threads-LGA1151-Socket/dp/B010T6DQTQ/ref=sr_1_2?s=computers&ie=UTF8&qid=1527584082&sr=1-2&keywords=6700k&dpID=51A-JynzGML&preST=_SY300_QL70_&dpSrc=srch',
           price: 306.99
         },
@@ -220,6 +269,7 @@ mongoose.connect(dbURI, (err, db) => {
           chipset: 11,
           createdBy: seededUsers[1],
           description: 'An 8 core 16 thread beast of a processor that clocks up to 4.2GHz all by itself.',
+          comments: [seededComments[14], seededComments[4], seededComments[6]],
           link: 'https://www.amazon.co.uk/AMD-Ryzen-8-Core-Wraith-Cooler/dp/B07B428M7F/ref=sr_1_1?s=computers&ie=UTF8&qid=1527584114&sr=1-1&keywords=2700x&dpID=41N0skoNQBL&preST=_SX300_QL70_&dpSrc=srch',
           price: 274.99
         },
@@ -232,6 +282,7 @@ mongoose.connect(dbURI, (err, db) => {
           chipset: 0,
           createdBy: seededUsers[2],
           description: 'An old but solid 6 core, 12 thread CPU.',
+          comments: seededComments[15],
           link: 'https://www.amazon.co.uk/Intel-Corei7-3930K-Processor-3-20GHz-SKT2011/dp/B00681D9ZI/ref=pd_lpo_sbs_147_t_0?_encoding=UTF8&psc=1&refRID=NH8SB47HY51V55TXPZPW',
           price: 350
         },
@@ -243,6 +294,7 @@ mongoose.connect(dbURI, (err, db) => {
           speed: 4.3,
           chipset: 9,
           createdBy: seededUsers[3],
+          comments: seededComments[16],
           description: 'The 8th generation Intel Core i5-8600K comes with six processing cores and six threads. It\'s overclockable and supports the fastest DDR4 memory speeds.',
           link: 'https://www.amazon.co.uk/Intel-BX80684I58600K-Core-i5-8600K-Processor/dp/B0759FKH8K',
           price: 199
@@ -274,6 +326,7 @@ mongoose.connect(dbURI, (err, db) => {
           vram: 8,
           speed: 1546,
           vendor: 'AMD',
+          comments: seededComments[16],
           link: 'https://www.amazon.co.uk/Gigabyte-Radeon-Vega-Graphics-Card/dp/B078KM88CX/ref=sr_1_2?s=computers&ie=UTF8&qid=1527584265&sr=1-2&keywords=rx+vega+64&dpID=51RKpJviZ4L&preST=_SY300_QL70_&dpSrc=srch',
           price: 548.99
         },
@@ -304,6 +357,7 @@ mongoose.connect(dbURI, (err, db) => {
           chipset: 6,
           createdBy: seededUsers[0],
           description: 'One of the best Mini-ITX boards out there for Skylake/Kabylake CPUs. Bit of a shame that it doesn\'t have any M.2 slots.',
+          comments: seededComments[16],
           link: 'https://www.amazon.co.uk/ASUS-MAXIMUS-VIII-IMPACT-Motherboards/dp/B016F3QWRK/ref=sr_1_2?s=computers&ie=UTF8&qid=1527584369&sr=1-2&keywords=maximus+viii+impact&dpID=51E1ygz1pCL&preST=_SY300_QL70_&dpSrc=srch',
           price: 129
         },
@@ -317,6 +371,7 @@ mongoose.connect(dbURI, (err, db) => {
           createdBy: seededUsers[1],
           description: 'A 10 phase motherboard that can handle even LN2 overclocking with a breeze.',
           link: 'https://www.amazon.co.uk/ASUS-X470-ROG-CROSSHAIR-HERO/dp/B07CG2V6ZD/ref=sr_1_2?s=computers&ie=UTF8&qid=1527584423&sr=1-2&keywords=crosshair+vii&dpID=51xwbZAXDNL&preST=_SY300_QL70_&dpSrc=srch',
+          comments: seededComments[7],
           price: 261.76
         },
         {
@@ -368,6 +423,7 @@ mongoose.connect(dbURI, (err, db) => {
           power: 850,
           createdBy: seededUsers[0],
           link: 'https://www.amazon.co.uk/EVGA-SuperNOVA-Modular-Tester-220-G2-0850-X3/dp/B01BGG5PTM/ref=sr_1_1?s=computers&ie=UTF8&qid=1527584527&sr=1-1&keywords=850w+g2&dpID=51t-le50qQL&preST=_SY300_QL70_&dpSrc=srch',
+          comments: seededComments[0],
           price: 137.94,
           description: '10 year warranty, 80+ Gold efficiency, fan turns off at low loads. Absolutely silent.'
         },
@@ -512,7 +568,8 @@ mongoose.connect(dbURI, (err, db) => {
           motherboard: seededMotherboards[0],
           psu: seededPsus[0],
           ram: seededRam[0],
-          storage: seededStorage[0]
+          storage: seededStorage[0],
+          comments: [seededComments[2], seededComments[8]]
         },
         {
           type: 'Computer',
@@ -526,7 +583,8 @@ mongoose.connect(dbURI, (err, db) => {
           motherboard: seededMotherboards[1],
           psu: seededPsus[1],
           ram: seededRam[1],
-          storage: seededStorage[1]
+          storage: seededStorage[1],
+          comments: seededComments[18]
         },
         {
           type: 'Computer',
@@ -540,7 +598,10 @@ mongoose.connect(dbURI, (err, db) => {
           motherboard: seededMotherboards[2],
           psu: seededPsus[3],
           ram: seededRam[3],
-          storage: seededStorage[2]
+          storage: seededStorage[2],
+          comments: [
+            seededComments[4], seededComments[6], seededComments[12]
+          ]
         },
         {
           type: 'Computer',

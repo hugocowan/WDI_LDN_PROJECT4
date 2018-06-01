@@ -100,6 +100,7 @@ class PartShow extends React.Component {
       <div className="columns is-multiline">
         <div className="column is-6">
           <h1 className="title is-1">{part.name}</h1>
+          <p className="show-description subtitle is-6">Added by {part.createdBy.username}</p>
           <span className="tag">{part.vendor}
             {' '}
             {sizes[part.size]}
