@@ -363,7 +363,7 @@ describe('Index', () => {
     Promise.all([promise1, promise2]).then(() => {
       setTimeout(() => {
         wrapper.update();
-        console.log(wrapper.debug());
+        // console.log(wrapper.debug());
         expect(wrapper.find('div.card').length).to.eq(partsData.length);
         done();
       }, 1000);

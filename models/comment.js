@@ -4,7 +4,8 @@ const moment = require('moment');
 const commentSchema = new mongoose.Schema({
   content: { type: String, required: true },
   rating: { type: Number, required: true, min: 1, max: 5 },
-  createdBy: { type: mongoose.Schema.ObjectId, ref: 'User' }
+  createdBy: { type: mongoose.Schema.ObjectId, ref: 'User' },
+  picture: {type: String }
 }, {
   timestamps: true
 });

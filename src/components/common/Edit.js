@@ -13,7 +13,7 @@ class ComputerEdit extends React.Component {
       .get(`/api/computers/${this.props.match.params.id}`)
       .then(res => {
         const part = { ...res.data };
-        console.log(part);
+        // console.log(part);
         part.caseEnums = {
           size: part.case.size,
           chipset: part.case.chipset,
@@ -58,7 +58,7 @@ class ComputerEdit extends React.Component {
          (!this.state.motherboardEnums ||
           part.size >= this.state.motherboardEnums.size)){
 
-        console.log('case passed!');
+        // console.log('case passed!');
         size = part.size;
 
       } else if(part.type === 'Motherboard' &&
@@ -72,7 +72,7 @@ class ComputerEdit extends React.Component {
        (!this.state.cpuEnums ||
         (this.state.cpuEnums.vendor === part.vendor))) {
 
-        console.log('motherboard passed!');
+        // console.log('motherboard passed!');
         size = part.size;
         chipset = part.chipset;
         vendor = part.vendor;
@@ -85,13 +85,13 @@ class ComputerEdit extends React.Component {
         (!this.state.motherboardEnums ||
          this.state.motherboardEnums.vendor === part.vendor)) {
 
-        console.log('CPU passed!', 'this.state: ',this.state);
+        // console.log('CPU passed!', 'this.state: ',this.state);
         chipset = part.chipset;
         vendor = part.vendor;
       } else if(part.type === 'GPU' ||
                 part.type === 'Storage' ||
                 part.type === 'PSU') {
-        console.log('successful GPU/Storage/PSU!');
+        // console.log('successful GPU/Storage/PSU!');
       } else if(part.type === 'RAM' &&
 
         (part.ramType === 'DDR3' &&
@@ -110,7 +110,7 @@ class ComputerEdit extends React.Component {
          (!this.state.cpuEnums ||
          this.state.cpuEnums.chipset >= 5))) {
 
-        console.log('ram passed!');
+        // console.log('ram passed!');
         ramType = part.ramType;
       } else {
         errors[name] = 'Item not compatible with selected components!';
@@ -118,7 +118,7 @@ class ComputerEdit extends React.Component {
       }
     }
 
-    this.setState({ errors, [name]: value, [`${name}Enums`]: { size, vendor, chipset, ramType } }, () => console.log(this.state));
+    this.setState({ errors, [name]: value, [`${name}Enums`]: { size, vendor, chipset, ramType } });
   }
 
   handleSubmit = e => {

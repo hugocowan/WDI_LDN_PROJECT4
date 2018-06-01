@@ -147,7 +147,12 @@ class PartShow extends React.Component {
                     <div className="media-content">
                       <p className="title is-4">{comment.content}</p>
                       <p className="subtitle is-3 price">{'⭐️'.repeat(comment.rating)}</p>
-                      <p className="subtitle is-8">by user {comment.createdBy.username}</p>
+                      <p className="subtitle is-8">by user {comment.createdBy.username}
+                        <img
+                          className="show-image"
+                          src={comment.createdBy.picture}
+                        />
+                      </p>
                     </div>
                   </div>
                 </div>

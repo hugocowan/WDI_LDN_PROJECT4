@@ -78,7 +78,7 @@ function createPartComment(req, res, next){
             })
             .exec()
             .then(part => {
-              console.log(part);
+              // console.log(part);
               res.status(201).json(part);
             });
         });

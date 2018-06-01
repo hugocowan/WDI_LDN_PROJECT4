@@ -66,7 +66,7 @@ class ComputersNew extends React.Component{
     };
 
     const setEnums = () => {
-      console.log('size: ', size, 'vendor: ', vendor, 'chipset: ', chipset, 'ramType: ', ramType);
+      // console.log('size: ', size, 'vendor: ', vendor, 'chipset: ', chipset, 'ramType: ', ramType);
       this.setState({ [`${name.toLowerCase()}Enums`]: { size, vendor, chipset, ramType } });
     };
 
@@ -101,10 +101,6 @@ class ComputersNew extends React.Component{
           break;
 
         case 'Motherboard':
-
-          // console.log('Motherboard chipset: ', part.chipset);
-          // if(this.state.cpuEnums) console.log('CPU chipset: ', this.state.cpuEnums.chipset);
-          // console.log('state: ',this.state);
 
           size = part.size;
           chipset = part.chipset;
@@ -188,7 +184,7 @@ class ComputersNew extends React.Component{
         headers: {Authorization: `Bearer ${Auth.getToken()}`}
       })
       .then(() => this.props.history.push('/index'))
-      .catch(err => this.setState({ errors: err.response.data.errors }, () => console.log(this.state)));
+      .catch(err => this.setState({ errors: err.response.data.errors }));
   }
 
   render() {

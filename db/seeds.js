@@ -4,6 +4,7 @@ mongoose.Promise = require('bluebird');
 const { dbURI } = require('../config/environment');
 
 const Computer = require('../models/computer');
+const Comment = require('../models/comment');
 const User = require('../models/user');
 const Part = require('../models/part');
 
@@ -18,8 +19,10 @@ mongoose.connect(dbURI, (err, db) => {
   let seededPsus = [];
   let seededRam = [];
   let seededStorage = [];
+  let seededComments = [];
 
   User.create([
+    //0
     {
       username: 'Hugo',
       email: 'h@h',
@@ -27,6 +30,7 @@ mongoose.connect(dbURI, (err, db) => {
       passwordConfirmation: 'h',
       picture: 'https://thesocietypages.org/socimages/files/2009/05/vimeo.jpg'
     },
+    //1
     {
       username: 'Alexa',
       email: 'a@a',
@@ -34,6 +38,7 @@ mongoose.connect(dbURI, (err, db) => {
       passwordConfirmation: 'a',
       picture: 'https://cdn.shopify.com/s/files/1/1061/1924/products/Robot_Emoji_Icon_7070a254-26f7-4a54-8131-560e38e34c2e_large.png?v=1513336430'
     },
+    //2
     {
       username: 'Rob',
       email: 'r@r',
@@ -41,18 +46,112 @@ mongoose.connect(dbURI, (err, db) => {
       passwordConfirmation: 'r',
       picture: 'https://www.publicdomainpictures.net/pictures/140000/velka/computer-guy.jpg'
     },
+    //3
     {
       username: 'Matt',
       email: 'm@m',
       password: 'm',
       passwordConfirmation: 'm',
       picture: 'https://media.townhall.com/thm/resources/images/headshots/mattvespa.jpg'
+    },
+    //4
+    {
+      username: 'Bob the Builder',
+      email: 'b@b',
+      password: 'b',
+      passwordConfirmation: 'b',
+      picture: 'https://upload.wikimedia.org/wikipedia/en/thumb/c/c5/Bob_the_builder.jpg/220px-Bob_the_builder.jpg'
+    },
+    //5
+    {
+      username: 'Tim',
+      email: 't@t',
+      password: 't',
+      passwordConfirmation: 't',
+      picture: 'https://www.apple.com/leadership/tim-cook/meta/og.png?201712080855'
     }
   ])
     .then(users => {
       console.log(`${users.length} users created`);
       seededUsers = users;
-      // console.log('=====>',seededUsers[0]);
+      return Comment.create([
+        //0
+        {
+          content: 'It\'s alright',
+          rating: 5,
+          createdBy: seededUsers[0]
+        },
+        //1
+        {
+          content: 'What even is this though',
+          rating: 4,
+          createdBy: seededUsers[1]
+        },
+        //2
+        {
+          content: 'You have made the most amazing build. I will be referring to this for decades to come. Thank you, from the bottom of my heart.',
+          rating: 1,
+          createdBy: seededUsers[2]
+        },
+        //3
+        {
+          content: 'pls no hdd. hdd bad',
+          rating: 3,
+          createdBy: seededUsers[3]
+        },
+        //4
+        {
+          content: 'Whenever you feel like building something like this. Stop. Stop right now. Take your internet devices outside. Set them ablaze.',
+          rating: 2,
+          createdBy: seededUsers[4]
+        },
+        //5
+        {
+          content: 'Mine is better',
+          rating: 1,
+          createdBy: seededUsers[5]
+        },
+        //6
+        {
+          content: 'This is a thing that exists?',
+          rating: 5,
+          createdBy: seededUsers[0]
+        },
+        //7
+        {
+          content: 'I can\'t believe anyone would actually use this though...',
+          rating: 4,
+          createdBy: seededUsers[1]
+        },
+        //8
+        {
+          content: 'Never again shall I want, for I have found true meaning in this computer build.',
+          rating: 1,
+          createdBy: seededUsers[2]
+        },
+        //9
+        {
+          content: 'when you make computer. give computer to me. pls',
+          rating: 3,
+          createdBy: seededUsers[3]
+        },
+        //10
+        {
+          content: 'Why not use the later model, the RX 580?',
+          rating: 2,
+          createdBy: seededUsers[4]
+        },
+        //11
+        {
+          content: 'This is really, really awesome. Thanks for sharing.',
+          rating: 1,
+          createdBy: seededUsers[5]
+        }
+      ]);
+    })
+    .then(comments => {
+      console.log(`${comments.length} comments created`);
+      seededComments = comments;
       return Part.create([
         {
           type: 'Case',
@@ -187,6 +286,7 @@ mongoose.connect(dbURI, (err, db) => {
           vram: 8,
           speed: 1316,
           vendor: 'AMD',
+          comments: seededComments[10],
           link: 'https://www.amazon.co.uk/MSI-GAMING-Express-Graphics-Card/dp/B01JGQBMB4/ref=sr_1_1?s=computers&ie=UTF8&qid=1527508853&sr=1-1&dpID=519mvlkVsAL&preST=_SX300_QL70_&dpSrc=srch',
           price: 275
         }]);

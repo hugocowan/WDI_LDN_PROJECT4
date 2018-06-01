@@ -21,7 +21,7 @@ class PartsNew extends React.Component{
         headers: {Authorization: `Bearer ${Auth.getToken()}`}
       })
       .then(() => this.props.history.push('/index'))
-      .catch(err => this.setState({ errors: err.response.data.errors }, () => console.log(this.state)));
+      .catch(err => this.setState({ errors: err.response.data.errors }));
   }
 
   render() {

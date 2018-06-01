@@ -50,11 +50,11 @@ class Index extends React.Component{
   }
 
   showComputers = () => {
-    this.setState({ computersShow: true, partsShow: false }, () => console.log(this.state));
+    this.setState({ computersShow: true, partsShow: false });
   }
 
   showParts = () => {
-    this.setState({ computersShow: false, partsShow: true }, () => console.log(this.state));
+    this.setState({ computersShow: false, partsShow: true });
   }
 
   toggleFilter = ({ target: { name } }) => {
