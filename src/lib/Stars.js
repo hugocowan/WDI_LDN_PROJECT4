@@ -1,36 +1,31 @@
 class Stars {
 
-  static avgRating(comments) {
-
+  static avgRating(rating) {
 
     const displayStars = { __html: '' };
-    const totalStars = comments.reduce((total, comment) => total + parseInt(comment.rating), 0);
-    const averageStars = Math.round((totalStars/comments.length)*2)/2;
 
-    for(let i = 0; i<Math.floor(averageStars); i++) {
+    for(let i = 0; i<Math.floor(rating); i++) {
       displayStars.__html += '<i class="fa fa-star fa-2x" style="color: #ffd700"></i>';
-      // console.log('hey');
-      // console.log(displayStars);
     }
 
-    if(totalStars === 0){
+    if(rating === 0){
 
       displayStars.__html += '<i class="fa fa-star-o fa-2x"></i><i class="fa fa-star-o fa-2x"></i><i class="fa fa-star-o fa-2x"></i><i class="fa fa-star-o fa-2x"></i><i class="fa fa-star-o fa-2x"></i>';
 
-    } else if(averageStars % 1 > 0) {
+    } else if(rating % 1 > 0) {
       displayStars.__html += '<i class="fa fa-star-half-o fa-2x" style="color: #ffd700"></i>';
     }
 
-    if(displayStars.__html.match(/i/g).length === 8){
+    if(displayStars.__html.match(/star/g).length === 4){
 
       displayStars.__html += '<i class="fa fa-star-o fa-2x" style="color: #ffd700"></i>';
-    } else if(displayStars.__html.match(/i/g).length === 6){
+    } else if(displayStars.__html.match(/star/g).length === 3){
 
       displayStars.__html += '<i class="fa fa-star-o fa-2x" style="color: #ffd700"></i><i class="fa fa-star-o fa-2x" style="color: #ffd700"></i>';
-    } else if(displayStars.__html.match(/i/g).length === 4){
+    } else if(displayStars.__html.match(/star/g).length === 2){
 
       displayStars.__html += '<i class="fa fa-star-o fa-2x" style="color: #ffd700"></i><i class="fa fa-star-o fa-2x" style="color: #ffd700"></i><i class="fa fa-star-o fa-2x" style="color: #ffd700"></i>';
-    } else if(displayStars.__html.match(/i/g).length === 2){
+    } else if(displayStars.__html.match(/star/g).length === 1){
 
       displayStars.__html += '<i class="fa fa-star-o fa-2x" style="color: #ffd700"></i><i class="fa fa-star-o fa-2x" style="color: #ffd700"></i><i class="fa fa-star-o fa-2x" style="color: #ffd700"></i><i class="fa fa-star-o fa-2x" style="color: #ffd700"></i>';
     }

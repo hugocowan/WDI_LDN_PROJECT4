@@ -77,7 +77,7 @@ class ComputerShow extends React.Component {
           <div className="hero-image" style={{ backgroundImage: `url(${computer.image})` }} />
           <div className="show-buttons">
             <div
-              dangerouslySetInnerHTML={Stars.avgRating(computer.comments)}
+              dangerouslySetInnerHTML={Stars.avgRating(computer.avgRating)}
             />
             {Auth.isCurrentUser(computer.createdBy) && <Link
               to={`/computers/${computer._id}/edit`}

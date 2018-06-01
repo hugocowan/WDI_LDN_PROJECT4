@@ -126,23 +126,14 @@ const partSchema = new mongoose.Schema({
 
 partSchema
   .virtual('avgRating')//stores a temporary value in RAM that calls the function.
-  .get(function getAvgRating() {
-    if(this.comments.length === 0) return false;
-    const total = this.comments.reduce((sum, comment) => {
-      return sum + comment.rating;
-    }, 0);
-    const avg = total / this.comment.length;
-    return Math.round(avg*2)/2;
+  .get(function() {
+
+    const totalStars = this.comments.reduce((total, comment) => total + parseInt(comment.rating), 0);
+
+    if(!totalStars) return 0;
+    return Math.round((totalStars/this.comments.length)*2)/2;
   });
 
-partSchema.methods.getStarIcons = function() {
-  console.log('here');
-  let stars = '';
-  for(let i = 0; i<Math.floor(this.avgRating); i++) {
-    stars += '<i class="fa fa-star"></i> ';
-  }
-  if(this.avgRating % 1 > 0) stars += '<i class="fa fa-star-half"></i>';
-  return stars;
-};
+partSchema.set('toJSON', { virtuals: true });
 
 module.exports = mongoose.model('Part', partSchema);

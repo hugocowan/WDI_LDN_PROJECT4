@@ -116,7 +116,7 @@ class PartShow extends React.Component {
           <div className="show-buttons">
             <div
               className="stars"
-              dangerouslySetInnerHTML={Stars.avgRating(part.comments)} />
+              dangerouslySetInnerHTML={Stars.avgRating(part.avgRating)} />
 
             {Auth.isCurrentUser(part.createdBy) && <Link
               to={`/parts/${part._id}/edit`}

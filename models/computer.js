@@ -54,11 +54,13 @@ const computerSchema = new mongoose.Schema({
   }]
 });
 
+
 computerSchema.virtual('avgRating')
   .get(function() {
-    return Math.round(this.comments.reduce((sum, comment) => {
-      return sum + comment.rating;
-    }, 0) / this.comments.length);
+
+    const totalStars = this.comments.reduce((total, comment) => total + parseInt(comment.rating), 0);
+    if(!totalStars) return 0;
+    return Math.round((totalStars/this.comments.length)*2)/2;
   });
 
 computerSchema.set('toJSON', { virtuals: true });
