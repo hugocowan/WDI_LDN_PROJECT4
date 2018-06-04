@@ -12,6 +12,59 @@
   }
 }
 
+// Home page
+
+.home{
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  margin: auto 10%;
+  h1{
+    font-size: 40px;
+    font-weight: bold;
+  }
+  h2{
+    font-size: 20px;
+    padding: 10px 0;
+  }
+  .home-left{
+    text-align: left;
+    width: 40%;
+    background: #BEC7BD;
+    padding: 2%;
+    border-radius: 5px;
+    @media(max-width: 768px){
+      width: 100%;
+      border-radius: 5px 5px 0 0;
+    }
+    div{
+      margin: 0 auto;
+    }
+  }
+  .home-right{
+    width: 20%;
+    display: flex;
+    flex-wrap: wrap;
+    align-self: center;
+    text-align: right;
+    background: #BEC7BD;
+    border-radius: 5px;
+    padding: 1% 2%;
+    @media(max-width: 768px){
+      width: 100%;
+      border-radius: 0 0 5px 5px;
+    }
+    h2{
+      width: 100%;
+      margin: auto 4%;
+    }
+    a{
+      width: 100%;
+      margin: auto 4%;
+    }
+  }
+}
+
 
 //Index page
 

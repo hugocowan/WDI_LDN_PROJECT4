@@ -132,7 +132,14 @@ class PartShow extends React.Component {
             >
                 Delete
             </button>}
-            <a target="_blank" href={part.link} className="button is-info">Where to Buy</a>
+            <a
+              target="_blank"
+              rel="noopener noreferrer"
+              href={part.link}
+              className="button is-info"
+            >
+              Where to Buy
+            </a>
 
           </div>
 
