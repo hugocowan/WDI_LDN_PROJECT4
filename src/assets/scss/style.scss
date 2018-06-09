@@ -1,4 +1,10 @@
 
+//navber
+
+.navbar-item{
+  font-size: 1.2rem;
+}
+
 //body
 
 .section {
@@ -18,7 +24,9 @@
   display: flex;
   justify-content: space-between;
   flex-wrap: wrap;
-  margin: auto 10%;
+  margin: auto;
+  background: lightgrey;
+  border-radius: 5px;
   h1{
     font-size: 40px;
     font-weight: bold;
@@ -27,7 +35,19 @@
     font-size: 20px;
     padding: 10px 0;
   }
+  .home-center{
+    width: 40%;
+    text-align: center;
+    align-self: center;
+    padding: 2%;
+    @media(max-width: 768px){
+      width: 100%;
+      border-radius: 5px 5px 0 0;
+      text-align: left;
+    }
+  }
   .home-left{
+    z-index: 100;
     text-align: left;
     width: 40%;
     // background: #BEC7BD;
@@ -45,7 +65,7 @@
     width: 20%;
     display: flex;
     flex-wrap: wrap;
-    align-self: center;
+    align-self: flex-end;
     text-align: right;
     // background: #BEC7BD;
     border-radius: 5px;

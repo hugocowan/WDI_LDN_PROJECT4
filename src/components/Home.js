@@ -10,6 +10,9 @@ const Home = () => {
           <img src="https://i.imgur.com/eVNdTY3.jpg" />
         </div>
       </div>
+      <div className="home-center">
+        <h2>New to PC building and looking to make your own? Find the parts you need here, recommended by people who use them.</h2>
+      </div>
       <div className="home-right">
         <h2>A MERN Stack app by Hugo Cowan</h2>
         <a
