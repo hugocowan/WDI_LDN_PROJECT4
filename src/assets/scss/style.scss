@@ -198,9 +198,17 @@
 .parts-info{
   display: flex;
   justify-content: center;
+  @media(max-width: 347px){
+    .slider-control-bottomcenter{
+      display: none;
+    }
+  }
   img{
     align-self: center;
     width: 25%;
+    @media(max-width: 640px){
+      width: 50%;
+    }
   }
   p{
     position: absolute;
@@ -210,7 +218,10 @@
       top: 30%;
     }
     @media(max-width: 347px){
-      top: 30%;
+      text-align: center;
+      top: 50%;
+      width: 150px;
+      left: 25%;
     }
   }
 }
