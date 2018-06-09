@@ -197,21 +197,20 @@
 
 .parts-info{
   display: flex;
-  align-items: flex-start;
+  justify-content: center;
   img{
     align-self: center;
+    width: 25%;
   }
   p{
     position: absolute;
-    right: 90%;
+    left: 10%;
     width: 200px;
     @media(max-width: 640px) and (min-width: 348px){
-      left: 0%;
-      bottom: 20%;
+      top: 30%;
     }
     @media(max-width: 347px){
-      left: -30%;
-      bottom: 30%;
+      top: 30%;
     }
   }
 }

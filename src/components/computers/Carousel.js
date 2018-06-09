@@ -22,7 +22,7 @@ const FormCarousel = ({ parts, computer, type, handleSlideChange }) => {
       key={type}
       className="field carousel"
       cellAlign="center"
-      slideWidth={0.4}
+      // slideWidth={0.4}
       cellSpacing={500}
       afterSlide={index => handleSlideChange(index, type)}>
 
