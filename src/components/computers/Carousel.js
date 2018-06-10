@@ -21,13 +21,12 @@ const FormCarousel = ({ parts, computer, type, handleSlideChange }) => {
     <Carousel
       key={type}
       className="field carousel"
-      cellAlign="center"
-      // slideWidth={0.4}
-      cellSpacing={500}
-      afterSlide={index => handleSlideChange(index, type)}>
+      afterSlide={index => handleSlideChange(index, type)}
+      renderBottomCenterControls={() => {}}
+    >
 
       {computer[type.toLowerCase()] &&
-        <div style={{
+        <div className="parts-info" style={{
           height: '350px'
         }}>
           <p>{computer[type.toLowerCase()].name}{computer[type.toLowerCase()].size &&

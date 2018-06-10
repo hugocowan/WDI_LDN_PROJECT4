@@ -106,6 +106,13 @@
   }
 }
 
+.card{
+  min-height: 580px;
+}
+.card.Computer{
+  min-height: 660px;
+}
+
 .card-image{
   background-position: center;
   background-size: cover;
@@ -184,43 +191,56 @@
 
 //carousel
 
-.carousel-starter-image{
-  height: 450px;
-  @media(min-width: 421px) and (max-width: 600px){
-    height: 250px;
-  }
-  @media(max-width: 420px){
-    // display: none;
-    height: 150px;
-  }
-}
-
 .parts-info{
   display: flex;
   justify-content: center;
+  align-items: center;
   @media(max-width: 347px){
-    .slider-control-bottomcenter{
-      display: none;
-    }
+
   }
   img{
-    align-self: center;
     width: 25%;
-    @media(max-width: 640px){
+    @media(max-width: 968px){
+      width: 30%;
+    }
+    @media(max-width: 768px){
+      width: 35%;
+    }
+    @media(max-width: 668px){
+      width: 40%;
+    }
+    @media(max-width: 568px){
+      width: 45%;
+    }
+    @media(max-width: 468px){
       width: 50%;
     }
+    @media(max-width: 468px){
+      width: 55%;
+    }
+    // @media(max-width: 640px){
+    //   width: 50%;
+    // }
   }
   p{
     position: absolute;
-    left: 10%;
+    left: 8%;
     width: 200px;
-    @media(max-width: 640px) and (min-width: 348px){
+    @media(max-width: 645px){
       top: 30%;
     }
-    @media(max-width: 347px){
+    @media(max-width: 425px){
       text-align: center;
-      top: 50%;
+      top: 75%;
       width: 150px;
+      left: 31%;
+    }
+    @media(max-width: 375px){
+      top: 65%;
+      left: 28%;
+    }
+    @media(max-width: 320px){
+      top: 55%;
       left: 25%;
     }
   }

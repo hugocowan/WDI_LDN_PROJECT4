@@ -146,7 +146,7 @@ class Index extends React.Component{
                 (this.state[model] && this.state[`${model}Show`]) && this.sortAndFilter().map(item =>
                   <div className="column is-4-desktop is-6-tablet is-12-mobile" key={item._id}>
                     <Link to={`/${model}/${item._id}`}>
-                      <div className="card">
+                      <div className={`card ${item.type}`}>
                         <div
                           className="card-image"
                           style={{ backgroundImage: `url(${item.image})` }}
