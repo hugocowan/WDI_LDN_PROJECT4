@@ -18,9 +18,9 @@ const Home = () => {
         <a
           target="_blank"
           rel="noopener noreferrer"
-          href="https://github.com/hugocowan"
+          href="https://hugocowan.github.io"
         >
-          Github
+          My Portfolio
         </a>
         <a
           target="_blank"
@@ -28,6 +28,13 @@ const Home = () => {
           href="https://www.linkedin.com/in/hugo-cowan-188359147"
         >
           LinkedIn
+        </a>
+        <a
+          target="_blank"
+          rel="noopener noreferrer"
+          href="https://github.com/hugocowan"
+        >
+          Github
         </a>
       </div>
     </div>
