@@ -1,5 +1,6 @@
 class Decimals {
   static calculate(price) {
+    console.log(price);
 
     if(price % 1 === 0){
       return `£${price}.00`;
@@ -8,8 +9,9 @@ class Decimals {
       return `£${price}0`;
 
     } else if(price.toString().split('.')[1].length > 2) {
-      return `£${Math.round(price * 100)/100}`;
-      
+      const roundedNumber = `£${Math.round(price * 100)/100}`;
+      if(roundedNumber.toString().split('.')[1].length === 1) return `${roundedNumber}0`;
+      return roundedNumber;
     }else return `£${price}`;
   }
 }
