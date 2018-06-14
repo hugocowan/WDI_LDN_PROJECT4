@@ -29,13 +29,14 @@ const FormCarousel = ({ parts, computer, type, handleSlideChange }) => {
         <div className="parts-info" style={{
           height: '350px'
         }}>
-          <p>{computer[type.toLowerCase()].name}{computer[type.toLowerCase()].size &&
+          <p>
+            {computer[type.toLowerCase()].name}{computer[type.toLowerCase()].size &&
             `: ${sizes[computer[type.toLowerCase()].size]}`}
-          {' '}
-          {chipsets[computer[type.toLowerCase()].chipset]}
+            {computer[type.toLowerCase()].chipset &&
+            ` ${chipsets[computer[type.toLowerCase()].chipset]}`}
+            {computer[type.toLowerCase()].name &&
+            `, ${Decimals.calculate(computer[type.toLowerCase()].price)}`}
           </p>
-          {computer[type.toLowerCase()].name &&
-            <p className="bold">{Decimals.calculate(computer[type.toLowerCase()].price)}</p>}
           <img
             className="carousel-starter-image"
             src={computer[type.toLowerCase()].image || `http://placehold.it/500x600/d3d3d3/000000/&text=Choose+Your+${type}`}
