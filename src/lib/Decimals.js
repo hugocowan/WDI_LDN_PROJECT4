@@ -1,6 +1,6 @@
 class Decimals {
   static calculate(price) {
-    console.log(price);
+    // console.log(price);
 
     if(price % 1 === 0){
       return `£${price}.00`;
