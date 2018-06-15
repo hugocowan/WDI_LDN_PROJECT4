@@ -9,25 +9,25 @@ class ComputersNew extends React.Component{
     errors: {},
     type: 'Computer',
     case: {
-      image: 'http://placehold.it/500x600/d3d3d3/000000/&text=Choose+your+Case'
+      image: 'https://placehold.it/500x600/d3d3d3/000000/&text=Choose+your+Case'
     },
     cpu: {
-      image: 'http://placehold.it/500x600/d3d3d3/000000/&text=Choose+Your+CPU'
+      image: 'https://placehold.it/500x600/d3d3d3/000000/&text=Choose+Your+CPU'
     },
     gpu: {
-      image: 'http://placehold.it/500x600/d3d3d3/000000/&text=Choose+Your+GPU'
+      image: 'https://placehold.it/500x600/d3d3d3/000000/&text=Choose+Your+GPU'
     },
     motherboard: {
-      image: 'http://placehold.it/500x600/d3d3d3/000000/&text=Choose+Your+Mobo'
+      image: 'https://placehold.it/500x600/d3d3d3/000000/&text=Choose+Your+Mobo'
     },
     psu: {
-      image: 'http://placehold.it/500x600/d3d3d3/000000/&text=Choose+Your+PSU'
+      image: 'https://placehold.it/500x600/d3d3d3/000000/&text=Choose+Your+PSU'
     },
     ram: {
-      image: 'http://placehold.it/500x600/d3d3d3/000000/&text=Choose+Your+RAM'
+      image: 'https://placehold.it/500x600/d3d3d3/000000/&text=Choose+Your+RAM'
     },
     storage: {
-      image: 'http://placehold.it/500x600/d3d3d3/000000/&text=Choose+Your+Storage'
+      image: 'https://placehold.it/500x600/d3d3d3/000000/&text=Choose+Your+Storage'
     }
   };
 
@@ -53,7 +53,7 @@ class ComputersNew extends React.Component{
 
     if(!value){
       value = {
-        image: `http://placehold.it/500x600/d3d3d3/000000/&text=Choose+your+${name}`
+        image: `https://placehold.it/500x600/d3d3d3/000000/&text=Choose+your+${name}`
       };
       name = name.toLowerCase();
       this.setState({ errors, [name]: value });
