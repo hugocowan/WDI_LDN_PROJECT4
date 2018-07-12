@@ -27,7 +27,7 @@ https://restaurant-review-project.herokuapp.com/
 
 The index page contains all the computer builds and parts that have been added by users so far. A filter-bar gives easy access to filters that allow you to find parts with ease.
 
-![Index Page](./public/assets/index.png)
+![Index Page](./public/assets/index.png?raw=true)
 
 ### Show pages:
 
