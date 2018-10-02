@@ -48,6 +48,11 @@ const computerSchema = new mongoose.Schema({
     ref: 'Part',
     required: true
   },
+  cooler: {
+    type: mongoose.Schema.ObjectId,
+    ref: 'Part',
+    required: true
+  },
   comments: [{
     type: mongoose.Schema.ObjectId,
     ref: 'Comment'

@@ -108,6 +108,14 @@ const SortFilterBar = ({ handleChange, data, showComputers, showParts, toggleFil
           />
           Storage
         </label>
+        <label className="panel-block">
+          <input
+            type="checkbox"
+            name="Cooler"
+            onClick={toggleFilter}
+          />
+          CPU Coolers
+        </label>
       </div>
       <div className="panel-block">
         <button

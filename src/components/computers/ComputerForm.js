@@ -7,7 +7,7 @@ const ComputerForm = ({ handleChange, handleSubmit, computer, parts, errors, han
 
   const partTypes = [
     'Case', 'CPU', 'GPU', 'Motherboard',
-    'PSU', 'RAM', 'Storage'
+    'PSU', 'RAM', 'Storage', 'Cooler'
   ];
 
   // console.log(parts);
