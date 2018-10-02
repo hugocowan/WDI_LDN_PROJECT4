@@ -7,7 +7,7 @@ import Auth from '../../lib/Auth';
 class ComputerEdit extends React.Component {
     state = {
         errors: {}
-    }
+    };
 
     componentDidMount() {
         axios
@@ -56,7 +56,7 @@ class ComputerEdit extends React.Component {
 
         // console.log('filteredParts: ',filteredParts);
         this.handleChange({target: {name: type.toLowerCase(), value: filteredParts[index - 1]._id}});
-    }
+    };
 
     handleChange = ({target: {name, value}}) => {
 
@@ -104,6 +104,7 @@ class ComputerEdit extends React.Component {
         if (this.state.parts.find(part => part._id === value)) {
 
             const part = this.state.parts.find(part => part._id === value);
+            const pc = this.state;
 
 
             switch (part.type) {
@@ -112,11 +113,11 @@ class ComputerEdit extends React.Component {
                     size = part.size;
                     coolerHeight = part.coolerHeight;
 
-                    ((!this.state.motherboardEnums ||
-                        part.size >= this.state.motherboardEnums.size) &&
+                    ((!pc.motherboardEnums ||
+                        part.size >= pc.motherboardEnums.size) &&
 
-                        (!this.state.coolerEnums ||
-                            part.coolerHeight >= this.state.coolerEnums.coolerHeight)) ?
+                        (!pc.coolerEnums ||
+                            part.coolerHeight >= pc.coolerEnums.coolerHeight)) ?
 
                         (clearError(['case', 'motherboard', 'cooler'])) : handleErrors();
 
@@ -128,17 +129,17 @@ class ComputerEdit extends React.Component {
                     chipset = part.chipset;
                     vendor = part.vendor;
 
-                    ((!this.state.caseEnums ||
-                        part.size <= this.state.caseEnums.size) &&
+                    ((!pc.caseEnums ||
+                        part.size <= pc.caseEnums.size) &&
 
-                        (!this.state.cpuEnums ||
-                            (this.state.cpuEnums.chipset === part.chipset)) &&
+                        (!pc.cpuEnums ||
+                            (pc.cpuEnums.chipset === part.chipset)) &&
 
-                        (!this.state.coolerEnums ||
-                            socketVChipset[this.state.coolerEnums.compatibleSockets].includes(part.chipset)) &&
+                        (!pc.coolerEnums ||
+                            socketVChipset[pc.coolerEnums.compatibleSockets].includes(part.chipset)) &&
 
-                        (!this.state.cpuEnums ||
-                            (this.state.cpuEnums.vendor === part.vendor))) ?
+                        (!pc.cpuEnums ||
+                            (pc.cpuEnums.vendor === part.vendor))) ?
 
                         (clearError(['motherboard', 'cpu', 'case', 'cooler'])) : handleErrors();
 
@@ -149,20 +150,20 @@ class ComputerEdit extends React.Component {
                     chipset = part.chipset;
                     vendor = part.vendor;
 
-                    if (this.state.coolerEnums) {
-                        console.log('cpu:', socketVChipset[this.state.coolerEnums.compatibleSockets], typeof part.chipset);
-                        console.log(socketVChipset[this.state.coolerEnums.compatibleSockets].includes(part.chipset));
+                    if (pc.coolerEnums) {
+                        console.log('cpu:', socketVChipset[pc.coolerEnums.compatibleSockets], typeof part.chipset);
+                        console.log(socketVChipset[pc.coolerEnums.compatibleSockets].includes(part.chipset));
                     }
 
 
-                    ((!this.state.motherboardEnums ||
-                        this.state.motherboardEnums.chipset === part.chipset) &&
+                    ((!pc.motherboardEnums ||
+                        pc.motherboardEnums.chipset === part.chipset) &&
 
-                        (!this.state.coolerEnums ||
-                            socketVChipset[this.state.coolerEnums.compatibleSockets].includes(part.chipset)) &&
+                        (!pc.coolerEnums ||
+                            socketVChipset[pc.coolerEnums.compatibleSockets].includes(part.chipset)) &&
 
-                        (!this.state.motherboardEnums ||
-                            this.state.motherboardEnums.vendor === part.vendor)) ?
+                        (!pc.motherboardEnums ||
+                            pc.motherboardEnums.vendor === part.vendor)) ?
 
                         (clearError(['cpu', 'motherboard', 'cooler'])) : handleErrors();
 
@@ -174,19 +175,19 @@ class ComputerEdit extends React.Component {
 
                     ((part.ramType === 'DDR3' &&
 
-                        (!this.state.motherboardEnums ||
-                            this.state.motherboardEnums.chipset <= 4) &&
+                        (!pc.motherboardEnums ||
+                            pc.motherboardEnums.chipset <= 4) &&
 
-                        (!this.state.cpuEnums ||
-                            this.state.cpuEnums.chipset <= 4)) ||
+                        (!pc.cpuEnums ||
+                            pc.cpuEnums.chipset <= 4)) ||
 
                         (part.ramType === 'DDR4' &&
 
-                            (!this.state.motherboardEnums ||
-                                this.state.motherboardEnums.chipset >= 5) &&
+                            (!pc.motherboardEnums ||
+                                pc.motherboardEnums.chipset >= 5) &&
 
-                            (!this.state.cpuEnums ||
-                                this.state.cpuEnums.chipset >= 5))) ?
+                            (!pc.cpuEnums ||
+                                pc.cpuEnums.chipset >= 5))) ?
 
                         (clearError(['ram', 'motherboard', 'cpu'])) : handleErrors();
 
@@ -197,14 +198,14 @@ class ComputerEdit extends React.Component {
                     coolerHeight = part.coolerHeight;
                     compatibleSockets = part.compatibleSockets;
 
-                    ((!this.state.caseEnums ||
-                        part.coolerHeight <= this.state.caseEnums.coolerHeight) &&
+                    ((!pc.caseEnums ||
+                        part.coolerHeight <= pc.caseEnums.coolerHeight) &&
 
-                        (!this.state.motherboardEnums ||
-                            socketVChipset[part.compatibleSockets].includes(this.state.motherboardEnums.chipset)) &&
+                        (!pc.motherboardEnums ||
+                            socketVChipset[part.compatibleSockets].includes(pc.motherboardEnums.chipset)) &&
 
-                        (!this.state.cpuEnums ||
-                            socketVChipset[part.compatibleSockets].includes(this.state.cpuEnums.chipset))) ?
+                        (!pc.cpuEnums ||
+                            socketVChipset[part.compatibleSockets].includes(pc.cpuEnums.chipset))) ?
 
                         (clearError(['cooler', 'case', 'cpu', 'motherboard'])) : handleErrors();
 
@@ -234,7 +235,7 @@ class ComputerEdit extends React.Component {
             })
             .then(() => this.props.history.push(`/computers/${id}`))
             .catch(err => this.setState({errors: err.response.data.errors}));
-    }
+    };
 
     render() {
         // console.log(this.state);
