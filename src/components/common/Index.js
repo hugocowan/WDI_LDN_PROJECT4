@@ -99,24 +99,6 @@ class Index extends React.Component {
         } else return string;
     };
 
-    currency = (price) => {
-        if (price % 1 === 0) {
-            return `£${price}.00`;
-        } else if (price.toString().split('.')[1].length === 1) {
-            return `£${price}0`;
-        } else return `£${price}`;
-    };
-
-    totalPrice = (computer) => {
-        return computer.case.price +
-            computer.cpu.price +
-            computer.gpu.price +
-            computer.motherboard.price +
-            computer.psu.price +
-            computer.ram.price +
-            computer.storage.price;
-    };
-
     render() {
         const allModels = ['computers', 'parts'];
 
@@ -156,7 +138,7 @@ class Index extends React.Component {
                                                 <div
                                                     className="card-image"
                                                     style={{backgroundImage: `url(${item.image})`}}
-                                                ></div>
+                                                />
                                                 <div className="card-content">
                                                     <div className="media">
                                                         <div className="media-content">
