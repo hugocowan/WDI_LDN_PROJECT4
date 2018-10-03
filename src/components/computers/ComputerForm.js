@@ -9,9 +9,7 @@ const ComputerForm = ({ handleChange, handleSubmit, computer, parts, errors, han
     'Case', 'CPU', 'GPU', 'Motherboard',
     'PSU', 'RAM', 'Storage', 'Cooler'
   ];
-
-  // console.log(parts);
-
+  
   return (
     <form onSubmit={handleSubmit}>
       <div className="field">

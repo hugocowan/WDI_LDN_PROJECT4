@@ -57,19 +57,11 @@ class ComputerShow extends React.Component {
             });
     };
 
-    // totalPrice = (computer) => {
-    //   return computer.case.price +
-    //   computer.cpu.price +
-    //   computer.gpu.price +
-    //   computer.motherboard.price +
-    //   computer.psu.price +
-    //   computer.ram.price +
-    //   computer.storage.price;
-    // }
 
     render() {
         const {computer} = this.state;
         if (!computer) return null;
+        const sizes = [ 'Mini-ITX', 'Micro-ATX', 'ATX', 'E-ATX'];
         return (
             <div className="columns is-multiline">
                 <div className="column is-6">
@@ -134,49 +126,67 @@ class ComputerShow extends React.Component {
                         <tr>
                             <th>Part</th>
                             <th>Name</th>
+                            <th>Key Specs</th>
                             <th>Price</th>
+                            <th>Where to Buy</th>
                         </tr>
                         </thead>
                         <tbody>
                         <tr>
                             <th>Case</th>
                             <td><Link to={`/parts/${computer.case._id}`}>{computer.case.name}</Link></td>
+                            <td>{sizes[computer.case.size]}</td>
                             <td>{Decimals.calculate(computer.case.price)}</td>
+                            <td><a href={computer.case.link}>Link</a></td>
                         </tr>
                         <tr>
                             <th>CPU</th>
                             <td><Link to={`/parts/${computer.cpu._id}`}>{computer.cpu.name}</Link></td>
+                            <td>{computer.cpu.speed}GHz</td>
                             <td>{Decimals.calculate(computer.cpu.price)}</td>
+                            <td><a href={computer.cpu.link}>Link</a></td>
                         </tr>
                         <tr>
                             <th>CPU Cooler</th>
                             <td><Link to={`/parts/${computer.cooler._id}`}>{computer.cooler.name}</Link></td>
+                            <td>{computer.cooler.coolerFanSize} Fan Size</td>
                             <td>{Decimals.calculate(computer.cooler.price)}</td>
+                            <td><a href={computer.cooler.link}>Link</a></td>
                         </tr>
                         <tr>
                             <th>GPU</th>
                             <td><Link to={`/parts/${computer.gpu._id}`}>{computer.gpu.name}</Link></td>
+                            <td>{computer.gpu.vram}GB VRAM</td>
                             <td>{Decimals.calculate(computer.gpu.price)}</td>
+                            <td><a href={computer.gpu.link}>Link</a></td>
                         </tr>
                         <tr>
                             <th>Motherboard</th>
                             <td><Link to={`/parts/${computer.motherboard._id}`}>{computer.motherboard.name}</Link></td>
+                            <td>{sizes[computer.motherboard.size]}</td>
                             <td>{Decimals.calculate(computer.motherboard.price)}</td>
+                            <td><a href={computer.motherboard.link}>Link</a></td>
                         </tr>
                         <tr>
                             <th>PSU</th>
                             <td><Link to={`/parts/${computer.psu._id}`}>{computer.psu.name}</Link></td>
+                            <td>{computer.psu.power}W</td>
                             <td>{Decimals.calculate(computer.psu.price)}</td>
+                            <td><a href={computer.psu.link}>Link</a></td>
                         </tr>
                         <tr>
                             <th>RAM</th>
                             <td><Link to={`/parts/${computer.ram._id}`}>{computer.ram.name}</Link></td>
+                            <td>{computer.ram.capacity}GB RAM</td>
                             <td>{Decimals.calculate(computer.ram.price)}</td>
+                            <td><a href={computer.ram.link}>Link</a></td>
                         </tr>
                         <tr>
                             <th>Storage</th>
                             <td><Link to={`/parts/${computer.storage._id}`}>{computer.storage.name}</Link></td>
+                            <td>{computer.storage.capacity}GB</td>
                             <td>{Decimals.calculate(computer.storage.price)}</td>
+                            <td><a href={computer.storage.link}>Link</a></td>
                         </tr>
                         </tbody>
                     </table>
