@@ -7,7 +7,7 @@ import Decimals from '../../lib/Decimals';
 
 const FormCarousel = ({ parts, computer, type, handleSlideChange }) => {
 
-  const sizes = [ 'Mini-ITX', 'Micro-ATX',
+  const sizes = [ 'M-ITX', 'M-ATX',
     'ATX', 'E-ATX'
   ];
 

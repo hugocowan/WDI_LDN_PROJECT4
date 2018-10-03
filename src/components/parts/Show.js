@@ -86,7 +86,7 @@ class PartShow extends React.Component {
         const {part} = this.state;
         const {parts} = this.state;
 
-        const sizes = ['Mini-ITX', 'Micro-ATX',
+        const sizes = ['M-ITX', 'M-ATX',
             'ATX', 'E-ATX'
         ];
 
@@ -120,12 +120,12 @@ class PartShow extends React.Component {
                             className="stars"
                             dangerouslySetInnerHTML={Stars.avgRating(part.avgRating)}/>
 
-                        <Link
+                        {Auth.isCurrentUser(part.createdBy) && <Link
                             to={`/parts/${part._id}/edit`}
                             className="button"
                         >
                             Edit
-                        </Link>
+                        </Link>}
 
                         {Auth.isCurrentUser(part.createdBy) && <button
                             className="button is-danger"

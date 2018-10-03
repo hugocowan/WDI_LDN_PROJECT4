@@ -61,7 +61,7 @@ class ComputerShow extends React.Component {
     render() {
         const {computer} = this.state;
         if (!computer) return null;
-        const sizes = [ 'Mini-ITX', 'Micro-ATX', 'ATX', 'E-ATX'];
+        const sizes = [ 'M-ITX', 'M-ATX', 'ATX', 'E-ATX'];
         return (
             <div className="columns is-multiline">
                 <div className="column is-6">

@@ -16,7 +16,7 @@ const partSchema = new mongoose.Schema({
     }],
     size: {
         type: String,
-        //0: mini-itx | 1: micro-atx | 2: atx | 3: e-atx
+        //0: m-itx | 1: m-atx | 2: atx | 3: e-atx
         enum: [0, 1, 2, 3],
         required: [
             function () {
