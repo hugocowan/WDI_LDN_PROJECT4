@@ -1,6 +1,7 @@
 const router = require('express').Router();
 const computers = require('../controllers/computers');
 const parts = require('../controllers/parts');
+const scrapers = require('../controllers/scrapers');
 const comments = require('../controllers/comments');
 const auth = require('../controllers/auth');
 const secureRoute = require('../lib/secureRoute');
@@ -30,6 +31,9 @@ router.route('/parts/:id')
   .delete(secureRoute, parts.delete);
 
 router.get('/parts/:id/edit', parts.show);
+
+router.route('/parts/:id/scrape')
+    .get(scrapers.scrape);
 
 
 router.post('/register', auth.register);

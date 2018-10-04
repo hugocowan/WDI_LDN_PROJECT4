@@ -18,16 +18,16 @@ const scrapePricing = async (url) => {
     return result;
 };
 
-function scrape(req, part) {
+async function scrape(req, part) {
     let scrapeData = {};
-    scrapePricing(req.body.link)
+    await scrapePricing(req.body.link)
         .then((price) => {
-            console.log('scraping successful!');
             scrapeData.scrapedPrice = price;
             scrapeData.lastScrape = new Date();
         })
         .catch(() => scrapeData.scrapedPrice = null);
 
+    console.log('scraping successful!', scrapeData);
     Object.assign(part, scrapeData);
     part.save();
 }
