@@ -2,7 +2,9 @@ const Part = require('../models/part');
 const puppeteer = require('puppeteer');
 
 const scrapePricing = async (url) => {
-    const browser = await puppeteer.launch();
+    const browser = await puppeteer.launch(
+        // {headless: false}
+        );
     const page = await browser.newPage();
     await page.goto(url);
 
@@ -16,10 +18,10 @@ const scrapePricing = async (url) => {
 };
 
 function scrape(req, part) {
-    console.log('scrape started!');
     let scrapeData = {};
     scrapePricing(req.body.link)
         .then((price) => {
+            console.log('scraping successful!');
             scrapeData.scrapedPrice = price;
             scrapeData.lastScrape = new Date();
         })
@@ -43,12 +45,12 @@ function indexRoute(req, res, next) {
         .exec()
         .then((parts) => {
 
-            parts.forEach(part => {
-                const currentTime = new Date();
-                if (!part.lastScrape || part.lastScrape.getTime() + 1.8e+6 <= currentTime.getTime()) {
-                    scrape(req, part);
-                }
-            });
+            // parts.forEach(part => {
+            //     const currentTime = new Date();
+            //     if (!part.lastScrape || part.lastScrape.getTime() + 1.8e+6 <= currentTime.getTime()) {
+            //         scrape(req, part);
+            //     }
+            // });
 
             res.json(parts);
         })
@@ -60,15 +62,21 @@ function showRoute(req, res, next) {
         .findById(req.params.id)
         .populate({
             path: 'comments createdBy',
-            populate: {path: 'createdBy'}
+            populate: { path: 'createdBy' }
         })
-        .then((part) => {
-            const currentTime = new Date();
-            if (!part.lastScrape || part.lastScrape.getTime() + 1.8e+6 <= currentTime.getTime()) {
-                scrape(req, part);
-            }
+        .then(part => {
 
-            res.json(part);
+            Part
+                .find({ 'type': part.type })
+                .then(parts => {
+                    const currentTime = new Date();
+                    if (!part.lastScrape || part.lastScrape.getTime() + 1.8e+6 <= currentTime.getTime()) {
+                        scrape(req, part);
+                    }
+
+                    res.json([part, ...parts]);
+                })
+                .catch(next);
         })
         .catch(next);
 }

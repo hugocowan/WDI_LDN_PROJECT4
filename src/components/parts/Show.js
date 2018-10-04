@@ -15,7 +15,7 @@ class PartShow extends React.Component {
     componentDidMount() {
         const {id} = this.props.match.params;
         axios
-            .get('/api/parts')
+            .get(`/api/parts/${id}`)
             .then(res => {
                 const currentPart = res.data.find(part => part._id === id);
                 const comparisonParts = res.data.filter(part =>
