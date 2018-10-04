@@ -23,10 +23,13 @@ router.route('/parts')
   .get(parts.index)
   .post(secureRoute, parts.create);
 
+
 router.route('/parts/:id')
   .get(parts.show)
   .put(secureRoute, parts.update)
   .delete(secureRoute, parts.delete);
+
+router.get('/parts/:id/edit', parts.show);
 
 
 router.post('/register', auth.register);

@@ -10,7 +10,7 @@ class PartEdit extends React.Component {
 
     componentDidMount() {
         axios
-            .get(`/api/parts/${this.props.match.params.id}`)
+            .get(`/api/parts/${this.props.match.params.id}/edit`)
             .then(res => this.setState(res.data));
     }
 

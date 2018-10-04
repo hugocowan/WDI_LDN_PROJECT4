@@ -2,6 +2,7 @@ const Part = require('../models/part');
 const puppeteer = require('puppeteer');
 
 const scrapePricing = async (url) => {
+    console.log(url);
     const browser = await puppeteer.launch(
         // {headless: false}
         );
@@ -65,6 +66,11 @@ function showRoute(req, res, next) {
             populate: { path: 'createdBy' }
         })
         .then(part => {
+            if (req.url.includes('edit')) {
+                return res.json(part);
+            }
+
+            req.body = part;
 
             Part
                 .find({ 'type': part.type })
@@ -74,7 +80,7 @@ function showRoute(req, res, next) {
                         scrape(req, part);
                     }
 
-                    res.json([part, ...parts]);
+                    res.json([ part, ...parts ]);
                 })
                 .catch(next);
         })
