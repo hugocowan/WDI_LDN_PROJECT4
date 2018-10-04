@@ -112,7 +112,7 @@ class PartShow extends React.Component {
                         {' '}
                         {part.type}</span>
                     {part.chipset && <span className="tag">{chipsets[part.chipset]} socket</span>}
-                    <span className="tag bold">Price: {Decimals.calculate(part.price)}</span>
+                    <span className="tag bold">Price: {Decimals.calculate(part.scrapedPrice || part.price)}</span>
                     <div className="hero-image" style={{backgroundImage: `url(${part.image})`}}/>
 
                     <div className="show-buttons">
@@ -252,7 +252,7 @@ class PartShow extends React.Component {
                             <td>{part.coolerHeight}mm</td>}
                             {part.type === 'Cooler' &&
                             <td>{part.coolerFanSize}</td>}
-                            <td>{Decimals.calculate(part.price)}</td>
+                            <td>{Decimals.calculate(part.scrapedPrice || part.price)}</td>
                         </tr>
                         {parts.map(part =>
                             <tr key={part._id}>
@@ -293,7 +293,7 @@ class PartShow extends React.Component {
                                 <td>{part.coolerHeight}mm</td>}
                                 {part.type === 'Cooler' &&
                                 <td>{part.coolerFanSize}</td>}
-                                <td>{Decimals.calculate(part.price)}</td>
+                                <td>{Decimals.calculate(part.scrapedPrice || part.price)}</td>
                             </tr>
                         )}
                         </tbody>

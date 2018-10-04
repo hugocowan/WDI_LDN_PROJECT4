@@ -145,7 +145,7 @@ class Index extends React.Component {
                                                             <p className="title is-4">{item.name}</p>
                                                             <p className="subtitle is-6">{this.ellipsis(item.description)}</p>
                                                             {item.price && <p className="subtitle is-6">
-                                                                <span>{Decimals.calculate(item.price)}</span></p>}
+                                                                <span>{Decimals.calculate(item.scrapedPrice || item.price)}</span></p>}
                                                             {item.type === 'Computer' &&
                                                             <div>
                                                                 <p className="subtitle is-6">
@@ -156,7 +156,7 @@ class Index extends React.Component {
                                                                 </p>
                                                                 <p className="subtitle is-5">
                                                                     Total
-                                                                    cost: <span>{Decimals.calculate(item.price)}</span>
+                                                                    cost: <span>{Decimals.calculate(item.scrapedPrice || item.price)}</span>
                                                                 </p>
                                                             </div>}
                                                             <div dangerouslySetInnerHTML={Stars.avgRating(item.avgRating)}/>

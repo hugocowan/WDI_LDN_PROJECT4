@@ -1,4 +1,37 @@
 const Part = require('../models/part');
+const puppeteer = require('puppeteer');
+
+const scrapePricing = async (url) => {
+    const browser = await puppeteer.launch();
+    const page = await browser.newPage();
+    await page.goto(url);
+
+    const result = await page.evaluate(() => {
+        const price = document.getElementById('priceblock_ourprice').innerText.substr(1);
+        return price;
+    });
+
+    browser.close();
+    return result;
+};
+
+function scrape(req, part) {
+    console.log('scrape started!');
+    let scrapeData = {};
+    scrapePricing(req.body.link)
+        .then((price) => {
+            scrapeData.scrapedPrice = price;
+            scrapeData.lastScrape = new Date();
+        })
+        .catch(() => scrapeData.scrapedPrice = null);
+
+    Object.assign(part, scrapeData);
+    part.save();
+}
+
+//There could be a problem with res.json happening before the scrape happens.
+//Also the index will scrape one page for every part. Could be too much crawling/take ages.
+
 
 function indexRoute(req, res, next) {
     Part
@@ -8,7 +41,17 @@ function indexRoute(req, res, next) {
             populate: {path: 'createdBy'}
         })
         .exec()
-        .then((parts) => res.json(parts))
+        .then((parts) => {
+
+            parts.forEach(part => {
+                const currentTime = new Date();
+                if (!part.lastScrape || part.lastScrape.getTime() + 1.8e+6 <= currentTime.getTime()) {
+                    scrape(req, part);
+                }
+            });
+
+            res.json(parts);
+        })
         .catch(next);
 }
 
@@ -20,14 +63,25 @@ function showRoute(req, res, next) {
             populate: {path: 'createdBy'}
         })
         .then((part) => {
-            // console.log('part in show route: ', part);
+            const currentTime = new Date();
+            if (!part.lastScrape || part.lastScrape.getTime() + 1.8e+6 <= currentTime.getTime()) {
+                scrape(req, part);
+            }
+
             res.json(part);
         })
         .catch(next);
 }
 
-function createRoute(req, res, next) {
+async function createRoute(req, res, next) {
+    await scrapePricing(req.body.link)
+        .then((price) => {
+            req.body.scrapedPrice = price;
+            req.body.lastScrape = new Date();
+        })
+        .catch(() => req.body.scrapedPrice = null);
     req.body.createdBy = req.currentUser;
+    console.log(req.body);
     Part
         .create(req.body)
         .then(part => res.status(201).json(part))
@@ -35,10 +89,22 @@ function createRoute(req, res, next) {
 }
 
 function updateRoute(req, res, next) {
+    req.body.createdBy = req.currentUser;
     Part
         .findById(req.params.id)
         .then(part => {
-            return Object.assign(part, req.body);
+            const currentTime = new Date();
+            let scrapeData = {};
+            if (!part.lastScrape || part.lastScrape.getTime() + 1.8e+6 <= currentTime.getTime()) {
+                scrapePricing(req.body.link)
+                    .then((price) => {
+                        scrapeData.scrapedPrice = price;
+                        scrapeData.lastScrape = new Date();
+                    })
+                    .catch(() => scrapeData.scrapedPrice = null);
+            }
+
+            return Object.assign(part, req.body, scrapeData);
         })
         .then(part => part.save())
         .then(part => res.json(part))

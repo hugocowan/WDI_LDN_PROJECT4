@@ -2,9 +2,13 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="097aabc4-c1f4-4ebc-b145-2e29b4110871" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/common/SortFilterBar.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/common/SortFilterBar.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/controllers/parts.js" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/parts.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/models/part.js" beforeDir="false" afterPath="$PROJECT_DIR$/models/part.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/common/Index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/common/Index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/parts/Show.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/parts/Show.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/yarn.lock" beforeDir="false" afterPath="$PROJECT_DIR$/yarn.lock" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -16,22 +20,22 @@
     <session id="-704441456">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
-          <entry key="project.closed" value="4" />
+          <entry key="project.closed" value="5" />
           <entry key="project.open.time.12" value="1" />
           <entry key="project.open.time.2" value="1" />
           <entry key="project.open.time.3" value="1" />
-          <entry key="project.open.time.4" value="1" />
+          <entry key="project.open.time.4" value="2" />
           <entry key="project.open.time.9" value="1" />
-          <entry key="project.opened" value="5" />
+          <entry key="project.opened" value="6" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
         <counts>
           <entry key="gitignore" value="1" />
           <entry key="iml" value="1" />
-          <entry key="js" value="58" />
+          <entry key="js" value="66" />
           <entry key="lock" value="1" />
-          <entry key="scss" value="1" />
+          <entry key="scss" value="2" />
           <entry key="ts" value="1" />
           <entry key="xml" value="3" />
         </counts>
@@ -39,9 +43,9 @@
       <usages-collector id="statistics.file.types.open">
         <counts>
           <entry key="IDEA_MODULE" value="1" />
-          <entry key="JavaScript" value="58" />
+          <entry key="JavaScript" value="66" />
           <entry key="PLAIN_TEXT" value="1" />
-          <entry key="SCSS" value="1" />
+          <entry key="SCSS" value="2" />
           <entry key="TypeScript" value="1" />
           <entry key="XML" value="3" />
           <entry key="yarn.lock" value="1" />
@@ -50,13 +54,13 @@
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
           <entry key="gitignore" value="5" />
-          <entry key="js" value="4165" />
+          <entry key="js" value="5596" />
           <entry key="scss" value="160" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="JavaScript" value="4165" />
+          <entry key="JavaScript" value="5596" />
           <entry key="PLAIN_TEXT" value="5" />
           <entry key="SCSS" value="160" />
         </counts>
@@ -68,38 +72,36 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/models/part.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="227">
-              <caret line="18" column="25" selection-start-line="18" selection-start-column="25" selection-end-line="18" selection-end-column="25" />
+            <state relative-caret-position="465">
+              <caret line="31" column="29" selection-start-line="31" selection-start-column="29" selection-end-line="31" selection-end-column="29" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/components/common/SortFilterBar.js">
+        <entry file="file://$PROJECT_DIR$/controllers/parts.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="285">
-              <caret line="19" column="28" lean-forward="true" selection-start-line="19" selection-start-column="28" selection-end-line="19" selection-end-column="28" />
+            <state relative-caret-position="215">
+              <caret line="76" column="10" selection-start-line="76" selection-start-column="10" selection-end-line="76" selection-end-column="10" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/.gitignore">
+        <entry file="file://$PROJECT_DIR$/src/components/common/Index.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="60">
-              <caret line="4" column="5" selection-start-line="4" selection-start-column="5" selection-end-line="4" selection-end-column="5" />
+            <state relative-caret-position="516">
+              <caret line="147" column="111" selection-start-line="147" selection-start-column="111" selection-end-line="147" selection-end-column="111" />
+              <caret line="158" column="121" selection-start-line="158" selection-start-column="121" selection-end-line="158" selection-end-column="121" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/components/computers/Show.js">
+        <entry file="file://$PROJECT_DIR$/src/assets/scss/style.scss">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="840">
-              <caret line="63" column="26" selection-start-line="63" selection-start-column="26" selection-end-line="63" selection-end-column="26" />
-              <folding>
-                <element signature="e#0#26#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="3525">
+              <caret line="235" column="24" lean-forward="true" selection-start-line="235" selection-start-column="24" selection-end-line="235" selection-end-column="24" />
             </state>
           </provider>
         </entry>
@@ -107,8 +109,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/components/parts/Show.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1800">
-              <caret line="127" column="32" selection-start-line="127" selection-start-column="32" selection-end-line="127" selection-end-column="32" />
+            <state relative-caret-position="150">
+              <caret line="114" column="95" selection-start-line="114" selection-start-column="95" selection-end-line="114" selection-end-column="95" />
               <folding>
                 <element signature="e#0#26#0" expanded="true" />
               </folding>
@@ -117,10 +119,10 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/components/computers/Carousel.js">
+        <entry file="file://$PROJECT_DIR$/src/components/parts/PartForm.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="90">
-              <caret line="9" column="29" lean-forward="true" selection-start-line="9" selection-start-column="29" selection-end-line="9" selection-end-column="29" />
+            <state relative-caret-position="323">
+              <caret line="63" column="43" lean-forward="true" selection-start-line="63" selection-start-column="43" selection-end-line="63" selection-end-column="43" />
             </state>
           </provider>
         </entry>
@@ -145,6 +147,9 @@
       <find>log</find>
       <find>setToken</find>
       <find>mini</find>
+      <find>link</find>
+      <find>part.price</find>
+      <find>price</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -155,13 +160,11 @@
       <list>
         <option value="$PROJECT_DIR$/src/components/parts/Edit.js" />
         <option value="$PROJECT_DIR$/src/components/parts/New.js" />
-        <option value="$PROJECT_DIR$/controllers/parts.js" />
         <option value="$PROJECT_DIR$/models/computer.js" />
         <option value="$PROJECT_DIR$/controllers/computers.js" />
         <option value="$PROJECT_DIR$/lib/errorHandler.js" />
         <option value="$PROJECT_DIR$/src/components/parts/PartForm.js" />
         <option value="$PROJECT_DIR$/src/assets/scss/style.scss" />
-        <option value="$PROJECT_DIR$/src/components/common/Index.js" />
         <option value="$PROJECT_DIR$/src/lib/HandleErrors.js" />
         <option value="$PROJECT_DIR$/src/lib/HandleChange.js" />
         <option value="$PROJECT_DIR$/src/components/common/HandleChange.js" />
@@ -171,11 +174,13 @@
         <option value="$PROJECT_DIR$/src/components/computers/ComputerForm.js" />
         <option value="$PROJECT_DIR$/src/lib/Auth.js" />
         <option value="$PROJECT_DIR$/src/components/computers/Show.js" />
-        <option value="$PROJECT_DIR$/src/components/parts/Show.js" />
         <option value="$PROJECT_DIR$/src/components/computers/Carousel.js" />
-        <option value="$PROJECT_DIR$/models/part.js" />
         <option value="$PROJECT_DIR$/src/components/common/SortFilterBar.js" />
         <option value="$PROJECT_DIR$/.gitignore" />
+        <option value="$PROJECT_DIR$/models/part.js" />
+        <option value="$PROJECT_DIR$/src/components/parts/Show.js" />
+        <option value="$PROJECT_DIR$/controllers/parts.js" />
+        <option value="$PROJECT_DIR$/src/components/common/Index.js" />
       </list>
     </option>
   </component>
@@ -206,55 +211,10 @@
     <ConfirmationsSetting value="1" id="Add" />
   </component>
   <component name="ProjectView">
-    <navigator currentView="Scope" currentSubView="Scope 'Project Files'; set:Project Files; class com.intellij.psi.search.scope.ProjectFilesScope" proportions="" version="1">
+    <navigator proportions="" version="1">
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope">
-        <subPane subId="Scope 'Tests'; set:Tests; class com.intellij.psi.search.scope.TestsScope">
-          <expand>
-            <path>
-              <item name="WDI_LDN_PROJECT4" type="3d21c010:ScopeViewTreeModel$ProjectNode" />
-              <item name="" type="442cc68d:ScopeViewTreeModel$RootNode" />
-            </path>
-          </expand>
-          <select />
-        </subPane>
-        <subPane subId="Scope 'Project Files'; set:Project Files; class com.intellij.psi.search.scope.ProjectFilesScope">
-          <expand>
-            <path>
-              <item name="WDI_LDN_PROJECT4" type="3d21c010:ScopeViewTreeModel$ProjectNode" />
-              <item name="" type="442cc68d:ScopeViewTreeModel$RootNode" />
-            </path>
-            <path>
-              <item name="WDI_LDN_PROJECT4" type="3d21c010:ScopeViewTreeModel$ProjectNode" />
-              <item name="" type="442cc68d:ScopeViewTreeModel$RootNode" />
-              <item name="src" type="9f88c78c:ScopeViewTreeModel$FileNode" />
-            </path>
-            <path>
-              <item name="WDI_LDN_PROJECT4" type="3d21c010:ScopeViewTreeModel$ProjectNode" />
-              <item name="" type="442cc68d:ScopeViewTreeModel$RootNode" />
-              <item name="src" type="9f88c78c:ScopeViewTreeModel$FileNode" />
-              <item name="components" type="9f88c78c:ScopeViewTreeModel$FileNode" />
-            </path>
-            <path>
-              <item name="WDI_LDN_PROJECT4" type="3d21c010:ScopeViewTreeModel$ProjectNode" />
-              <item name="" type="442cc68d:ScopeViewTreeModel$RootNode" />
-              <item name="src" type="9f88c78c:ScopeViewTreeModel$FileNode" />
-              <item name="components" type="9f88c78c:ScopeViewTreeModel$FileNode" />
-              <item name="common" type="9f88c78c:ScopeViewTreeModel$FileNode" />
-            </path>
-            <path>
-              <item name="WDI_LDN_PROJECT4" type="3d21c010:ScopeViewTreeModel$ProjectNode" />
-              <item name="" type="442cc68d:ScopeViewTreeModel$RootNode" />
-              <item name="src" type="9f88c78c:ScopeViewTreeModel$FileNode" />
-              <item name="components" type="9f88c78c:ScopeViewTreeModel$FileNode" />
-              <item name="parts" type="9f88c78c:ScopeViewTreeModel$FileNode" />
-            </path>
-          </expand>
-          <select />
-        </subPane>
-      </pane>
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -337,6 +297,51 @@
           <select />
         </subPane>
       </pane>
+      <pane id="Scope">
+        <subPane subId="Scope 'Tests'; set:Tests; class com.intellij.psi.search.scope.TestsScope">
+          <expand>
+            <path>
+              <item name="WDI_LDN_PROJECT4" type="3d21c010:ScopeViewTreeModel$ProjectNode" />
+              <item name="" type="442cc68d:ScopeViewTreeModel$RootNode" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+        <subPane subId="Scope 'Project Files'; set:Project Files; class com.intellij.psi.search.scope.ProjectFilesScope">
+          <expand>
+            <path>
+              <item name="WDI_LDN_PROJECT4" type="3d21c010:ScopeViewTreeModel$ProjectNode" />
+              <item name="" type="442cc68d:ScopeViewTreeModel$RootNode" />
+            </path>
+            <path>
+              <item name="WDI_LDN_PROJECT4" type="3d21c010:ScopeViewTreeModel$ProjectNode" />
+              <item name="" type="442cc68d:ScopeViewTreeModel$RootNode" />
+              <item name="src" type="9f88c78c:ScopeViewTreeModel$FileNode" />
+            </path>
+            <path>
+              <item name="WDI_LDN_PROJECT4" type="3d21c010:ScopeViewTreeModel$ProjectNode" />
+              <item name="" type="442cc68d:ScopeViewTreeModel$RootNode" />
+              <item name="src" type="9f88c78c:ScopeViewTreeModel$FileNode" />
+              <item name="components" type="9f88c78c:ScopeViewTreeModel$FileNode" />
+            </path>
+            <path>
+              <item name="WDI_LDN_PROJECT4" type="3d21c010:ScopeViewTreeModel$ProjectNode" />
+              <item name="" type="442cc68d:ScopeViewTreeModel$RootNode" />
+              <item name="src" type="9f88c78c:ScopeViewTreeModel$FileNode" />
+              <item name="components" type="9f88c78c:ScopeViewTreeModel$FileNode" />
+              <item name="common" type="9f88c78c:ScopeViewTreeModel$FileNode" />
+            </path>
+            <path>
+              <item name="WDI_LDN_PROJECT4" type="3d21c010:ScopeViewTreeModel$ProjectNode" />
+              <item name="" type="442cc68d:ScopeViewTreeModel$RootNode" />
+              <item name="src" type="9f88c78c:ScopeViewTreeModel$FileNode" />
+              <item name="components" type="9f88c78c:ScopeViewTreeModel$FileNode" />
+              <item name="parts" type="9f88c78c:ScopeViewTreeModel$FileNode" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+      </pane>
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -372,18 +377,19 @@
       <workItem from="1538568530001" duration="928000" />
       <workItem from="1538569500746" duration="66000" />
       <workItem from="1538569608934" duration="801000" />
-      <workItem from="1538641301021" duration="44000" />
+      <workItem from="1538641301021" duration="100000" />
+      <workItem from="1538651280621" duration="3803000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="26523000" />
+    <option name="totallyTimeSpent" value="30382000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1280" height="800" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.2657512" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.26979" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="npm" order="2" side_tool="true" />
       <window_info id="Favorites" order="3" side_tool="true" />
@@ -462,13 +468,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/controllers/parts.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="412">
-          <caret line="33" column="21" lean-forward="true" selection-start-line="33" selection-start-column="21" selection-end-line="33" selection-end-column="21" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/models/computer.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="346">
@@ -498,27 +497,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="255">
           <caret line="17" column="27" selection-start-line="17" selection-start-column="27" selection-end-line="17" selection-end-column="27" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/parts/PartForm.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="419">
-          <caret line="301" column="68" selection-start-line="301" selection-start-column="68" selection-end-line="301" selection-end-column="68" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/assets/scss/style.scss">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="161">
-          <caret line="87" lean-forward="true" selection-start-line="87" selection-end-line="87" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/common/Index.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="197">
-          <caret line="99" column="6" selection-start-line="99" selection-start-column="6" selection-end-line="99" selection-end-column="6" />
         </state>
       </provider>
     </entry>
@@ -594,30 +572,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/models/part.js">
+    <entry file="file://$PROJECT_DIR$/.gitignore">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="227">
-          <caret line="18" column="25" selection-start-line="18" selection-start-column="25" selection-end-line="18" selection-end-column="25" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/computers/Show.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="840">
-          <caret line="63" column="26" selection-start-line="63" selection-start-column="26" selection-end-line="63" selection-end-column="26" />
-          <folding>
-            <element signature="e#0#26#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/parts/Show.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1800">
-          <caret line="127" column="32" selection-start-line="127" selection-start-column="32" selection-end-line="127" selection-end-column="32" />
-          <folding>
-            <element signature="e#0#26#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="60">
+          <caret line="4" column="5" selection-start-line="4" selection-start-column="5" selection-end-line="4" selection-end-column="5" />
         </state>
       </provider>
     </entry>
@@ -631,14 +589,73 @@
     <entry file="file://$PROJECT_DIR$/src/components/common/SortFilterBar.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="285">
-          <caret line="19" column="28" lean-forward="true" selection-start-line="19" selection-start-column="28" selection-end-line="19" selection-end-column="28" />
+          <caret line="19" column="63" lean-forward="true" selection-start-line="19" selection-start-column="63" selection-end-line="19" selection-end-column="63" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/.gitignore">
+    <entry file="file://$PROJECT_DIR$/src/components/computers/Show.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="60">
-          <caret line="4" column="5" selection-start-line="4" selection-start-column="5" selection-end-line="4" selection-end-column="5" />
+        <state relative-caret-position="653">
+          <caret line="63" column="26" selection-start-line="63" selection-start-column="26" selection-end-line="63" selection-end-column="26" />
+          <folding>
+            <element signature="e#0#26#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/node_modules/puppeteer/index.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="285">
+          <caret line="19" column="17" lean-forward="true" selection-start-line="19" selection-start-column="17" selection-end-line="19" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/lib/Flash.js">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/assets/scss/style.scss">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="3525">
+          <caret line="235" column="24" lean-forward="true" selection-start-line="235" selection-start-column="24" selection-end-line="235" selection-end-column="24" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/parts/PartForm.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="323">
+          <caret line="63" column="43" lean-forward="true" selection-start-line="63" selection-start-column="43" selection-end-line="63" selection-end-column="43" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/parts/Show.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="150">
+          <caret line="114" column="95" selection-start-line="114" selection-start-column="95" selection-end-line="114" selection-end-column="95" />
+          <folding>
+            <element signature="e#0#26#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/models/part.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="465">
+          <caret line="31" column="29" selection-start-line="31" selection-start-column="29" selection-end-line="31" selection-end-column="29" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/controllers/parts.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="215">
+          <caret line="76" column="10" selection-start-line="76" selection-start-column="10" selection-end-line="76" selection-end-column="10" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/common/Index.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="516">
+          <caret line="147" column="111" selection-start-line="147" selection-start-column="111" selection-end-line="147" selection-end-column="111" />
+          <caret line="158" column="121" selection-start-line="158" selection-start-column="121" selection-end-line="158" selection-end-column="121" />
         </state>
       </provider>
     </entry>

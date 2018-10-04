@@ -28,6 +28,8 @@ const partSchema = new mongoose.Schema({
     },
     link: {type: String, required: 'A link to a reseller is required.'},
     price: {type: Number, required: 'Part price is required.'},
+    scrapedPrice: {type: Number},
+    lastScrape: {type: Date},
     description: {type: String},
     location: {
         lat: {type: Number},
