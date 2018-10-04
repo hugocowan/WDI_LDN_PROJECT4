@@ -2,3 +2,4 @@ node_modules
 *.log
 .nyc_output
 project-04.md
+.idea

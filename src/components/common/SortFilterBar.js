@@ -17,7 +17,7 @@ const SortFilterBar = ({ handleChange, data, showComputers, showParts, toggleFil
             onChange={handleChange} value={data.search}
           />
           <span className="icon is-small is-left">
-            <i className="fas fa-search" aria-hidden="true"></i>
+            <i className="fa fa-search" aria-hidden="true"></i>
           </span>
         </p>
       </div>
