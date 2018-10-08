@@ -33,14 +33,16 @@ function createRoute(req, res, next) {
 
                 await scrapePricing(part.link)
                     .then(price => {
-                        scrapeData.data = {};
-                        scrapeData.data.price = price;
-                        scrapeData.data.createdAt = new Date();
-                        scrapeData.lastScrape = scrapeData.createdAt;
+                        scrapeData.data = [];
+                        scrapeData.data.push({
+                            price,
+                            createdAt: new Date(),
+                        });
+                        scrapeData.lastScrape = new Date();
                         scrapeData.part = part.id;
                         scrapeData.url = part.link;
                     })
-                    .catch(() => scrapeData.scrapedPrice = null);
+                    .catch(() => scrapeData.data.price = null);
 
                 console.log(scrapeData);
 

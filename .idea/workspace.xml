@@ -2,9 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="097aabc4-c1f4-4ebc-b145-2e29b4110871" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/src/components/common/HandleChange.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/common/HandleChange.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/computers/Edit.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/computers/Edit.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/parts/Show.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/parts/Show.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/controllers/scrapers.js" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/scrapers.js" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -50,13 +48,13 @@
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
           <entry key="gitignore" value="5" />
-          <entry key="js" value="9737" />
+          <entry key="js" value="9849" />
           <entry key="scss" value="160" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="JavaScript" value="9737" />
+          <entry key="JavaScript" value="9849" />
           <entry key="PLAIN_TEXT" value="5" />
           <entry key="SCSS" value="160" />
         </counts>
@@ -74,7 +72,7 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/components/common/HandleChange.js">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="301">
@@ -101,11 +99,12 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/controllers/scrapers.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="120">
-              <caret line="8" column="34" selection-start-line="8" selection-start-column="34" selection-end-line="8" selection-end-column="34" />
+            <state relative-caret-position="474">
+              <caret line="41" column="41" selection-start-line="41" selection-start-column="41" selection-end-line="41" selection-end-column="41" />
+              <caret line="42" column="40" selection-start-line="42" selection-start-column="40" selection-end-line="42" selection-end-column="40" />
             </state>
           </provider>
         </entry>
@@ -201,10 +200,10 @@
         <option value="$PROJECT_DIR$/models/part.js" />
         <option value="$PROJECT_DIR$/models/scraper.js" />
         <option value="$PROJECT_DIR$/controllers/parts.js" />
-        <option value="$PROJECT_DIR$/controllers/scrapers.js" />
         <option value="$PROJECT_DIR$/src/components/parts/Show.js" />
         <option value="$PROJECT_DIR$/src/components/computers/Edit.js" />
         <option value="$PROJECT_DIR$/src/components/common/HandleChange.js" />
+        <option value="$PROJECT_DIR$/controllers/scrapers.js" />
       </list>
     </option>
   </component>
@@ -404,12 +403,12 @@
       <workItem from="1538641301021" duration="100000" />
       <workItem from="1538651280621" duration="4200000" />
       <workItem from="1538684445998" duration="7208000" />
-      <workItem from="1538743989552" duration="11408000" />
+      <workItem from="1538743989552" duration="12203000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="49395000" />
+    <option name="totallyTimeSpent" value="50190000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1280" height="800" extended-state="6" />
@@ -649,13 +648,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/models/scraper.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="120">
-          <caret line="8" column="31" selection-start-line="8" selection-start-column="31" selection-end-line="8" selection-end-column="31" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/models/part.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="165">
@@ -670,13 +662,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/controllers/scrapers.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="120">
-          <caret line="8" column="34" selection-start-line="8" selection-start-column="34" selection-end-line="8" selection-end-column="34" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/components/parts/Show.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="173">
@@ -687,6 +672,13 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/common/HandleChange.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="301">
+          <caret line="94" column="102" selection-start-line="94" selection-start-column="102" selection-end-line="95" selection-end-column="108" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/components/computers/Edit.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="203">
@@ -694,10 +686,18 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/common/HandleChange.js">
+    <entry file="file://$PROJECT_DIR$/models/scraper.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="301">
-          <caret line="94" column="102" selection-start-line="94" selection-start-column="102" selection-end-line="95" selection-end-column="108" />
+        <state relative-caret-position="120">
+          <caret line="8" column="31" selection-start-line="8" selection-start-column="31" selection-end-line="8" selection-end-column="31" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/controllers/scrapers.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="474">
+          <caret line="41" column="41" selection-start-line="41" selection-start-column="41" selection-end-line="41" selection-end-column="41" />
+          <caret line="42" column="40" selection-start-line="42" selection-start-column="40" selection-end-line="42" selection-end-column="40" />
         </state>
       </provider>
     </entry>
