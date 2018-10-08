@@ -36,7 +36,6 @@ class PartShow extends React.Component {
                     } else {
 
                         const scrapes = Object.assign({}, this.state.part.scrapes);
-                        console.log(scrapes.id);
 
                         axios
                             .get(`/api/scrapers/${scrapes.id}`)

@@ -43,7 +43,7 @@ class ComputerEdit extends React.Component {
                             coolerHeight: computer.cooler.coolerHeight,
                             compatibleSockets: computer.cooler.compatibleSockets
                         };
-                        this.setState(computer, () => console.log(this.state));
+                        this.setState(computer);
                     });
             });
     }

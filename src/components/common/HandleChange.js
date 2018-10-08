@@ -92,8 +92,8 @@ const HandleChange = (name, value, this_) => {
                 vendor = part.vendor;
 
                 if (pc.coolerEnums) {
-                    console.log('cpu:', socketVChipset[pc.coolerEnums.compatibleSockets], typeof part.chipset);
-                    console.log(socketVChipset[pc.coolerEnums.compatibleSockets].includes(part.chipset));
+                    // console.log('cpu:', socketVChipset[pc.coolerEnums.compatibleSockets], typeof part.chipset);
+                    // console.log(socketVChipset[pc.coolerEnums.compatibleSockets].includes(part.chipset));
                 }
 
 

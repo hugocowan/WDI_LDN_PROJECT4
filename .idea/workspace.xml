@@ -2,7 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="097aabc4-c1f4-4ebc-b145-2e29b4110871" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/controllers/scrapers.js" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/scrapers.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/common/HandleChange.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/common/HandleChange.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/computers/Edit.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/computers/Edit.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/parts/Show.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/parts/Show.js" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -27,7 +29,7 @@
         <counts>
           <entry key="gitignore" value="1" />
           <entry key="iml" value="1" />
-          <entry key="js" value="83" />
+          <entry key="js" value="85" />
           <entry key="lock" value="1" />
           <entry key="scss" value="2" />
           <entry key="ts" value="2" />
@@ -37,7 +39,7 @@
       <usages-collector id="statistics.file.types.open">
         <counts>
           <entry key="IDEA_MODULE" value="1" />
-          <entry key="JavaScript" value="83" />
+          <entry key="JavaScript" value="85" />
           <entry key="PLAIN_TEXT" value="1" />
           <entry key="SCSS" value="2" />
           <entry key="TypeScript" value="2" />
@@ -48,13 +50,13 @@
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
           <entry key="gitignore" value="5" />
-          <entry key="js" value="9736" />
+          <entry key="js" value="9737" />
           <entry key="scss" value="160" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="JavaScript" value="9736" />
+          <entry key="JavaScript" value="9737" />
           <entry key="PLAIN_TEXT" value="5" />
           <entry key="SCSS" value="160" />
         </counts>
@@ -63,6 +65,24 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/components/computers/Edit.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="203">
+              <caret line="45" column="46" selection-start-line="45" selection-start-column="46" selection-end-line="45" selection-end-column="46" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/components/common/HandleChange.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="301">
+              <caret line="94" column="102" selection-start-line="94" selection-start-column="102" selection-end-line="95" selection-end-column="108" />
+            </state>
+          </provider>
+        </entry>
+      </file>
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/models/part.js">
           <provider selected="true" editor-type-id="text-editor">
@@ -81,7 +101,7 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/controllers/scrapers.js">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="120">
@@ -111,8 +131,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/components/parts/Show.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="608">
-              <caret line="324" column="32" lean-forward="true" selection-start-line="324" selection-start-column="32" selection-end-line="324" selection-end-column="32" />
+            <state relative-caret-position="173">
+              <caret line="35" column="28" lean-forward="true" selection-start-line="35" selection-start-column="28" selection-end-line="35" selection-end-column="28" />
               <folding>
                 <element signature="e#0#26#0" expanded="true" />
               </folding>
@@ -145,7 +165,11 @@
       <find>price</find>
       <find>crawl</find>
       <find>scrapes.data</find>
+      <find>console.log</find>
     </findStrings>
+    <dirStrings>
+      <dir>$PROJECT_DIR$/src</dir>
+    </dirStrings>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -161,9 +185,7 @@
         <option value="$PROJECT_DIR$/src/assets/scss/style.scss" />
         <option value="$PROJECT_DIR$/src/lib/HandleErrors.js" />
         <option value="$PROJECT_DIR$/src/lib/HandleChange.js" />
-        <option value="$PROJECT_DIR$/src/components/common/HandleChange.js" />
         <option value="$PROJECT_DIR$/src/components/computers/New.js" />
-        <option value="$PROJECT_DIR$/src/components/computers/Edit.js" />
         <option value="$PROJECT_DIR$/src/lib/Decimals.js" />
         <option value="$PROJECT_DIR$/src/components/computers/ComputerForm.js" />
         <option value="$PROJECT_DIR$/src/lib/Auth.js" />
@@ -178,9 +200,11 @@
         <option value="$PROJECT_DIR$/config/router.js" />
         <option value="$PROJECT_DIR$/models/part.js" />
         <option value="$PROJECT_DIR$/models/scraper.js" />
-        <option value="$PROJECT_DIR$/src/components/parts/Show.js" />
         <option value="$PROJECT_DIR$/controllers/parts.js" />
         <option value="$PROJECT_DIR$/controllers/scrapers.js" />
+        <option value="$PROJECT_DIR$/src/components/parts/Show.js" />
+        <option value="$PROJECT_DIR$/src/components/computers/Edit.js" />
+        <option value="$PROJECT_DIR$/src/components/common/HandleChange.js" />
       </list>
     </option>
   </component>
@@ -380,12 +404,12 @@
       <workItem from="1538641301021" duration="100000" />
       <workItem from="1538651280621" duration="4200000" />
       <workItem from="1538684445998" duration="7208000" />
-      <workItem from="1538743989552" duration="10784000" />
+      <workItem from="1538743989552" duration="11408000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="48771000" />
+    <option name="totallyTimeSpent" value="49395000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1280" height="800" extended-state="6" />
@@ -471,13 +495,6 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/lib/HandleChange.js" />
-    <entry file="file://$PROJECT_DIR$/src/components/common/HandleChange.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="810">
-          <caret line="54" column="49" selection-start-line="54" selection-start-column="49" selection-end-line="54" selection-end-column="49" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/lib/Decimals.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="30">
@@ -518,13 +535,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="75">
           <caret line="5" column="14" selection-start-line="5" selection-start-column="14" selection-end-line="5" selection-end-column="14" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/computers/Edit.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="203">
-          <caret line="69" column="54" lean-forward="true" selection-start-line="69" selection-start-column="54" selection-end-line="69" selection-end-column="54" />
         </state>
       </provider>
     </entry>
@@ -632,30 +642,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/config/router.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="180">
-          <caret line="12" column="30" lean-forward="true" selection-start-line="12" selection-start-column="30" selection-end-line="12" selection-end-column="30" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/models/part.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="165">
-          <caret line="11" column="61" lean-forward="true" selection-start-line="11" selection-start-column="61" selection-end-line="11" selection-end-column="61" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/parts/Show.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="608">
-          <caret line="324" column="32" lean-forward="true" selection-start-line="324" selection-start-column="32" selection-end-line="324" selection-end-column="32" />
-          <folding>
-            <element signature="e#0#26#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/controllers/parts.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="270">
@@ -670,10 +656,48 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/models/part.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="165">
+          <caret line="11" column="61" lean-forward="true" selection-start-line="11" selection-start-column="61" selection-end-line="11" selection-end-column="61" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/config/router.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="180">
+          <caret line="12" column="30" lean-forward="true" selection-start-line="12" selection-start-column="30" selection-end-line="12" selection-end-column="30" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/controllers/scrapers.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="120">
           <caret line="8" column="34" selection-start-line="8" selection-start-column="34" selection-end-line="8" selection-end-column="34" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/parts/Show.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="173">
+          <caret line="35" column="28" lean-forward="true" selection-start-line="35" selection-start-column="28" selection-end-line="35" selection-end-column="28" />
+          <folding>
+            <element signature="e#0#26#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/computers/Edit.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="203">
+          <caret line="45" column="46" selection-start-line="45" selection-start-column="46" selection-end-line="45" selection-end-column="46" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/common/HandleChange.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="301">
+          <caret line="94" column="102" selection-start-line="94" selection-start-column="102" selection-end-line="95" selection-end-column="108" />
         </state>
       </provider>
     </entry>
