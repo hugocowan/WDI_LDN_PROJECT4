@@ -14,6 +14,10 @@ const partSchema = new mongoose.Schema({
         type: mongoose.Schema.ObjectId,
         ref: 'Comment'
     }],
+    scrapes: {
+       type: mongoose.Schema.ObjectId,
+       ref: 'Scraper'
+    },
     size: {
         type: String,
         //0: m-itx | 1: m-atx | 2: atx | 3: e-atx

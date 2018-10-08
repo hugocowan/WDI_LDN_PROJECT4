@@ -27,7 +27,32 @@ class PartShow extends React.Component {
                         :
                         (part.type === currentPart.type &&
                             part._id !== id));
-                this.setState({part: currentPart, parts: comparisonParts});
+                this.setState({ part: currentPart, parts: comparisonParts }, () => {
+
+                    if (!this.state.part.scrapes || !this.state.part.scrapes.id) {
+                        axios
+                            .post(`/api/scrapers/${id}`)
+                            .then(res => this.setState({ part: { ...this.state.part, scrapes: res.data } }));
+                    } else {
+
+                        const scrapes = Object.assign({}, this.state.part.scrapes);
+                        console.log(scrapes.id);
+
+                        axios
+                            .get(`/api/scrapers/${scrapes.id}`)
+                            .then(res => {
+
+                                if (!scrapes.data.filter(scrape => scrape.id = res.data.id)[0]) {
+                                    scrapes.data.push(res.data);
+                                }
+
+                                const orderedScrapes = scrapes.data.sort((scrapeA, scrapeB) =>
+                                    new Date(scrapeB.data.createdAt) - new Date(scrapeA.data.createdAt));
+
+                                this.setState({ part: { ...this.state.part, scrapes: orderedScrapes } });
+                            });
+                    }
+                });
             });
     }
 
@@ -112,7 +137,9 @@ class PartShow extends React.Component {
                         {' '}
                         {part.type}</span>
                     {part.chipset && <span className="tag">{chipsets[part.chipset]} socket</span>}
-                    <span className="tag bold">Price: {Decimals.calculate(part.scrapedPrice || part.price)}</span>
+                    {part.scrapes && part.scrapes.data &&
+                    <span className="tag bold">Price: {Decimals.calculate(part.scrapes.data[0].price)}</span>}
+                    {!part.scrapes && <span className="tag bold">Price: {Decimals.calculate(part.price)}</span>}
                     <div className="hero-image" style={{backgroundImage: `url(${part.image})`}}/>
 
                     <div className="show-buttons">
@@ -252,7 +279,9 @@ class PartShow extends React.Component {
                             <td>{part.coolerHeight}mm</td>}
                             {part.type === 'Cooler' &&
                             <td>{part.coolerFanSize}</td>}
-                            <td>{Decimals.calculate(part.scrapedPrice || part.price)}</td>
+                            {part.scrapes && part.scrapes.data &&
+                            <td>{Decimals.calculate(part.scrapes.data[0].price)}</td>}
+                            {!part.scrapes && <td>{Decimals.calculate(part.price)}</td>}
                         </tr>
                         {parts.map(part =>
                             <tr key={part._id}>
@@ -293,7 +322,9 @@ class PartShow extends React.Component {
                                 <td>{part.coolerHeight}mm</td>}
                                 {part.type === 'Cooler' &&
                                 <td>{part.coolerFanSize}</td>}
-                                <td>{Decimals.calculate(part.scrapedPrice || part.price)}</td>
+                                {part.scrapes && part.scrapes.data &&
+                                <td>{Decimals.calculate(part.scrapes.data[0].price)}</td>}
+                                {!part.scrapes && <td>{Decimals.calculate(part.price)}</td>}
                             </tr>
                         )}
                         </tbody>

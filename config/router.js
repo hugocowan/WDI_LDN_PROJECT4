@@ -32,8 +32,9 @@ router.route('/parts/:id')
 
 router.get('/parts/:id/edit', parts.show);
 
-router.route('/parts/:id/scrape')
-    .get(scrapers.scrape);
+router.route('/scrapers/:id')
+    .get(scrapers.show)
+    .post(scrapers.create);
 
 
 router.post('/register', auth.register);
