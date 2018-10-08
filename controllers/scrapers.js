@@ -6,6 +6,7 @@ const scrapePricing = async (url) => {
     console.log(url);
     const browser = await puppeteer.launch(
         // {headless: false}
+        { args: ['--no-sandbox'] }
     );
     const page = await browser.newPage();
     await page.goto(url);
