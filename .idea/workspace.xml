@@ -3,6 +3,8 @@
   <component name="ChangeListManager">
     <list default="true" id="097aabc4-c1f4-4ebc-b145-2e29b4110871" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/controllers/scrapers.js" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/scrapers.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/assets/scss/style.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/assets/scss/style.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/common/FlashMessages.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/common/FlashMessages.js" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -27,9 +29,9 @@
         <counts>
           <entry key="gitignore" value="1" />
           <entry key="iml" value="1" />
-          <entry key="js" value="85" />
+          <entry key="js" value="86" />
           <entry key="lock" value="1" />
-          <entry key="scss" value="2" />
+          <entry key="scss" value="3" />
           <entry key="ts" value="2" />
           <entry key="xml" value="3" />
         </counts>
@@ -37,9 +39,9 @@
       <usages-collector id="statistics.file.types.open">
         <counts>
           <entry key="IDEA_MODULE" value="1" />
-          <entry key="JavaScript" value="85" />
+          <entry key="JavaScript" value="86" />
           <entry key="PLAIN_TEXT" value="1" />
-          <entry key="SCSS" value="2" />
+          <entry key="SCSS" value="3" />
           <entry key="TypeScript" value="2" />
           <entry key="XML" value="3" />
           <entry key="yarn.lock" value="1" />
@@ -48,15 +50,15 @@
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
           <entry key="gitignore" value="5" />
-          <entry key="js" value="9849" />
-          <entry key="scss" value="160" />
+          <entry key="js" value="9852" />
+          <entry key="scss" value="401" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="JavaScript" value="9849" />
+          <entry key="JavaScript" value="9852" />
           <entry key="PLAIN_TEXT" value="5" />
-          <entry key="SCSS" value="160" />
+          <entry key="SCSS" value="401" />
         </counts>
       </usages-collector>
     </session>
@@ -75,8 +77,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/components/common/HandleChange.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="301">
-              <caret line="94" column="102" selection-start-line="94" selection-start-column="102" selection-end-line="95" selection-end-column="108" />
+            <state relative-caret-position="453">
+              <caret line="97" lean-forward="true" selection-start-line="97" selection-end-line="97" />
             </state>
           </provider>
         </entry>
@@ -90,6 +92,27 @@
           </provider>
         </entry>
       </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/assets/scss/style.scss">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="638">
+              <caret line="291" column="17" selection-start-line="291" selection-start-column="17" selection-end-line="291" selection-end-column="17" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/components/common/FlashMessages.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="360">
+              <caret line="24" column="38" selection-start-line="24" selection-start-column="38" selection-end-line="24" selection-end-column="38" />
+              <folding>
+                <element signature="e#0#26#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/config/router.js">
           <provider selected="true" editor-type-id="text-editor">
@@ -99,12 +122,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/controllers/scrapers.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="474">
-              <caret line="41" column="41" selection-start-line="41" selection-start-column="41" selection-end-line="41" selection-end-column="41" />
-              <caret line="42" column="40" selection-start-line="42" selection-start-column="40" selection-end-line="42" selection-end-column="40" />
+            <state relative-caret-position="450">
+              <caret line="69" column="47" lean-forward="true" selection-start-line="69" selection-start-column="47" selection-end-line="69" selection-end-column="47" />
             </state>
           </provider>
         </entry>
@@ -165,6 +187,7 @@
       <find>crawl</find>
       <find>scrapes.data</find>
       <find>console.log</find>
+      <find>notification</find>
     </findStrings>
     <dirStrings>
       <dir>$PROJECT_DIR$/src</dir>
@@ -181,7 +204,6 @@
         <option value="$PROJECT_DIR$/controllers/computers.js" />
         <option value="$PROJECT_DIR$/lib/errorHandler.js" />
         <option value="$PROJECT_DIR$/src/components/parts/PartForm.js" />
-        <option value="$PROJECT_DIR$/src/assets/scss/style.scss" />
         <option value="$PROJECT_DIR$/src/lib/HandleErrors.js" />
         <option value="$PROJECT_DIR$/src/lib/HandleChange.js" />
         <option value="$PROJECT_DIR$/src/components/computers/New.js" />
@@ -204,6 +226,8 @@
         <option value="$PROJECT_DIR$/src/components/computers/Edit.js" />
         <option value="$PROJECT_DIR$/src/components/common/HandleChange.js" />
         <option value="$PROJECT_DIR$/controllers/scrapers.js" />
+        <option value="$PROJECT_DIR$/src/components/common/FlashMessages.js" />
+        <option value="$PROJECT_DIR$/src/assets/scss/style.scss" />
       </list>
     </option>
   </component>
@@ -408,7 +432,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="50190000" />
+    <option name="totallyTimeSpent" value="61127000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1280" height="800" extended-state="6" />
@@ -593,16 +617,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="945">
           <caret line="63" column="26" selection-start-line="63" selection-start-column="26" selection-end-line="63" selection-end-column="26" />
-          <folding>
-            <element signature="e#0#26#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/assets/scss/style.scss">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="653">
-          <caret line="235" column="24" lean-forward="true" selection-start-line="235" selection-start-column="24" selection-end-line="235" selection-end-column="24" />
         </state>
       </provider>
     </entry>
@@ -672,13 +686,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/common/HandleChange.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="301">
-          <caret line="94" column="102" selection-start-line="94" selection-start-column="102" selection-end-line="95" selection-end-column="108" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/components/computers/Edit.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="203">
@@ -695,9 +702,32 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/controllers/scrapers.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="474">
-          <caret line="41" column="41" selection-start-line="41" selection-start-column="41" selection-end-line="41" selection-end-column="41" />
-          <caret line="42" column="40" selection-start-line="42" selection-start-column="40" selection-end-line="42" selection-end-column="40" />
+        <state relative-caret-position="450">
+          <caret line="69" column="47" lean-forward="true" selection-start-line="69" selection-start-column="47" selection-end-line="69" selection-end-column="47" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/common/FlashMessages.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="360">
+          <caret line="24" column="38" selection-start-line="24" selection-start-column="38" selection-end-line="24" selection-end-column="38" />
+          <folding>
+            <element signature="e#0#26#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/common/HandleChange.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="453">
+          <caret line="97" lean-forward="true" selection-start-line="97" selection-end-line="97" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/assets/scss/style.scss">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="638">
+          <caret line="291" column="17" selection-start-line="291" selection-start-column="17" selection-end-line="291" selection-end-column="17" />
         </state>
       </provider>
     </entry>

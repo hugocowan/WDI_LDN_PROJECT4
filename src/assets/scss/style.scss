@@ -265,3 +265,30 @@
 .error {
     color: #9A150E;
 }
+
+//flashMessage
+
+.notification.is-info {
+    //color: pink;
+    z-index: 10;
+    width: 80%;
+    margin: 0 auto;
+    text-align: center;
+
+    @media(min-width: 769px) {
+        width: 60%;
+        transform: translate(15%, 0);
+    }
+    @media(min-width: 1088px) {
+        width: 75%;
+        transform: translate(12%, 0);
+    }
+
+    @media(min-width: 1140px) {
+        transform: translate(10%, 0);
+    }
+
+    @media(min-width: 1440px) {
+        width: 60%;
+    }
+}
