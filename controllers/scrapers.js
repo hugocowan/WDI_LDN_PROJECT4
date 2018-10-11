@@ -3,7 +3,6 @@ const Scraper = require('../models/scraper');
 const puppeteer = require('puppeteer');
 
 const scrapePricing = async (url) => {
-    console.log(url);
     const browser = await puppeteer.launch(
         // {headless: false}
         { args: ['--no-sandbox'] }
@@ -12,7 +11,17 @@ const scrapePricing = async (url) => {
     await page.goto(url);
 
     const result = await page.evaluate(() => {
-        return document.getElementById('priceblock_ourprice').innerText.substr(1);
+        const priceBlock = document.getElementById('priceblock_ourprice');
+        const usedPriceBlock = document.getElementById('olp-used');
+
+        if (!priceBlock && !usedPriceBlock) {
+            return null;
+        }
+        else if (!priceBlock) {
+            const usedPrice = usedPriceBlock.children[0].innerText.split('from');
+            return usedPrice[usedPrice.length - 1].substr(2);
+        }
+        return priceBlock.innerText.substr(1);
     });
 
     browser.close();
@@ -33,6 +42,14 @@ function createRoute(req, res, next) {
 
                 await scrapePricing(part.link)
                     .then(price => {
+
+                        console.log('price:', price);
+
+                        if (price === null) {
+                            scrapeData = null;
+                            return;
+                        }
+
                         scrapeData.data = [];
                         scrapeData.data.push({
                             price,
@@ -42,9 +59,13 @@ function createRoute(req, res, next) {
                         scrapeData.part = part.id;
                         scrapeData.url = part.link;
                     })
-                    .catch(() => scrapeData.data.price = null);
+                    .catch(next);
 
-                console.log(scrapeData);
+                if (scrapeData === null) {
+                    return res.json('Error: scraping failed to find a price.');
+                }
+
+                console.log('We made a new scrape!', scrapeData, scrapeData.lastScrape, typeof scrapeData.lastScrape);
 
                 Scraper
                     .create(scrapeData)
@@ -65,8 +86,15 @@ function showRoute(req, res, next) {
         .findById(req.params.id)
         .then(async scrape => {
             const currentTime = new Date();
-            // const timeLeft = scrape.lastScrape.getTime() + 1.8e+6 - currentTime.getTime();
-            if (scrape.lastScrape.getTime() + 1.8e+6 <= currentTime.getTime()) {
+            const timeLeft = scrape.lastScrape.getTime() - currentTime.getTime() + 1.8e+6;
+
+            // if (!scrape.lastScrape) {
+            //     scrape.lastScrape = new Date();
+            //     scrape.save();
+            //     return res.json(scrape);
+            // }
+
+            if (timeLeft <= 0) {
                 await scrapePricing(scrape.url)
                     .then(price => {
                         const data = { price, createdAt: new Date() };
@@ -76,7 +104,7 @@ function showRoute(req, res, next) {
                     })
                     .catch(next);
             } else {
-                // console.log(`There\'s ${new Date(timeLeft)} left till it\'s scraping time.`);
+                console.log(`There\'s ${(timeLeft/60000)} minutes left till it\'s scraping time.`);
                 res.json(scrape);
             }
         })

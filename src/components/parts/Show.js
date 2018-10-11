@@ -32,23 +32,28 @@ class PartShow extends React.Component {
                     if (!this.state.part.scrapes || !this.state.part.scrapes.id) {
                         axios
                             .post(`/api/scrapers/${id}`)
-                            .then(res => this.setState({ part: { ...this.state.part, scrapes: res.data } }));
+                            .then(res => {
+                                if (typeof res.data === 'string') {
+                                    return console.log(res.data);
+                                }
+
+                                this.setState({ part: { ...this.state.part, scrapes: res.data } })
+                            });
                     } else {
 
-                        const scrapes = Object.assign({}, this.state.part.scrapes);
+                        let scrapes = Object.assign({}, this.state.part.scrapes);
 
                         axios
                             .get(`/api/scrapers/${scrapes.id}`)
                             .then(res => {
+                                let scrapes = res.data;
 
-                                if (!scrapes.data.filter(scrape => scrape.id = res.data.id)[0]) {
-                                    scrapes.data.push(res.data);
+                                if (scrapes.data && scrapes.data.length >= 2) {
+                                    scrapes.data = scrapes.data.sort((scrapeA, scrapeB) =>
+                                        new Date(scrapeB.createdAt) - new Date(scrapeA.createdAt));
                                 }
 
-                                const orderedScrapes = scrapes.data.sort((scrapeA, scrapeB) =>
-                                    new Date(scrapeB.data.createdAt) - new Date(scrapeA.data.createdAt));
-
-                                this.setState({ part: { ...this.state.part, scrapes: orderedScrapes } });
+                                this.setState({ part: { ...this.state.part, scrapes } });
                             });
                     }
                 });

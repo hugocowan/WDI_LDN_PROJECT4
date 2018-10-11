@@ -4,7 +4,7 @@ function indexRoute(req, res, next) {
     Part
         .find()
         .populate({
-            path: 'comments createdBy',
+            path: 'comments createdBy scrapes',
             populate: {path: 'createdBy'}
         })
         .exec()
