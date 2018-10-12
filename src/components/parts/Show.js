@@ -28,37 +28,45 @@ class PartShow extends React.Component {
                         (part.type === currentPart.type &&
                             part._id !== id));
                 this.setState({ part: currentPart, parts: comparisonParts }, () => {
-
-                    if (!this.state.part.scrapes || !this.state.part.scrapes.id) {
-                        axios
-                            .post(`/api/scrapers/${id}`)
-                            .then(res => {
-                                if (typeof res.data === 'string') {
-                                    return console.log(res.data);
-                                }
-
-                                this.setState({ part: { ...this.state.part, scrapes: res.data } })
-                            });
-                    } else {
-
-                        let scrapes = Object.assign({}, this.state.part.scrapes);
-
-                        axios
-                            .get(`/api/scrapers/${scrapes.id}`)
-                            .then(res => {
-                                let scrapes = res.data;
-
-                                if (scrapes.data && scrapes.data.length >= 2) {
-                                    scrapes.data = scrapes.data.sort((scrapeA, scrapeB) =>
-                                        new Date(scrapeB.createdAt) - new Date(scrapeA.createdAt));
-                                }
-
-                                this.setState({ part: { ...this.state.part, scrapes } });
-                            });
-                    }
+                    this.getScrapes();
                 });
             });
     }
+
+    componentWillUnmount() {
+        console.log('timeouts to cancel:',this.timeouts);
+        this.timeouts.forEach(timeout => clearTimeout(timeout));
+    }
+
+    getScrapes = () => {
+        if (!this.state.part.scrapes || !this.state.part.scrapes.lastScrape) {
+            axios
+                .post(`/api/scrapers/${this.props.match.params.id}`)
+                .then(res => {
+                    if (typeof res.data === 'string') {
+                        return console.log(res.data);
+                    }
+
+                    this.setState({ part: { ...this.state.part, scrapes: res.data } })
+                });
+        } else {
+
+            let scrapes = Object.assign({}, this.state.part.scrapes);
+
+            axios
+                .get(`/api/scrapers/${scrapes.id}`)
+                .then(res => {
+                    let scrapes = res.data;
+
+                    if (scrapes.data && scrapes.data.length >= 2) {
+                        scrapes.data = scrapes.data.sort((scrapeA, scrapeB) =>
+                            new Date(scrapeB.createdAt) - new Date(scrapeA.createdAt));
+                    }
+
+                    this.setState({ part: { ...this.state.part, scrapes } });
+                });
+        }
+    };
 
     handleDelete = () => {
         const {id} = this.props.match.params;
@@ -108,7 +116,7 @@ class PartShow extends React.Component {
 
         parts.push(this.state.part);
 
-        this.setState({part, parts});
+        this.setState({part, parts}, () => this.getScrapes());
     };
 
     render() {

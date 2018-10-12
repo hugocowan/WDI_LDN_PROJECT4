@@ -8,7 +8,7 @@ function indexRoute(req, res, next) {
             populate: {path: 'createdBy'}
         })
         .exec()
-        .then((parts) => {
+        .then(parts => {
             res.json(parts);
         })
         .catch(next);
@@ -29,7 +29,8 @@ function showRoute(req, res, next) {
             Part
                 .find({ 'type': part.type })
                 .populate({
-                    path: 'scrapes'
+                    path: 'comments createdBy scrapes',
+                    populate: { path: 'createdBy' }
                 })
                 .then(parts => {
                     res.json([ part, ...parts ]);
@@ -41,7 +42,6 @@ function showRoute(req, res, next) {
 
 function createRoute(req, res, next) {
     req.body.createdBy = req.currentUser;
-    console.log(req.body);
     Part
         .create(req.body)
         .then(part => res.status(201).json(part))

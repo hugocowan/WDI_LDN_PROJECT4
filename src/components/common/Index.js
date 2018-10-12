@@ -16,17 +16,59 @@ class Index extends React.Component {
         partsShow: true
     };
 
+    timeouts = [];
+
     componentDidMount() {
 
         Promise.props({
             parts: axios.get('/api/parts').then(res => res.data),
             computers: axios.get('/api/computers').then(res => res.data)
         })
-            .then(data => this.setState(data));
+            .then(data => this.setState(data, () => this.getScrapes()));
     }
 
     handleChange = ({target: {name, value}}) => {
         this.setState({[name]: value});
+    };
+
+    getScrapes = () => {
+
+        return;
+
+        this.state.parts.forEach((part, index) => {
+
+            const parts = Object.assign({}, this.state.parts);
+            if (!part.scrapes || !part.scrapes.lastScrape) {
+
+                this.timeouts.push(setTimeout(() => {
+                    axios
+                        .post(`/api/scrapers/${part.id}`)
+                        .then(res => {
+                            if (typeof res.data === 'string') {
+                                return console.log(res.data);
+                            }
+
+                            // this.setState({ part: { ...part, scrapes: res.data } });
+                        });
+                }, 1000 * index));
+            } else {
+
+                let scrapes = Object.assign({}, part.scrapes);
+
+                axios
+                    .get(`/api/scrapers/${scrapes.id}`)
+                    .then(res => {
+                        let scrapes = res.data;
+
+                        if (scrapes.data && scrapes.data.length >= 2) {
+                            scrapes.data = scrapes.data.sort((scrapeA, scrapeB) =>
+                                new Date(scrapeB.createdAt) - new Date(scrapeA.createdAt));
+                        }
+
+                        // this.setState({ part: { ...part, scrapes } });
+                    });
+            }
+        });
     };
 
     sortAndFilter = () => {

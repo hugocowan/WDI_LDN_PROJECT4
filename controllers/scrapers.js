@@ -3,12 +3,46 @@ const Scraper = require('../models/scraper');
 const puppeteer = require('puppeteer');
 
 const scrapePricing = async (url) => {
+
+    const blockedResourceTypes = ['image', 'media', 'font', 'texttrack', 'object', 'beacon', 'csp_report', 'imageset'];
+    const skippedResources = ['quantserve', 'adzerk', 'doubleclick', 'adition', 'exelator', 'sharethrough',
+        'cdn.api.twitter', 'google-analytics', 'googletagmanager', 'google', 'fontawesome', 'facebook',
+        'analytics', 'optimizely', 'clicktale', 'mixpanel', 'zedo', 'clicksor', 'tiqcdn'];
+
     const browser = await puppeteer.launch(
-        // {headless: false}
-        { args: ['--no-sandbox'] }
+        // {headless: false},
+        {args: [
+                '--no-sandbox',
+                '--disable-setuid-sandbox',
+                '--disable-dev-shm-usage',
+                '--disable-accelerated-2d-canvas',
+                '--disable-gpu',
+        ]}
     );
     const page = await browser.newPage();
-    await page.goto(url);
+
+    await page.setRequestInterception(true);
+
+    page.on('request', request => {
+        const requestUrl = request._url.split('?')[0].split('#')[0];
+        if (
+            blockedResourceTypes.indexOf(request.resourceType()) !== -1 ||
+            skippedResources.some(resource => requestUrl.indexOf(resource) !== -1)
+        ) {
+            request.abort();
+        } else {
+            request.continue();
+        }
+    });
+
+    await page.goto(url, {
+        timeout: 25000,
+        waitUntil: 'networkidle2',
+    })
+        .catch(err => {
+            console.log('Page navigation error:', err);
+            return null;
+        });
 
     const result = await page.evaluate(() => {
         const priceBlock = document.getElementById('priceblock_ourprice');
@@ -28,12 +62,7 @@ const scrapePricing = async (url) => {
     return result;
 };
 
-//There could be a problem with res.json happening before the scrape happens.
-//Also the index will scrape one page for every part. Could be too much crawling/take ages.
-
 function createRoute(req, res, next) {
-
-    console.log('hi!', req.params.id);
 
     Part
         .findById(req.params.id)
@@ -42,8 +71,6 @@ function createRoute(req, res, next) {
 
                 await scrapePricing(part.link)
                     .then(price => {
-
-                        console.log('price:', price);
 
                         if (price === null) {
                             scrapeData = null;
@@ -65,14 +92,11 @@ function createRoute(req, res, next) {
                     return res.json('Error: scraping failed to find a price.');
                 }
 
-                console.log('We made a new scrape!', scrapeData, scrapeData.lastScrape, typeof scrapeData.lastScrape);
-
                 Scraper
                     .create(scrapeData)
                     .then(scrape => {
                         part.scrapes = (scrape.id);
                         part.save();
-                        console.log('scraping successful!', scrapeData);
                         res.json(scrape);
                     })
                     .catch(next);
@@ -88,13 +112,8 @@ function showRoute(req, res, next) {
             const currentTime = new Date();
             const timeLeft = scrape.lastScrape.getTime() - currentTime.getTime() + 1.8e+6;
 
-            // if (!scrape.lastScrape) {
-            //     scrape.lastScrape = new Date();
-            //     scrape.save();
-            //     return res.json(scrape);
-            // }
-
             if (timeLeft <= 0) {
+                console.log('Time\'s up, scraping.');
                 await scrapePricing(scrape.url)
                     .then(price => {
                         const data = { price, createdAt: new Date() };
@@ -105,7 +124,6 @@ function showRoute(req, res, next) {
                     .catch(next);
             } else {
                 console.log(`There\'s ${(timeLeft/60000)} minutes left till it\'s scraping time.`);
-                res.json(scrape);
             }
         })
         .catch(next);
