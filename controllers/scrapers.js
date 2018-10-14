@@ -17,6 +17,7 @@ const scrapePricing = async (url) => {
                 '--disable-dev-shm-usage',
                 '--disable-accelerated-2d-canvas',
                 '--disable-gpu',
+                '--single-process',
         ]}
     );
     const page = await browser.newPage();
