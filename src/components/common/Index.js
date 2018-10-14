@@ -13,10 +13,13 @@ class Index extends React.Component {
         search: '',
         sort: 'name|asc',
         computersShow: false,
-        partsShow: true
+        partsShow: true,
     };
 
+    callQueue = [];
     timeouts = [];
+
+    _source = axios.CancelToken.source();
 
     componentDidMount() {
 
@@ -27,46 +30,64 @@ class Index extends React.Component {
             .then(data => this.setState(data, () => this.getScrapes()));
     }
 
+    componentWillUnmount() {
+        this.callQueue = [];
+        this._source.cancel('Request cancelled by user.');
+        if (this.timeouts.length) {
+            this.timeouts.forEach(timeout => clearTimeout(timeout));
+        }
+
+    }
+
     handleChange = ({target: {name, value}}) => {
         this.setState({[name]: value});
     };
 
     getScrapes = () => {
-
-        return;
+        const parts = [ ...this.state.parts ];
 
         this.state.parts.forEach((part, index) => {
 
-            const parts = Object.assign({}, this.state.parts);
+            const position = parts.findIndex(partToReplace => partToReplace.id === part.id);
+
             if (!part.scrapes || !part.scrapes.lastScrape) {
 
                 this.timeouts.push(setTimeout(() => {
                     axios
-                        .post(`/api/scrapers/${part.id}`)
+                        .post(`/api/scrapers/${part.id}`, {
+                            cancelToken: this._source.token
+                        })
                         .then(res => {
                             if (typeof res.data === 'string') {
                                 return console.log(res.data);
                             }
-
-                            // this.setState({ part: { ...part, scrapes: res.data } });
-                        });
-                }, 1000 * index));
+                            parts[position].scrapes = res.data;
+                            this.setState({ parts });
+                        })
+                        .catch(err => console.log('Error while scraping:', err));
+                }, 4000 * index));
             } else {
 
                 let scrapes = Object.assign({}, part.scrapes);
 
-                axios
-                    .get(`/api/scrapers/${scrapes.id}`)
-                    .then(res => {
-                        let scrapes = res.data;
+                this.timeouts.push(setTimeout(() => {
+                    axios
+                        .get(`/api/scrapers/${scrapes.id}`, {
+                            cancelToken: this._source.token
+                        })
+                        .then(res => {
+                            let scrapes = res.data;
 
-                        if (scrapes.data && scrapes.data.length >= 2) {
-                            scrapes.data = scrapes.data.sort((scrapeA, scrapeB) =>
-                                new Date(scrapeB.createdAt) - new Date(scrapeA.createdAt));
-                        }
+                            if (scrapes.data && scrapes.data.length >= 2) {
+                                scrapes.data = scrapes.data.sort((scrapeA, scrapeB) =>
+                                    new Date(scrapeB.createdAt) - new Date(scrapeA.createdAt));
+                            }
 
-                        // this.setState({ part: { ...part, scrapes } });
-                    });
+                            parts[position].scrapes = scrapes;
+                            this.setState({ parts });
+                        })
+                        .catch(err => console.log('Error while scraping:', err));
+                    }, 4000 * index));
             }
         });
     };
@@ -142,8 +163,6 @@ class Index extends React.Component {
     };
 
     render() {
-        const allModels = ['computers', 'parts'];
-
         return (
 
             <div>
@@ -166,7 +185,7 @@ class Index extends React.Component {
                     <div className="column is-10-desktop is-10-tablet is-12-mobile">
                         <div className="columns is-multiline">
 
-                            {allModels.map(model =>
+                            {['computers', 'parts'].map(model =>
                                 (this.state[model] && this.state[`${model}Show`]) && this.sortAndFilter().map(item =>
                                     <div className="column is-4-desktop is-6-tablet is-12-mobile" key={item._id}>
                                         <Link to={`/${model}/${item._id}`}>
@@ -212,7 +231,6 @@ class Index extends React.Component {
                                     </div>
                                 )
                             )}
-
                         </div>
                     </div>
 

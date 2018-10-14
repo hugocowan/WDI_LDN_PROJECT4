@@ -12,10 +12,15 @@ class PartShow extends React.Component {
         comment: {}
     };
 
+    timeouts = [];
+    _source = axios.CancelToken.source();
+
     componentDidMount() {
         const {id} = this.props.match.params;
         axios
-            .get(`/api/parts/${id}`)
+            .get(`/api/parts/${id}`, {
+                cancelToken: this._source.token
+            })
             .then(res => {
                 const currentPart = res.data.find(part => part._id === id);
                 const comparisonParts = res.data.filter(part =>
@@ -35,13 +40,19 @@ class PartShow extends React.Component {
 
     componentWillUnmount() {
         console.log('timeouts to cancel:',this.timeouts);
-        this.timeouts.forEach(timeout => clearTimeout(timeout));
+        if (this.timeouts.length) {
+            this.timeouts.forEach(timeout => clearTimeout(timeout));
+        }
+
+        this._source.cancel('Request cancelled by user.');
     }
 
     getScrapes = () => {
         if (!this.state.part.scrapes || !this.state.part.scrapes.lastScrape) {
             axios
-                .post(`/api/scrapers/${this.props.match.params.id}`)
+                .post(`/api/scrapers/${this.props.match.params.id}`, {
+                    cancelToken: this._source.token
+                })
                 .then(res => {
                     if (typeof res.data === 'string') {
                         return console.log(res.data);
@@ -54,7 +65,9 @@ class PartShow extends React.Component {
             let scrapes = Object.assign({}, this.state.part.scrapes);
 
             axios
-                .get(`/api/scrapers/${scrapes.id}`)
+                .get(`/api/scrapers/${scrapes.id}`, {
+                    cancelToken: this._source.token
+                })
                 .then(res => {
                     let scrapes = res.data;
 
