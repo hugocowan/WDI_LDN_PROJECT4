@@ -13,7 +13,7 @@ The site had to allow individual computer parts as well as entire builds to be c
 Finally, those parts and builds had to be rated by others, to give those who are new to PC building a good idea of what they should use when they visit the site.
 
 ## Link:
-https://restaurant-review-project.herokuapp.com/
+https://pcbuilder-project.herokuapp.com/
 
 ## Site Guide:
 
